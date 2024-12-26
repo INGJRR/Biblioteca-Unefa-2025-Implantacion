@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 	<!--  CSS -->
-	<link rel="stylesheet" href="estilo/Registrar.css">
+	<link rel="stylesheet" href="estilo/Regi_estu.css">
     <title>Biblioteca</title>
 </head>
 <!--  body -->
@@ -77,59 +77,72 @@
 			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu ' ></i>
 			
 			
+			<a class="retorn" href="Registrar.php">Regresar</a>
 		</nav>
 		
-		<main>
-			<br><br>
-			<div class="contenedor">
-
-			<a href="regis_libro.php">	<div style="background-image: url(imagenes/libro-magico.png);" class="box">
-					<div class="ima">
-						<h5>Doc</h5><br><h2>Libro</h2>
-					</div>
-					<div style="background-image: url(imagenes/libros.png);" class="boci"></div>
-				  </div>
-
-			</a>
-
-
-				<a href="regis_estu.php">  <div style="background-image: url(imagenes/libro-magico.png);" class="box">
-					<div class="ima">
-						<h5></h5><br><h2>Estudiante</h2>
-					</div>
-					<div style="background-image: url(imagenes/graduacion.png);" class="boci"></div>
-				  </div>
-				</a> 
-
-
-				 <a href="regis_pero.php"> <div style="background-image: url(imagenes/libro-magico.png);" class="box">
-					<div class="ima">
-						<h5>Personal</h5><br><h2>UNEFA</h2>
-					</div>
-					<div style="background-image: url(imagenes/profesor.png);" class="boci"></div>
-				  </div>
-				</a>
-
-				<a href="regis_comu.php"> <div style="background-image: url(imagenes/libro-magico.png);" class="box">
-					<div class="ima">
-						<h5>Servicio</h5><br><h2>Comunitario</h2>
-					</div>
-					<div style="background-image: url(imagenes/admin.png);" class="boci"></div>
-				  </div>
-				</a>
-				
-				<a href="regis_grado.php"> <div style="background-image: url(imagenes/libro-magico.png);" class="box">
-					<div class="ima">
-						<h5>Post</h5><br><h2>Grado</h2>
-					</div>
-					<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
-				  </div>
-				</a>
-            </div>
-		</main>
+		
 	</section>
 	<!-- BARRA SUPERIOR -->
-	
+    <br><br>
+	<main>
+       
+     <br>   
+<form class="form">
+    <p class="title">Estudiante</p><br><br><br>
+    
+       
+             
+     <label>
+         <input required="" placeholder="" type="text" class="input">
+         <span>Cedula</span>
+     </label> 
+         
+     <label>
+         <input required="" placeholder="" type="text" class="input">
+         <span>Nombre</span>
+     </label>
+     <label>
+         <input required="" placeholder="" type="text" class="input">
+         <span>Apellido</span>
+     </label>
+     <label>
+        <input required="" placeholder="" type="" class="input">
+        <span>Fecha de nacimiento</span>
+    </label>
+    <label>
+        <input required="" placeholder="" type="text" class="input">
+        <span>Direccion</span>
+    </label>
+    <label>
+        <input required="" placeholder="" type="tel" class="input">
+        <span>Telefono</span>
+    </label>
+    <label>
+        <input required="" placeholder="" type="email" class="input">
+        <span>Email</span>
+    </label>
+    <label>
+        <input required="" placeholder="" type="text" class="input">
+        <span>Carrera</span>
+    </label>
+    <label>
+        <input required="" placeholder="" type="text" class="input">
+        <span>Matricula</span>
+    </label>
+    <label>
+        <input required="" placeholder="" type="number" class="input">
+        <span>Semestre</span>
+    </label>
+    <br>
+     <button class="submit">Registrar</button>
+     
+ </form>
+ 
+    </main>
+
+
+
+
 	<script src="script.js"></script>
 </body>
 </html>

@@ -1,66 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--  CSS -->
-	<link rel="stylesheet" href="estilo/unefa.css">
-    <title>Biblioteca</title>
+	<link rel="stylesheet" href="./estilo/unefa.css">
+	<title>Biblioteca</title>
 </head>
 <!--  body -->
+
 <body>
 
 
 	<!-- MENU -->
 	<section id="sidebar">
 		<div class="l">
-			<span><div style="background-image: url(imagenes/unefa-logo-3FC9336783-seeklogo.com.png);" class="logo"></div></span>
-		  <div><p class="pe">Biblioteca </p> <p class="p" >Luis Beltran Prieto Figueroa</p><br></div>
-		
+			<span>
+				<div style="background-image: url(imagenes/unefa-logo-3FC9336783-seeklogo.com.png);" class="logo"></div>
+			</span>
+			<div>
+				<p class="pe">Biblioteca </p>
+				<p class="p">Luis Beltran Prieto Figueroa</p><br>
+			</div>
+
 		</div>
 
 		<ul class="side-menu top">
-			
+
 			<li>
-				<a href="index.php">
-					<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon' ></i>
+				<a href="admin-inicio.php">
+					<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon'></i>
 					<span class="text">Inicio</span>
 				</a>
 			</li>
 
 			<li>
 				<a href="Registrar.php">
-					<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon' ></i>
+					<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon'></i>
 					<span class="text">Registrar</span>
 				</a>
 			</li>
 
-			
+
 			<li>
 				<a href="Documento.php">
-					<i style="background-image: url(imagenes/libro.png);" class='bx bxs-doughnut-chart icon' ></i>
+					<i style="background-image: url(imagenes/libro.png);" class='bx bxs-doughnut-chart icon'></i>
 					<span class="text">Documentos</span>
 				</a>
 			</li>
-			<li >
+			<li>
 				<a href="estudiantes.php">
-					<i style="background-image: url(imagenes/hogar.png);" class='bx bxs-shopping-bag-alt icon' ></i>
+					<i style="background-image: url(imagenes/hogar.png);" class='bx bxs-shopping-bag-alt icon'></i>
 					<span class="text">Estudiantes</span>
 				</a>
 			</li>
 			<li class="active">
 				<a href="unefaper.php">
-					<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon' ></i>
+					<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon'></i>
 					<span class="text">Personal UNEFA</span>
 				</a>
 			</li>
 		</ul>
 
 		<ul class="side-menu">
-		
+
 			<li>
-				<a href="home.php" class="logout">
-					<i style="background-image: url(imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon' ></i>
+				<a href="index.php" class="logout">
+					<i style="background-image: url(imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon'></i>
 					<span class="text">Salir</span>
 				</a>
 			</li>
@@ -73,36 +80,43 @@
 	<!-- BARRA SUPERIOR -->
 	<section id="content">
 		<nav>
-			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu ' ></i>
-			
-			
-			
+			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu '></i>
+
+
+
 		</nav>
-		
+
 		<main>
 			<br><br>
 			<div class="contenedor">
 
-            <a href="docente.php"> <div style="background-image: url(imagenes/informatica.png);" class="box">
-				<div class="ima">
-					<h5>Personal</h5><br><h2>Docente</h2>
-				</div>
-				<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
-			  </div></a> 
+				<a href="docente.php">
+					<div style="background-image: url(imagenes/informatica.png);" class="box">
+						<div class="ima">
+							<h5>Personal</h5><br>
+							<h2>Docente</h2>
+						</div>
+						<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
+					</div>
+				</a>
 
 
-			  <a href="obrero.php"><div style="background-image: url(imagenes/excavador.png);" class="box ci">
-					<div class="ima vil">
-					<h5>Personal</h5><br><h2>Obrero</h2>
-				</div>
-				<div style="background-image: url(imagenes/civil.png);" class="boci"></div>
-			  </div></a>
-            </div>
+				<a href="obrero.php">
+					<div style="background-image: url(imagenes/excavador.png);" class="box ci">
+						<div class="ima vil">
+							<h5>Personal</h5><br>
+							<h2>Obrero</h2>
+						</div>
+						<div style="background-image: url(imagenes/civil.png);" class="boci"></div>
+					</div>
+				</a>
+			</div>
 			<br><br>
 		</main>
 	</section>
 	<!-- BARRA SUPERIOR -->
-	
+
 	<script src="script.js"></script>
 </body>
+
 </html>
