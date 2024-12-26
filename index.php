@@ -40,7 +40,7 @@
       </ul>
 
       <div class="nav__btns">
-        <a href="login.html"><button class="btn">Ingresar</button></a>
+        <a href="login.php"><button class="btn">Ingresar</button></a>
       </div>
 
 

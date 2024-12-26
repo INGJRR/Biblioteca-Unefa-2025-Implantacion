@@ -1,12 +1,12 @@
 <?php
-  // Datos de conexión (reemplaza con tus propios datos)
+  // Datos de conexión 
   $servername = "localhost";
   $username = "root";
   $password = "123321";
   $dbname = "biblioteca1_0";
 
   // Crear una csonexión
-  $conexion = new mysqli($servername, $username, $password, $dbname);
+  $conexion = new mysqli($servername, $username, $password,$dbname);
 
   // Verificar la conexión
   if ($conexion->connect_error) {

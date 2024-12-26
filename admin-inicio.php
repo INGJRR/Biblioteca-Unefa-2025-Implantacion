@@ -1,0 +1,172 @@
+<?php
+	require './controlador/cantidad.php'
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--  CSS -->
+	<link rel="stylesheet" href="estilo/style.css">
+	<title>Biblioteca</title>
+</head>
+<!--  body -->
+
+<body>
+
+	<!-- menu de barra latera -->
+	<?php include './componentes/barra-lateral.php' ?>
+
+	<!-- BARRA SUPERIOR -->
+	<section id="content">
+		<nav>
+			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu '></i>
+
+		</nav>
+
+		<main>
+
+			<div class="items">
+				<div class="item uS">
+					<div style="background-image: url(imagenes/graduado.png);" class="image u"></div>
+					<div class="info"><br>
+						<p class="portada">Libros</p>
+						<h3 class="sub_portada"><?= $total_libro ?></h3>
+					</div>
+				</div>
+
+				<div class="item dS">
+					<div style="background-image: url(imagenes/leer.png);" class="image d"></div>
+					<div class="info"><br>
+						<p class="portada">Trabajos</p>
+						<h3 class="sub_portada"><?= $total_ti ?></h3>
+
+					</div>
+				</div>
+
+				<div class="item tS">
+					<div style="background-image: url(imagenes/libro-magico.png);" class="image t"></div>
+					<div class="info"><br>
+						<p class="portada">Prestamos</p>
+						<h3 class="sub_portada"> <?= $total_prestados ?></h3>
+					</div>
+				</div>
+
+
+
+
+				<div class="item cS">
+					<div style="background-image: url(imagenes/diario.png);" class="image c"></div>
+					<div class="info"><br>
+
+						<p class="portada">Personas registrada</p>
+						<h3 class="sub_portada"> <?= $total_personas ?> </h3>
+
+
+					</div>
+				</div>
+			</div>
+
+			<div class="elementos">
+
+				<div class=" porcentaje">
+					<p>Carreras</p><br>
+					<a href="Sistemas.php">
+						<div style="background-image: url(imagenes/informatica.png);" class="box">
+
+
+							<div class="ima">
+								<p>Ingenieria en Sistemas</p>
+							</div>
+
+							<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
+						</div>
+					</a>
+					<br>
+
+					<a href="civil.php">
+						<div style="background-image: url(imagenes/excavador.png);" class="box ci">
+							<div class="ima vil">
+								<p>Ingenieria civil</p>
+							</div>
+							<div style="background-image: url(imagenes/civil.png);" class="boci"></div>
+						</div>
+					</a>
+					<br>
+					<a href="enfermeria.php">
+						<div style="background-image: url(imagenes/caduceo.png);" class="box en">
+
+							<div class="ima fer">
+								<p>TSU Enfermeria</p>
+							</div>
+							<div style="background-image: url(imagenes/enfermeria.png);" class="boci"></div>
+						</div>
+					</a>
+					<br>
+					<a href="turismo.php">
+						<div style="background-image: url(imagenes/turismo\ \(1\).png);" class="box tu">
+							<div class="ima ris">
+								<p>Licurismo</p>
+							</div>
+							<div style="background-image: url(imagenes/turismo\ \(2\).png);" class="boci b"></div>
+						</div>
+					</a>
+
+					<br>
+					<a href="adminis.php">
+						<div style="background-image: url(imagenes/admin\ \(2\).png);" class="box ad">
+							<div class="ima mon">
+								<p>Lic Admon</p>
+							</div>
+							<div style="background-image: url(imagenes/admin.png);" class="boci b"></div>
+						</div>
+					</a>
+					<br>
+					<a href="ads.php">
+						<div style="background-image: url(imagenes/ads\ \(2\).png);" class="box ads">
+							<div class="ima asd">
+								<p>TSU ADS</p>
+							</div>
+							<div style="background-image: url(imagenes/ads.png);" class="boci b"></div>
+						</div>
+					</a>
+				</div>
+
+
+				<div class=" tabla">
+					<div class="menurapido">
+						<p>Reporte</p>
+						<div style="background-image: url(imagenes/libro-magico.png);" class="descargar">
+							<div class="gla">Documento <div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+								</div>
+							</div>
+						</div>
+						<div style="background-image: url(imagenes/libro-magico.png);" class="descargar">
+							<div class="gla">Estudiantes <div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+								</div>
+							</div>
+						</div>
+						<div style="background-image: url(imagenes/libro-magico.png);" class="descargar">
+							<div class="gla">Ausencia<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+								</div>
+							</div>
+						</div>
+						<div style="background-image: url(imagenes/libro-magico.png);" class="descargar">
+							<div class="gla">Personal UNEFA<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</section>
+	<!-- BARRA SUPERIOR -->
+
+	<script src="script.js"></script>
+</body>
+
+</html>

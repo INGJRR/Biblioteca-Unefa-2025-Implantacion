@@ -22,14 +22,14 @@
 		<ul class="side-menu top">
 			
 			<li>
-				<a href="index.html">
+				<a href="index.php">
 					<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon' ></i>
 					<span class="text">Inicio</span>
 				</a>
 			</li>
 
 			<li>
-				<a href="Registrar.html">
+				<a href="Registrar.php">
 					<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon' ></i>
 					<span class="text">Registrar</span>
 				</a>
@@ -37,19 +37,19 @@
 
 			
 			<li>
-				<a href="Documento.html">
+				<a href="Documento.php">
 					<i style="background-image: url(imagenes/libro.png);" class='bx bxs-doughnut-chart icon' ></i>
 					<span class="text">Documentos</span>
 				</a>
 			</li>
 			<li >
-				<a href="estudiantes.html">
+				<a href="estudiantes.php">
 					<i style="background-image: url(imagenes/hogar.png);" class='bx bxs-shopping-bag-alt icon' ></i>
 					<span class="text">Estudiantes</span>
 				</a>
 			</li>
 			<li class="active">
-				<a href="unefaper.html">
+				<a href="unefaper.php">
 					<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon' ></i>
 					<span class="text">Personal UNEFA</span>
 				</a>
@@ -59,7 +59,7 @@
 		<ul class="side-menu">
 		
 			<li>
-				<a href="home.html" class="logout">
+				<a href="home.php" class="logout">
 					<i style="background-image: url(imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon' ></i>
 					<span class="text">Salir</span>
 				</a>
@@ -83,7 +83,7 @@
 			<br><br>
 			<div class="contenedor">
 
-            <a href="docente.html"> <div style="background-image: url(imagenes/informatica.png);" class="box">
+            <a href="docente.php"> <div style="background-image: url(imagenes/informatica.png);" class="box">
 				<div class="ima">
 					<h5>Personal</h5><br><h2>Docente</h2>
 				</div>
@@ -91,17 +91,12 @@
 			  </div></a> 
 
 
-			  <a href="obrero.html"><div style="background-image: url(imagenes/excavador.png);" class="box ci">
+			  <a href="obrero.php"><div style="background-image: url(imagenes/excavador.png);" class="box ci">
 					<div class="ima vil">
 					<h5>Personal</h5><br><h2>Obrero</h2>
 				</div>
 				<div style="background-image: url(imagenes/civil.png);" class="boci"></div>
 			  </div></a>
-
-
-
-
-
             </div>
 			<br><br>
 		</main>

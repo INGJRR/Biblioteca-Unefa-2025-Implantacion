@@ -1,14 +1,11 @@
 <?php
-
-require "../modelo/conexion.php";
-
 // Vamos a obtener toda la informacion de los estudiante
 $sql = "SELECT 
     *,
     c.nombre as carrera,
     e.nombre as nombre
 FROM estudiantes e
-INNER JOIN carreras c ON e.id_carrera = c.id";
+INNER JOIN carreras c ON e.id_carrera = c.id where c.nombre = '$carrera'";
 
 $result = $conexion->query($sql);
 

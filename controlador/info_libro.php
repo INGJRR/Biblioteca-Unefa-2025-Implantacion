@@ -1,7 +1,5 @@
 <?php
 
-require "../modelo/conexion.php";
-
 // Vamos a obtener toda la informacion de los libros 
 $sql = "SELECT 
     *
