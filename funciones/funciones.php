@@ -96,4 +96,26 @@ function validarSoloLetrasNumeros($cadena, &$error ,$longitudMaxima = 100) {
         return '';
     }
 }
+
+function validar_cota($cota, &$error) {
+    // Expresión regular para validar el formato de la cota
+    $patron = "/^[A-Z]{3}-\d{3,4}$/";
+
+    // Verificar si el campo está vacío
+    if (empty($cota)) {
+        $error = true;
+        return "";
+    }
+
+    // Verificar si la cota cumple con el patrón
+    if (!preg_match($patron, $cota)) {
+        $error = true;
+        return '';
+        // return "La cota debe tener 3 letras mayúsculas al inicio, seguidas de un guión y 3 o 4 números.";
+    }
+
+    return $cota; // Si pasa todas las validaciones, retorna true
+}
+
+
 ?>

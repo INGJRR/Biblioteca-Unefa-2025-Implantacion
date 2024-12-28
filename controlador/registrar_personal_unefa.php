@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = validarEmail($_POST['email'], $error);
     $categoria = esNumeroValido($_POST['categoria'], 2 ,$error);
 
-    //verificamos si tenemos creado el objeto usuario para evitar cargarlo luego
+    //verificamos si tenemos creado el objeto con datos del registro para evitar cargarlo luego
     if(isset($_SESSION['registroPersonalUnefa'])){
         unset($_SESSION['registroPersonalUnefa']);
     }
