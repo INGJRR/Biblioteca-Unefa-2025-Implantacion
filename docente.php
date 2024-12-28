@@ -27,7 +27,7 @@
 		<ul class="side-menu top">
 			
 			<li>
-				<a href="admin=inicio.php">
+				<a href="admin-inicio.php">
 					<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon' ></i>
 					<span class="text">Inicio</span>
 				</a>
@@ -64,7 +64,7 @@
 		<ul class="side-menu">
 		
 			<li>
-				<a href="index.php" class="logout">
+				<a href="./controlador/cerrar_sesion.php" class="logout">
 					<i style="background-image: url(imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon' ></i>
 					<span class="text">Salir</span>
 				</a>

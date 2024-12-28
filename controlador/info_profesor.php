@@ -1,6 +1,6 @@
 <?php
 
-// Vamos a obtener toda la informacion de los estudiante
+// Vamos a obtener toda la informacion de los profesores
 $sql = "SELECT 
     *
 FROM profesores";
@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
         $profesores[] = $row;
     }
 } else {
-    echo "Error al obtener la informacion de los estudiantes";
+    // echo "No hay informacion de los estudiantes para mostrar";
 }
 
 $conexion->close();

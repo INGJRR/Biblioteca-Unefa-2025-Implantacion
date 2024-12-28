@@ -66,7 +66,7 @@
 		<ul class="side-menu">
 
 			<li>
-				<a href="index.php" class="logout">
+				<a href="./controlador/cerrar_sesion.php" class="logout">
 					<i style="background-image: url(imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon'></i>
 					<span class="text">Salir</span>
 				</a>

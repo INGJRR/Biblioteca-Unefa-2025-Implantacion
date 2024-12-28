@@ -1,6 +1,6 @@
 <?php 
 	require  './modelo/conexion.php';
-	require './controlador/info_profesor.php';
+	require './controlador/info_obreros.php';
 ?>
 
 
@@ -29,7 +29,7 @@
 		<ul class="side-menu top">
 			
 			<li>
-				<a href="admin=inicio.php">
+				<a href="admin-inicio.php">
 					<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon' ></i>
 					<span class="text">Inicio</span>
 				</a>
@@ -66,7 +66,7 @@
 		<ul class="side-menu">
 		
 			<li>
-				<a href="index.php" class="logout">
+				<a href="./controlador/cerrar_sesion.php" class="logout">
 					<i style="background-image: url(imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon' ></i>
 					<span class="text">Salir</span>
 				</a>
@@ -87,7 +87,7 @@
 		</nav>
 		<br><br>
 		<main>
-			<?php if(empty($profesores)): ?>
+			<?php if(empty($obreros)): ?>
 				<div>No hay datos para mostrar</div>
 			<?php else: ?>
             <div id="main-container">
@@ -102,14 +102,14 @@
 							<th>Moroso</th>
                         </tr>
                     </thead>
-					<?php foreach($profesores as $profesor): ?>
+					<?php foreach($obreros as $obrero): ?>
                     <tr>
-                        <td><?= $profesor["cedula"] ?></td>
-                        <td><?= $profesor["nombre"] ?></td>
-                        <td><?= $profesor["apellido"] ?></td>
-                        <td><?= $profesor["telefono"] ?></td>
-                        <td><?php echo ($profesor["estado"] == 0) ? 'Inactivo' : 'Activo' ?></td>
-                        <td><?php echo ($profesor["moroso"] == 0) ? 'No' : 'Si' ?></td>
+                        <td><?= $obrero["cedula"] ?></td>
+                        <td><?= $obrero["nombre"] ?></td>
+                        <td><?= $obrero["apellido"] ?></td>
+                        <td><?= $obrero["telefono"] ?></td>
+                        <td><?php echo ($obrero["estado"] == 0) ? 'Inactivo' : 'Activo' ?></td>
+                        <td><?php echo ($obrero["moroso"] == 0) ? 'No' : 'Si' ?></td>
                     </tr>
 					<?php endforeach?>
                 </table>
