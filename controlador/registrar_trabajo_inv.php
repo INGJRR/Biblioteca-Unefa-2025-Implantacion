@@ -1,7 +1,7 @@
 <?php
    session_start();
    require_once './funciones/funciones.php';
-
+ 
 // Si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //variable que gestiona si encuentra un error en la validacion

@@ -117,5 +117,15 @@ function validar_cota($cota, &$error) {
     return $cota; // Si pasa todas las validaciones, retorna true
 }
 
+function esIdValidoCarrera($id, $arrayCarreras, &$error) {
+    foreach ($arrayCarreras as $carrera) {
+        if ($carrera['id'] == $id) {
+            return $id;
+        }
+    }
+    $error = true;
+    return '';
+}
+
 
 ?>
