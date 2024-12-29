@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tutor_comunitario = validar_nombre($_POST['tutor_comunitario'], $error); 
     $lugar = validarSoloLetrasNumeros($_POST['lugar'],$error);
 
-    $fecha_registro = date("Y-m-d ");;
+    $fecha_registro = date("Y-m-d ");
     $cantidad = 1;
     //verificamos si tenemos creado el objeto usuario para evitar cargarlo luego
     if(isset($_SESSION['registroServicioComunitario'])){
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Transacción para asegurar la integridad de los datos
     $conexion->begin_transaction();
-
+ 
     // registramos libros
     $sql_libro = "INSERT INTO servicio_comunitario (cota, titulo, autor, tutor, tutor_comunitario, fecha_registro, fecha_presentacion, cantidad, lugar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt_libro = $conexion->prepare($sql_libro);
