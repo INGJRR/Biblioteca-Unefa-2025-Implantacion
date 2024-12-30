@@ -79,7 +79,7 @@
 			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu ' ></i>
 			
 			<a class="retorn" href="estudiantes.php">Regresar</a>
-			
+			<?php require './componentes/buscador.php'?>
 		</nav>
 		<br><br>
 		<main>
@@ -87,7 +87,7 @@
 				<div>No hay datos para mostrar</div>
 			<?php else: ?>
             <div id="main-container">
-			<table>
+			<table class="busquedatabla">
                     <thead>
                         <tr>
                             <th>Cedula</th>
@@ -98,6 +98,7 @@
 							<th>Moroso</th>
                         </tr>
                     </thead>
+					<tbody>
 					<?php foreach($estudiantes as $estudiante): ?>
                     <tr>
                         <td><?= $estudiante["cedula"] ?></td>
@@ -108,7 +109,9 @@
                         <td><?php echo ($estudiante["moroso"] == 0) ? 'No' : 'Si' ?></td>
                     </tr>
 					<?php endforeach?>
-                </table>
+					</tbody>
+				</table>
+				<div id="noResults" style="display: none;">No se encontraron resultados.</div>
             </div>
 			<?php endif?>
 		</main>
@@ -116,5 +119,6 @@
 	<!-- BARRA SUPERIOR -->
 	
 	<script src="script.js"></script>
+	<script src="./script/busqueda.js" ></script>
 </body>
 </html>

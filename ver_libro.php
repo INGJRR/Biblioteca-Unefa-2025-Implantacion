@@ -79,14 +79,14 @@
 			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu ' ></i>
 			
 			<a class="retorn" href="Documento.php">Regresar</a>
-			
+			<?php require './componentes/buscador.php'?>
 		</nav>
 		<br><br>
 		<main>
 			
             <div id="main-container">
 
-                <table>
+                <table class="busquedatabla">
                     <thead>
                         <tr>
                             <th>Titulo</th>
@@ -98,6 +98,7 @@
 							
                         </tr>
                     </thead>
+					<tbody>
                     <?php foreach( $libros as $libro): ?>
                     <tr>
                         <td><?= $libro["titulo"]?></td>
@@ -108,13 +109,18 @@
                         <td><?= $libro["cantidad"]?></td>
                     </tr>
                     <?php endforeach?>
+					</tbody>
                 </table>
-            </div>
+				<div id="noResults" style="display: none;">No se encontraron resultados.</div>
+
+			</div>
         
 		</main>
 	</section>
 	<!-- BARRA SUPERIOR -->
 	
 	<script src="script.js"></script>
+	<script src="./script/busqueda.js" ></script>
+
 </body>
 </html>

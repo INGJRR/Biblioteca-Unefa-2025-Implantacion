@@ -86,14 +86,14 @@ require './controlador/info_trabajo_inv.php'
 			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu '></i>
 
 			<a class="retorn" href="Documento.php">Regresar</a>
-
+			<?php require './componentes/buscador.php'?>
 		</nav>
 		<br><br>
 		<main>
 
 			<div id="main-container">
 
-				<table>
+				<table class="busquedatabla">
 					<thead>
 						<tr>
 							<th>Titulo</th>
@@ -104,6 +104,7 @@ require './controlador/info_trabajo_inv.php'
 							<th>Metodologia</th>
 						</tr>
 					</thead>
+					<tbody>
 					<?php foreach ($tis as $ti): ?>
 						<tr>
 							<td><?= $ti["titulo"] ?></td>
@@ -114,7 +115,10 @@ require './controlador/info_trabajo_inv.php'
 							<td><?= $ti["metodologia"] ?></td>
 						</tr>
 					<?php endforeach ?>
+					</tbody>
 				</table>
+				<div id="noResults" style="display: none;">No se encontraron resultados.</div>
+
 			</div>
 
 		</main>
@@ -122,6 +126,8 @@ require './controlador/info_trabajo_inv.php'
 	<!-- BARRA SUPERIOR -->
 
 	<script src="script.js"></script>
+	<script src="./script/busqueda.js" ></script>
+
 </body>
 
 </html>
