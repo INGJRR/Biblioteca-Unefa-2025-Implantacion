@@ -197,24 +197,32 @@ require './controlador/cantidad.php'
 					<div class="menurapido">
 						<p>Reporte</p>
 						<div style="background-image: url(imagenes/libro-magico.png);" class="descargar">
-							<div class="gla">Documento <div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
-								</div>
+							<a href="./reportes/reporte_doc.php">
+							<div class="gla"> Documento
+								<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton"></div>
 							</div>
+							</a>
 						</div>
 						<div style="background-image: url(imagenes/libro-magico.png);" class="descargar">
+							<a href="./reportes/reporte_estudiantes.php">
 							<div class="gla">Estudiantes <div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
 								</div>
 							</div>
+							</a>
 						</div>
 						<div style="background-image: url(imagenes/libro-magico.png);" class="descargar">
-							<div class="gla">Ausencia<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+							<a href="./reportes/reporte_prestamos.php">
+							<div class="gla">Prestamos<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
 								</div>
 							</div>
+							</a>
 						</div>
 						<div style="background-image: url(imagenes/libro-magico.png);" class="descargar">
+							<a href="./reportes/reporte_personal_unefa.php">
 							<div class="gla">Personal UNEFA<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
 								</div>
 							</div>
+							</a>
 						</div>
 					</div>
 				</div>
