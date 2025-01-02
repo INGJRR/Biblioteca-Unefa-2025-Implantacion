@@ -102,6 +102,7 @@ require './controlador/info_trabajo_inv.php'
 							<th>Tutor</th>
 							<th>Linea de investigacion</th>
 							<th>Metodologia</th>
+							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -113,6 +114,9 @@ require './controlador/info_trabajo_inv.php'
 							<td><?= $ti["tutor"] ?></td>
 							<td><?= $ti["linea_investigacion"] ?></td>
 							<td><?= $ti["metodologia"] ?></td>
+							<td>
+								<a href="./modificar/ti.php?cota=<?= $ti["cota"] ?>" >Modificar</a>
+							</td>
 						</tr>
 					<?php endforeach ?>
 					</tbody>

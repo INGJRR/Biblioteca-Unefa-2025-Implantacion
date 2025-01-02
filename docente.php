@@ -105,6 +105,7 @@ require './controlador/info_profesor.php';
 								<th>Telefono</th>
 								<th>Estado</th>
 								<th>Moroso</th>
+								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -116,6 +117,9 @@ require './controlador/info_profesor.php';
 								<td><?= $profesor["telefono"] ?></td>
 								<td><?php echo ($profesor["estado"] == 0) ? 'Inactivo' : 'Activo' ?></td>
 								<td><?php echo ($profesor["moroso"] == 0) ? 'No' : 'Si' ?></td>
+								<td>
+									<a href="./modificar/personalUnefa.php?cedula=<?= $profesor["cedula"] ?>&tipo=1" >Modificar</a>
+								</td>
 							</tr>
 						<?php endforeach ?>
 						</tbody>

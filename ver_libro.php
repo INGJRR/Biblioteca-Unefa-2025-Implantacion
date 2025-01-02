@@ -1,4 +1,5 @@
 <?php 
+	require_once './ruta.php';
     require_once './modelo/conexion.php';
     include_once './controlador/info_libro.php'
     ?>
@@ -95,7 +96,7 @@
 							<th>Cota</th>
 							<th>Editorial</th>
 							<th>Ejemplar</th>
-							
+							<th>Acciones</th>
                         </tr>
                     </thead>
 					<tbody>
@@ -107,6 +108,9 @@
                         <td><?= $libro["cota"]?></td>
                         <td><?= $libro["editorial"]?></td>
                         <td><?= $libro["cantidad"]?></td>
+						<td>
+							<a href="./modificar/libro.php?cota=<?= $libro["cota"] ?>" >Modificar</a>
+						</td>
                     </tr>
                     <?php endforeach?>
 					</tbody>

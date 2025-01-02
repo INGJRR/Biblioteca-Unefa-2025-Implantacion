@@ -95,6 +95,7 @@
 							<th>Telefono</th>
 							<th>Estado</th>
 							<th>Moroso</th>
+							<th>Acciones</th>
                         </tr>
                     </thead>
 					<tbody>
@@ -106,6 +107,9 @@
 							<td><?= $estudiante["telefono"] ?></td>
 							<td><?php echo ($estudiante["estado"] == 0) ? 'Inactivo' : 'Activo' ?></td>
 							<td><?php echo ($estudiante["moroso"] == 0) ? 'No' : 'Si' ?></td>
+							<td>
+								<a href="./modificar/estudiante.php?cedula=<?= $estudiante["cedula"] ?>" >Modificar</a>
+							</td>
 						</tr>
 						<?php endforeach?>
 					</tbody>

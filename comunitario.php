@@ -97,6 +97,7 @@
                             <th>Fecha de presentacion</th>
                             <th>Cantidad</th>
                             <th>Institucion</th>
+							<th>Acciones</th>
                         </tr>
                     </thead>
 					<tbody>
@@ -110,6 +111,9 @@
                         <td><?= $sv["fecha_presentacion"]?></td>
                         <td><?= $sv["cantidad"]?></td>
                         <td><?= $sv["lugar"]?></td>
+						<td>
+							<a href="./modificar/sc.php?cota=<?= $sv["cota"] ?>" >Modificar</a>
+						</td>
                     </tr>
                     <?php endforeach?>
 					</tbody>

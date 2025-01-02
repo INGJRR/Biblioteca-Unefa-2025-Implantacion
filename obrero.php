@@ -1,6 +1,6 @@
 <?php
-require  './modelo/conexion.php';
-require './controlador/info_obreros.php';
+	require  './modelo/conexion.php';
+	require './controlador/info_obreros.php';
 ?>
 
 
@@ -107,6 +107,7 @@ require './controlador/info_obreros.php';
 								<th>Telefono</th>
 								<th>Estado</th>
 								<th>Moroso</th>
+								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -118,6 +119,9 @@ require './controlador/info_obreros.php';
 								<td><?= $obrero["telefono"] ?></td>
 								<td><?php echo ($obrero["estado"] == 0) ? 'Inactivo' : 'Activo' ?></td>
 								<td><?php echo ($obrero["moroso"] == 0) ? 'No' : 'Si' ?></td>
+								<td>
+									<a href="./modificar/personalUnefa.php?cedula=<?= $obrero["cedula"] ?>&tipo=2" >Modificar</a>
+								</td>
 							</tr>
 						<?php endforeach ?>
 						</tbody>
