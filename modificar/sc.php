@@ -1,59 +1,7 @@
 <?php
 	require_once '../ruta.php';
-	require ROOT_DIR . '/modelo/conexion.php';
+	//controlador importante
 	require ROOT_DIR . '/controlador/modificar/sc.php';
-	require ROOT_DIR . '/funciones/info_idv_db.php';
-	//sirve para cuando regresemos
-	$nombreSesion = "modificarSc";
-	$ruta = '../comunitario.php';
- 
-	$cota = '';
-	$titulo = '';
-	$autor = '';
-	$fecha = '';
-	$tutor = '';
-	$tutor_comunitario = '';
-	$lugar = '';
-	$estilosError = '';
-	
-	if(isset($_SESSION["modificarSc"])){
-		//si existe quiere decir que ya cargamos los datos de la cota
-		$estilosError = "style=\"border: 2px solid red;\"";
-		$cota = $_SESSION["modificarSc"]->cota ?? '';
-		$titulo = $_SESSION['modificarSc']->titulo ?? '';
-		$autor = $_SESSION['modificarSc']->autor ?? '';
-		$fecha = $_SESSION['modificarSc']->fecha ?? '';
-		$tutor = $_SESSION['modificarSc']->tutor ?? '';
-		$tutor_comunitario = $_SESSION['modificarSc']->tutor_comunitario ?? '';
-		$lugar = $_SESSION['modificarSc']->lugar ?? '';
-	}else{
-		// no hemos cargado los datos de la cota, entonces lo cargaremos
-		if (isset($_GET['cota'])) {
-			$cota = $_GET['cota'];
-			require ROOT_DIR . '/modelo/conexion.php';
-			$sql = "SELECT 
-			*
-			FROM servicio_comunitario WHERE cota = '$cota'";
-			$sv = info_idv_db($sql, $conexion);
-			$conexion->close();
-	
-			//comprobamos si libro tiene un valor 
-			if($sv != ''){	
-				// Guardamos todos los datos en variables
-				$cota = $sv["cota"];
-				$titulo = $sv["titulo"];
-				$autor = $sv["autor"];
-				$fecha = substr($sv["fecha_presentacion"], 0, 4);
-				$tutor = $sv["tutor"];
-				$tutor_comunitario = $sv["tutor_comunitario"];
-				$lugar = $sv["lugar"];
-			}else{
-				//la consulta fallo
-			}
-		} else {
-			// echo "No se ha ingresado una cota.";
-		}
-	}
 ?>
 
 
@@ -75,7 +23,7 @@
 
 <body>
 
-
+ 
 	<!-- MENU -->
 	<section id="sidebar">
 

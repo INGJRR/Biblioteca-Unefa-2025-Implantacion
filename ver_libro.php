@@ -1,8 +1,16 @@
-<?php 
+<?php
+	//proteccion de rutas
+	session_start();
+
+	if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+		header('location: ./index.php');
+	};
+	 
 	require_once './ruta.php';
-    require_once './modelo/conexion.php';
-    include_once './controlador/info_libro.php'
-    ?>
+    require_once ROOT_DIR . '/modelo/conexion.php';
+    include_once ROOT_DIR . '/controlador/getInfo/libro.php';
+
+?>
 
 
 <!DOCTYPE html>

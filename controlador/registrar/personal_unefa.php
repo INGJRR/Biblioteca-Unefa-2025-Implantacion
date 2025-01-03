@@ -1,9 +1,43 @@
 <?php
-    session_start();
-    require_once './funciones/funciones.php';
+
+//proteccion de rutas
+session_start();
+
+if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+    header('location: ./index.php');
+};
+
+require_once ROOT_DIR . '/funciones/funciones.php';
+
+
+
+$existe = isset($_SESSION["registroPersonalUnefa"]);
+
+$cedula = '';
+$nombre = '';
+$apellido = '';
+$fecha_nacimiento = '2045-01-01';
+$direccion = '';
+$telefono = '';
+$email = '';
+$categoria = '';
+$estilosError = '';
+
+if ($existe) {
+    $estilosError = "style=\"border: 2px solid red;\"";
+    $cedula = $_SESSION["registroPersonalUnefa"]->cedula ?? '';
+    $nombre = $_SESSION['registroPersonalUnefa']->nombre ?? '';
+    $apellido = $_SESSION['registroPersonalUnefa']->apellido ?? '';
+    $fecha_nacimiento = $_SESSION['registroPersonalUnefa']->fecha_nacimiento ?? '2045-01-01';
+    $direccion = $_SESSION['registroPersonalUnefa']->direccion ?? '';
+    $telefono = $_SESSION['registroPersonalUnefa']->telefono ?? '';
+    $email = $_SESSION['registroPersonalUnefa']->email ?? '';
+    $categoria = $_SESSION['registroPersonalUnefa']->categoria ?? '';
+}
 
 // Si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require ROOT_DIR . '/modelo/conexion.php';
     //para controlar en caso que ocurra un error
     $error = false;
     // Obtener los datos del formulario para validarlo y ver si los formatos estan correctos
@@ -109,7 +143,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }else{
         // la categoria estuvo incorrecta
     }
+    $conexion->close();
 }
-$conexion->close();
-
 ?>

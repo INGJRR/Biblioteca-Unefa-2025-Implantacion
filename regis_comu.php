@@ -1,35 +1,7 @@
 <?php
-	require './modelo/conexion.php';
-	require_once './controlador/registrar_servicio_comunitario.php';
-	
-	$existe = isset($_SESSION["registroServicioComunitario"]);
-
-	$cota = '';
-	$titulo = '';
-	$autor = '';
-	$fecha = '';
-	$tutor = '';
-	$tutor_comunitario = '';
-	$lugar = '';
-	$estilosError = '';
-	
-	if ($existe) {
-		$estilosError = "style=\"border: 2px solid red;\"";
-		$cota = $_SESSION["registroServicioComunitario"]->cota ?? '';
-		$titulo = $_SESSION['registroServicioComunitario']->titulo ?? '';
-		$autor = $_SESSION['registroServicioComunitario']->autor ?? '';
-		$fecha = $_SESSION['registroServicioComunitario']->fecha ?? '';
-		$tutor = $_SESSION['registroServicioComunitario']->tutor ?? '';
-		$tutor_comunitario = $_SESSION['registroServicioComunitario']->tutor_comunitario ?? '';
-		$lugar = $_SESSION['registroServicioComunitario']->lugar ?? '';
-	}
-
+	require_once './ruta.php';
+	require_once ROOT_DIR . '/controlador/registrar/sc.php';
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">

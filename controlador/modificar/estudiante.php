@@ -1,9 +1,80 @@
 <?php
-   session_start();
-   require_once ROOT_DIR . '/funciones/funciones.php';
+session_start();
+require_once ROOT_DIR . '/funciones/funciones.php';
 
-// Si el formulario ha sido enviado
+require ROOT_DIR . '/modelo/conexion.php';
+require_once ROOT_DIR . '/controlador/getInfo/carreras.php'; // se cierra sola la conexion
+
+require_once ROOT_DIR . '/funciones/info_idv_db.php';
+
+
+//sirve para cuando regresemos
+$nombreSesion = "modificarEs";
+$ruta = '../estudiantes.php';	
+
+
+$cedula = '';
+$nombre = '';
+$apellido = '';
+$fecha_nacimiento = '2045-01-01';
+$direccion = '';
+$telefono = '';
+$email = '';
+$id_carrera = '';
+$semestre_actual = '';
+$estilosError = '';
+
+
+if(isset($_SESSION["modificarEs"])){
+    // si existe entonces cargamos los datos
+    $estilosError = "style=\"border: 2px solid red;\"";
+    $cedula = $_SESSION["modificarEs"]->cedula ?? '';
+    $nombre = $_SESSION['modificarEs']->nombre ?? '';
+    $apellido = $_SESSION['modificarEs']->apellido ?? '';
+    $fecha_nacimiento = $_SESSION['modificarEs']->fecha_nacimiento ?? '2045-01-01';
+    $direccion = $_SESSION['modificarEs']->direccion ?? '';
+    $telefono = $_SESSION['modificarEs']->telefono ?? '';
+    $email = $_SESSION['modificarEs']->email ?? '';
+    $id_carrera = $_SESSION['modificarEs']->id_carrera ?? '';
+    $semestre_actual = $_SESSION['modificarEs']->semestre_actual ?? '';
+}else{
+    // no hemos cargado los datos de la cota, entonces lo cargaremos
+    if (isset($_GET['cedula'])) {
+        $cedula = $_GET['cedula'];
+        require ROOT_DIR . '/modelo/conexion.php';
+        $sql = "SELECT 
+        *
+        FROM estudiantes WHERE cedula = '$cedula'";
+        $info = info_idv_db($sql, $conexion);
+        $conexion->close();
+
+        //comprobamos si libro tiene un valor 
+        if($info != ''){	
+            // Guardamos todos los datos en variables
+            $cedula = $info["cedula"];
+            $nombre = $info["nombre"];
+            $apellido = $info["apellido"];
+            $fecha_nacimiento = $info["fecha_nacimiento"];
+            $direccion = $info["direccion"];
+            $telefono = $info["telefono"];
+            $email = $info["gmail"];
+            $id_carrera = $info["id_carrera"];
+            $semestre_actual = $info["semestre_actual"];
+        }else{
+            //la consulta fallo
+        }
+    } else {
+        // echo "No se ha ingresado una cota.";
+    }
+}
+
+
+
+// Si el formulario ha sido enviado, aqui controlamos el modificar 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //abrimos una conexion para manejar la base de dato
+    require ROOT_DIR . '/modelo/conexion.php';
+
     // variable para controlar si surge un error
     $error = false;
     // Recoger los datos del formulario
@@ -96,6 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt_update_persona->close();
+    $conexion->close();
 }
-$conexion->close();
+
 ?>

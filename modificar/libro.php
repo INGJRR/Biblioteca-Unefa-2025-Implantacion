@@ -1,60 +1,9 @@
 <?php
 
 require_once "../ruta.php";
-require_once ROOT_DIR . '/funciones/info_uno_libro.php';
-require ROOT_DIR . '/modelo/conexion.php';
+// controlador importante pora modificar
 require_once ROOT_DIR . '/controlador/modificar/libro.php';
 
-//sirve para cuando regresemos
-$nombreSesion = "modificarLibro";
-$ruta = '../ver_libro.php';
-
-$libro = '';
-
-$cota = '';
-$titulo = '';
-$autor = '';
-$fecha = '';
-$carrera = '';
-$cantidad = '';
-$editorial = '';
-$estilosError = '';
-
-if(isset($_SESSION["modificarLibro"])){
-	//si existe quiere decir que ya cargamos los datos de la cota
-	$estilosError = "style=\"border: 2px solid red;\"";
-	$cota = $_SESSION["modificarLibro"]->cota ?? '';
-	$titulo = $_SESSION['modificarLibro']->titulo ?? '';
-	$autor = $_SESSION['modificarLibro']->autor ?? '';
-	$fecha = $_SESSION['modificarLibro']->fecha ?? '';
-	$carrera = $_SESSION['modificarLibro']->carrera ?? '';
-	$cantidad = $_SESSION['modificarLibro']->cantidad ?? '';
-	$editorial = $_SESSION['modificarLibro']->editorial ?? '';
-}else{
-	// no hemos cargado los datos de la cota, entonces lo cargaremos
-	if (isset($_GET['cota'])) {
-		$cota = $_GET['cota'];
-		require ROOT_DIR . '/modelo/conexion.php';
-		$libro = info_uno_libro($cota, $conexion);
-		$conexion->close();
-
-		//comprobamos si libro tiene un valor 
-		if($libro != ''){	
-			// Guardamos todos los datos en variables
-			$cota = $libro["cota"];
-			$titulo = $libro["titulo"];
-			$autor = $libro["autor"];
-			$fecha = substr($libro["fecha"] , 0, 4);
-			$carrera = $libro["carrera"];
-			$cantidad = $libro["cantidad"];
-			$editorial = $libro["editorial"];
-		}else{
-			//la consulta fallo
-		}
-	} else {
-		// echo "No se ha ingresado una cota.";
-	}
-}
 ?>
 
 
@@ -137,7 +86,7 @@ if(isset($_SESSION["modificarLibro"])){
 	<!-- MENU -->
 
 
-
+ 
 	<!-- BARRA SUPERIOR -->
 	<section id="content">
 		<nav>

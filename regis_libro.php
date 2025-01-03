@@ -1,28 +1,6 @@
 <?php
-require './modelo/conexion.php';
-require_once './controlador/registrar_libro.php';
-
-$existe = isset($_SESSION["registroLibro"]);
-
-$cota = '';
-$titulo = '';
-$autor = '';
-$fecha = '';
-$carrera = '';
-$cantidad = '';
-$editorial = '';
-$estilosError = '';
-
-if ($existe) {
-	$estilosError = "style=\"border: 2px solid red;\"";
-	$cota = $_SESSION["registroLibro"]->cota ?? '';
-	$titulo = $_SESSION['registroLibro']->titulo ?? '';
-	$autor = $_SESSION['registroLibro']->autor ?? '';
-	$fecha = $_SESSION['registroLibro']->fecha ?? '';
-	$carrera = $_SESSION['registroLibro']->carrera ?? '';
-	$cantidad = $_SESSION['registroLibro']->cantidad ?? '';
-	$editorial = $_SESSION['registroLibro']->editorial ?? '';
-}
+require_once './ruta.php';
+require_once ROOT_DIR . '/controlador/registrar/libro.php';
 ?>
 
 

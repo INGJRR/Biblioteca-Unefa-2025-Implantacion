@@ -1,6 +1,14 @@
 <?php
-require './modelo/conexion.php';
-require './controlador/info_trabajo_inv.php'
+//proteccion de rutas
+session_start();
+
+if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+	header('location: ./index.php');
+};
+
+require_once './ruta.php';
+require ROOT_DIR . '/modelo/conexion.php';
+require ROOT_DIR . '/controlador/getInfo/ti.php';
 ?>
 
 

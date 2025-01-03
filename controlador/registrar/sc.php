@@ -1,9 +1,42 @@
 <?php
-    session_start();
-    require_once './funciones/funciones.php';
+
+//proteccion de rutas
+session_start();
+
+if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+    header('location: ./index.php');
+};
+
+
+require_once ROOT_DIR . '/funciones/funciones.php';
+
+
+$existe = isset($_SESSION["registroServicioComunitario"]);
+
+$cota = '';
+$titulo = '';
+$autor = '';
+$fecha = '';
+$tutor = '';
+$tutor_comunitario = '';
+$lugar = '';
+$estilosError = '';
+
+if ($existe) {
+    $estilosError = "style=\"border: 2px solid red;\"";
+    $cota = $_SESSION["registroServicioComunitario"]->cota ?? '';
+    $titulo = $_SESSION['registroServicioComunitario']->titulo ?? '';
+    $autor = $_SESSION['registroServicioComunitario']->autor ?? '';
+    $fecha = $_SESSION['registroServicioComunitario']->fecha ?? '';
+    $tutor = $_SESSION['registroServicioComunitario']->tutor ?? '';
+    $tutor_comunitario = $_SESSION['registroServicioComunitario']->tutor_comunitario ?? '';
+    $lugar = $_SESSION['registroServicioComunitario']->lugar ?? '';
+}
 
 // Si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //conexion con la base de dato
+    require ROOT_DIR . '/modelo/conexion.php';
     //en caso de que ocurra un error 
     $error = false;
     // Recoger los datos del formulario
@@ -84,6 +117,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt_libro->close();
+    $conexion->close();
 }
-$conexion->close();
 ?>

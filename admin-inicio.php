@@ -1,5 +1,14 @@
 <?php
-require './controlador/cantidad.php'
+// abre y cierra la conexion solo 
+require './controlador/cantidad.php';
+
+//proteccion de rutas
+session_start();
+
+if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+    header('location: ./index.php');
+};
+
 ?>
 
 

@@ -1,35 +1,8 @@
 <?php
-	require './modelo/conexion.php';
-	require_once './controlador/info_carreras.php';
-	require './modelo/conexion.php';
-	require_once './controlador/registrar_estudiante.php';
-
-$existe = isset($_SESSION["registroEstudiante"]);
-
-$cedula = '';
-$nombre = '';
-$apellido = '';
-$fecha_nacimiento = '2045-01-01';
-$direccion = '';
-$telefono = '';
-$email = '';
-$id_carrera = '';
-$semestre_actual = '';
-$estilosError = '';
-
-if ($existe) {
-	$estilosError = "style=\"border: 2px solid red;\"";
-	$cedula = $_SESSION["registroEstudiante"]->cedula ?? '';
-	$nombre = $_SESSION['registroEstudiante']->nombre ?? '';
-	$apellido = $_SESSION['registroEstudiante']->apellido ?? '';
-	$fecha_nacimiento = $_SESSION['registroEstudiante']->fecha_nacimiento ?? '2045-01-01';
-	$direccion = $_SESSION['registroEstudiante']->direccion ?? '';
-	$telefono = $_SESSION['registroEstudiante']->telefono ?? '';
-	$email = $_SESSION['registroEstudiante']->email ?? '';
-	$id_carrera = $_SESSION['registroEstudiante']->id_carrera ?? '';
-	$semestre_actual = $_SESSION['registroEstudiante']->semestre_actual ?? '';
-}
-
+	require_once './ruta.php';
+	require ROOT_DIR . '/modelo/conexion.php';
+	require_once ROOT_DIR . '/controlador/getInfo/carreras.php';
+	require_once ROOT_DIR . '/controlador/registrar/estudiante.php';
 ?>
 
 

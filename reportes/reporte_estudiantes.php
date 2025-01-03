@@ -3,7 +3,7 @@
     require_once '../ruta.php';
     require_once ROOT_DIR . '/controlador/clases/fpdf.php';
     require ROOT_DIR . '/modelo/conexion.php';
-    require_once ROOT_DIR . '/controlador/info_carreras.php';
+    require_once ROOT_DIR . '/controlador/getInfo/carreras.php';
     require_once ROOT_DIR . '/funciones/cantidad_registros_tabla.php';
 
     // Creación del objeto de la clase PDF

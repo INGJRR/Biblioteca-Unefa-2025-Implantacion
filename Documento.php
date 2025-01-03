@@ -1,3 +1,16 @@
+<?php
+	//proteccion de rutas
+	session_start();
+
+	if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+		header('location: ./index.php');
+	};
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,4 +127,4 @@
 	
 	<script src="script.js"></script>
 </body>
-</html>
+</html> 

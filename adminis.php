@@ -1,7 +1,17 @@
 <?php 
-	require './modelo/conexion.php';
+	//proteccion de rutas
+	session_start();
+
+	if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+		header('location: ./index.php');
+	};
+
+
+	require_once './ruta.php';
+	require ROOT_DIR . '/modelo/conexion.php';
 	$carrera = 'Administración y gestión municipal';
-	require './controlador/info_estudiante.php';
+	//cierra la conexion automaticamente
+	require ROOT_DIR . '/controlador/getInfo/estudiante.php';
 ?>
 
 <!DOCTYPE html>

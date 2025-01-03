@@ -1,7 +1,15 @@
 <?php 
-	require './modelo/conexion.php';
+	//proteccion de rutas
+	session_start();
+
+	if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+		header('location: ./index.php');
+	};
+
+	require_once './ruta.php';
+	require ROOT_DIR . '/modelo/conexion.php';
 	$carrera = 'Ingeniería en Sistema';
-	require './controlador/info_estudiante.php';
+	require ROOT_DIR . '/controlador/getInfo/estudiante.php';
 ?>
 
 <!DOCTYPE html>

@@ -1,9 +1,40 @@
 <?php
-    session_start();
-    require_once './funciones/funciones.php';
+
+//proteccion de rutas
+session_start();
+
+if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+    header('location: ./index.php');
+};
+
+require_once ROOT_DIR . '/funciones/funciones.php';
+
+$existe = isset($_SESSION["registroLibro"]);
+
+$cota = '';
+$titulo = '';
+$autor = '';
+$fecha = '';
+$carrera = '';
+$cantidad = '';
+$editorial = '';
+$estilosError = '';
+
+if ($existe) {
+    $estilosError = "style=\"border: 2px solid red;\"";
+    $cota = $_SESSION["registroLibro"]->cota ?? '';
+    $titulo = $_SESSION['registroLibro']->titulo ?? '';
+    $autor = $_SESSION['registroLibro']->autor ?? '';
+    $fecha = $_SESSION['registroLibro']->fecha ?? '';
+    $carrera = $_SESSION['registroLibro']->carrera ?? '';
+    $cantidad = $_SESSION['registroLibro']->cantidad ?? '';
+    $editorial = $_SESSION['registroLibro']->editorial ?? '';
+}
 
 // Si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //conexion con la base de dato
+    require ROOT_DIR . '/modelo/conexion.php';
     //en caso de que ocurra un error 
     $error = false;
     // Recoger los datos del formulario
@@ -85,6 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt_libro->close();
+    $conexion->close();
 }
-$conexion->close();
 ?>

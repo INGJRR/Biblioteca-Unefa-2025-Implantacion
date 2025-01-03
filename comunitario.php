@@ -1,6 +1,13 @@
 <?php
-    require_once './modelo/conexion.php';
-    include './controlador/info_servicio_comunitario.php'
+	//proteccion de rutas
+	session_start();
+
+	if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+		header('location: ./index.php');
+	};
+	require_once './ruta.php';
+    require_once ROOT_DIR . '/modelo/conexion.php';
+    include ROOT_DIR . '/controlador/getInfo/sc.php';
 ?>
 
 

@@ -1,9 +1,49 @@
 <?php
-   session_start();
-   require_once './funciones/funciones.php';
- 
+
+//proteccion de rutas
+session_start();
+
+if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+    header('location: ./index.php');
+};
+
+require_once ROOT_DIR . '/funciones/funciones.php';
+
+$existe = isset($_SESSION["registroti"]);
+
+$cota = '';
+$titulo = '';
+$autor = '';
+$tutor = '';
+$fecha = '';
+$carrera = '';
+$linea_investigacion = '';
+$mencion = '';
+$metodologia = '';
+$tipo = '';
+$palabras_claves = '';
+$estilosError = '';
+
+if ($existe) {
+    $estilosError = "style=\"border: 2px solid red;\"";
+    $cota = $_SESSION["registroti"]->cota ?? '';
+    $titulo = $_SESSION['registroti']->titulo ?? '';
+    $autor = $_SESSION['registroti']->autor ?? '';
+    $tutor = $_SESSION['registroti']->tutor ?? '';
+    $fecha = $_SESSION['registroti']->fecha ?? '';
+    $carrera = $_SESSION['registroti']->carrera ?? '';
+    $tipo = $_SESSION['registroti']->tipo ?? '';
+
+    //datos opcionales 
+    $linea_investigacion = $_SESSION['registroti']->linea_investigacion;
+    $mencion = $_SESSION['registroti']->mencion;
+    $metodologia = $_SESSION['registroti']->metodologia;
+    $palabras_claves = $_SESSION['registroti']->palabras_claves;
+}
+
 // Si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require ROOT_DIR . '/modelo/conexion.php';
     //variable que gestiona si encuentra un error en la validacion
     $error = false;
     
@@ -101,6 +141,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt_trabajo_inv->close();
+    $conexion->close();
 }
-$conexion->close();
 ?>

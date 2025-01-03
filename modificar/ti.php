@@ -1,74 +1,7 @@
 <?php
 	require '../ruta.php';
-	require ROOT_DIR . '/modelo/conexion.php';
+	// controlador importante
 	require ROOT_DIR . '/controlador/modificar/ti.php';
-	require ROOT_DIR . '/funciones/info_idv_db.php';
-
-	//parametros para cuando regresemos
-	$nombreSesion = "modificarTi";
-	$ruta = '../grado.php';
-
-	$cota = '';
-	$titulo = '';
-	$autor = '';
-	$tutor = '';
-	$fecha = '';
-	$carrera = '';
-	$linea_investigacion = '';
-	$mencion = '';
-	$metodologia = '';
-	$tipo = '';
-	$palabras_claves = '';
-	$estilosError = '';
-
-	if(isset($_SESSION["modificarTi"])){
-		// si existe entonces cargamos los datos
-		$estilosError = "style=\"border: 2px solid red;\"";
-		$cota = $_SESSION["modificarTi"]->cota ?? '';
-		$titulo = $_SESSION['modificarTi']->titulo ?? '';
-		$autor = $_SESSION['modificarTi']->autor ?? '';
-		$tutor = $_SESSION['modificarTi']->tutor ?? '';
-		$fecha = $_SESSION['modificarTi']->fecha ?? '';
-		$carrera = $_SESSION['modificarTi']->carrera ?? '';
-		$tipo = $_SESSION['modificarTi']->tipo ?? '';
-
-		//datos opcionales 
-		$linea_investigacion = $_SESSION['modificarTi']->linea_investigacion;
-		$mencion = $_SESSION['modificarTi']->mencion;
-		$metodologia = $_SESSION['modificarTi']->metodologia;
-		$palabras_claves = $_SESSION['modificarTi']->palabras_claves;
-	}else{
-		// no hemos cargado los datos de la cota, entonces lo cargaremos
-		if (isset($_GET['cota'])) {
-			$cota = $_GET['cota'];
-			require ROOT_DIR . '/modelo/conexion.php';
-			$sql = "SELECT 
-			*
-			FROM trabajos_investigacion WHERE cota = '$cota'";
-			$info = info_idv_db($sql, $conexion);
-			$conexion->close();
-	
-			//comprobamos si libro tiene un valor 
-			if($info != ''){	
-				// Guardamos todos los datos en variables
-				$cota = $info["cota"];
-				$titulo = $info["titulo"];
-				$autor = $info["autor"];
-				$tutor = $info["tutor"];
-				$fecha = $info["fecha_presentacion"];
-				$carrera = $info["carrera"];
-				$linea_investigacion = $info["linea_investigacion"];
-				$mencion = $info["mencion"];
-				$metodologia = $info["metodologia"];
-				$tipo = $info["tipo"];
-				$palabras_claves = $info["palabras_claves"];
-			}else{
-				//la consulta fallo
-			}
-		} else {
-			// echo "No se ha ingresado una cota.";
-		}
-	}
 ?>
 
 <!DOCTYPE html>
@@ -229,7 +162,7 @@
 
 
 
-	<script src="script.js"></script>
+	<script src="../script.js"></script>
 </body>
 
 </html>

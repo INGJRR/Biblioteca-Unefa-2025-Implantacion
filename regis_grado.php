@@ -1,53 +1,7 @@
 <?php
-	require './modelo/conexion.php';
-	require_once './controlador/registrar_trabajo_inv.php';
-
-	$existe = isset($_SESSION["registroti"]);
-
-	$cota = '';
-	$titulo = '';
-	$autor = '';
-	$tutor = '';
-	$fecha = '';
-	$carrera = '';
-	$linea_investigacion = '';
-	$mencion = '';
-	$metodologia = '';
-	$tipo = '';
-	$palabras_claves = '';
-	$estilosError = '';
-
-	if ($existe) {
-		$estilosError = "style=\"border: 2px solid red;\"";
-		$cota = $_SESSION["registroti"]->cota ?? '';
-		$titulo = $_SESSION['registroti']->titulo ?? '';
-		$autor = $_SESSION['registroti']->autor ?? '';
-		$tutor = $_SESSION['registroti']->tutor ?? '';
-		$fecha = $_SESSION['registroti']->fecha ?? '';
-		$carrera = $_SESSION['registroti']->carrera ?? '';
-		$tipo = $_SESSION['registroti']->tipo ?? '';
-
-		//datos opcionales 
-		$linea_investigacion = $_SESSION['registroti']->linea_investigacion;
-		$mencion = $_SESSION['registroti']->mencion;
-		$metodologia = $_SESSION['registroti']->metodologia;
-		$palabras_claves = $_SESSION['registroti']->palabras_claves;
-	}
-
+	require_once './ruta.php';
+	require_once ROOT_DIR . '/controlador/registrar/ti.php';
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 

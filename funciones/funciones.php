@@ -22,7 +22,7 @@ function validar_y_convertir_numero($numero,&$error) {
 
 function validar_nombre($nombre, &$error) {
     // Expresión regular para validar solo letras y espacios
-    $patron = "/^[a-zA-Z\s]+$/";
+    $patron = "/^[a-zA-Z\sÀ-ÖØ-öø-ÿ]+$/";
 
     // Verificamos si el nombre está vacío
     if (empty($nombre)) {
@@ -80,7 +80,7 @@ function validarEmail($email, &$error) {
 }
 function validarSoloLetrasNumeros($cadena, &$error ,$longitudMaxima = 100) {
     // Expresión regular para validar letras, números y espacios
-    $patron = "/^[a-zA-Z0-9\s]{4,$longitudMaxima}$/";
+    $patron = "/^[a-zA-Z0-9\sÀ-ÖØ-öø-ÿ]{4,$longitudMaxima}$/";
 
     // Verificar si la cadena está vacía
     if (empty($cadena)) {
