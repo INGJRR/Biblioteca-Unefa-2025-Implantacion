@@ -119,6 +119,14 @@
 			  </div>
 			</a> 
 
+			<a href="prestamo.php"><div style="background-image: url(imagenes/libro-magico.png);" class="box">
+				<div class="ima">
+					<h5>Ver</h5><br><h2>Prestamos</h2>
+				</div>
+				<div style="background-image: url(imagenes/libro\ \(2\).png);" class="boci"></div>
+			  </div>
+			</a> 
+
 			
 			</div>
 		</main>

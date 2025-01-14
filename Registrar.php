@@ -136,6 +136,15 @@
 					<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
 				  </div>
 				</a>
+
+				<a href="regis_prestamo.php">	<div style="background-image: url(imagenes/libro-magico.png);" class="box">
+					<div class="ima">
+						<h5>Doc</h5><br><h2>Prestamo</h2>
+					</div>
+					<div style="background-image: url(imagenes/libros.png);" class="boci"></div>
+				  </div>
+			</a>
+			
             </div>
 		</main>
 	</section>
