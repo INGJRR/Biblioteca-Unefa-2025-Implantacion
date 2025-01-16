@@ -47,9 +47,9 @@
         <form class="form" method="POST">
             <div class="for"><br><br><br>
             <h2>Inicio De Sesion</h2><br> 
-              <input class="input" id="usuario" name="usuario" placeholder="Usuario">
+              <input class="input" id="usuario" name="usuario" placeholder="Usuario" autocomplete="off">
               <br>
-              <input class="input" id="clave" name="clave" type="password" placeholder="Contraseña">
+              <input class="input" id="clave" name="clave" type="password" placeholder="Contraseña" autocomplete="off">
             </div>
             
           <div class="botones">

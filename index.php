@@ -13,7 +13,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
       rel="stylesheet"/>
    
-    <title>Bibliotseca 1</title>
+    <title>Biblioteca 1</title>
   </head>
   <body>
    
@@ -52,7 +52,7 @@
 
       <div class="header__content">
         <h2>Biblioteca</h2>
-        <h1>lUIS BELTRAN PRIETO FIGUEROA</h1>
+        <h1>LUIS BELTRAN PRIETO FIGUEROA</h1>
         <p>
           Discover the perfect soundtrack for every moment with our 'Music for
           Your Current Mood' section. Whether you're feeling upbeat, reflective,
@@ -108,7 +108,7 @@
 </section>
 
 
-    <section style="background-image: url(imagenes/rb_2148453347.png);" class="se2">
+    <section  class="se2">
 <div class="vidrio"><br><br>
 <center><h1 style="font-size: 30px;">Servicios</h1></center>
 <div class="sec">
