@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
         $servicios_comunitarios[] = $row;
     }
 } else {
-    echo "Error al obtener informacion de los servicios comunitario";
+    // echo "Error al obtener informacion de los servicios comunitario";
 }
 
 

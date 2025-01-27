@@ -21,6 +21,7 @@ $tutor = '';
 $tutor_comunitario = '';
 $lugar = '';
 $estilosError = '';
+$mensaje = "";
 
 if ($existe) {
     $estilosError = "style=\"border: 2px solid red;\"";
@@ -31,6 +32,7 @@ if ($existe) {
     $tutor = $_SESSION['registroServicioComunitario']->tutor ?? '';
     $tutor_comunitario = $_SESSION['registroServicioComunitario']->tutor_comunitario ?? '';
     $lugar = $_SESSION['registroServicioComunitario']->lugar ?? '';
+    $mensaje = $_SESSION['registroServicioComunitario']->mensaje;
 }
 
 // Si el formulario ha sido enviado
@@ -43,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cota = validar_cota($_POST['cota'], $error);
     $titulo = validarSoloLetrasNumeros($_POST['titulo'], $error);
     $autor = validar_nombre($_POST['autor'], $error);
-    $fecha = esNumeroValido($_POST['fecha'], 2050, $error);
+    $fecha = validarFecha2($_POST['fecha'], $error);
     $tutor = validar_nombre($_POST['tutor'], $error); 
     $tutor_comunitario = validar_nombre($_POST['tutor_comunitario'], $error); 
     $lugar = validarSoloLetrasNumeros($_POST['lugar'],$error);
@@ -57,21 +59,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validamos que el campo cota este en el formato adecuado para buscar si se envuentra registrado  
     if($cota != ''){
-        // Preparar la consulta (protege contra inyecciones SQL)
-        $stmt = $conexion->prepare("SELECT * FROM servicio_comunitario WHERE cota = ?");
-        $stmt->bind_param("s", $cota);
+       // Preparar la consulta (protege contra inyecciones SQL)
+       $stmt = $conexion->prepare("SELECT * FROM libros WHERE cota = ?");
+       $stmt->bind_param("s", $cota);
 
-        // Ejecutar la consulta
-        $stmt->execute();
+       // Ejecutar la consulta
+       $stmt->execute();
 
-        // Obtener el resultado
-        $result = $stmt->get_result();
+       // Obtener el resultado
+       $result = $stmt->get_result();
 
-        // Verificar si se encontró algún registro
-        if ($result->num_rows > 0) {
-            $error = true;
-            $cota = '';
-        }
+       // Verificar si se encontró algún registro
+       if ($result->num_rows > 0) {
+           $error = true;
+           $cota = '';
+           $datos = 
+           $mensaje = "Un libro ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
+       }
+
+       $stmt = $conexion->prepare("SELECT * FROM servicio_comunitario WHERE cota = ?");
+       $stmt->bind_param("s", $cota);
+
+       // Ejecutar la consulta
+       $stmt->execute();
+
+       // Obtener el resultado
+       $result = $stmt->get_result();
+
+       // Verificar si se encontró algún registro
+       if ($result->num_rows > 0) {
+           $error = true;
+           $cota = '';
+           $mensaje = "Un Trabajo de servicio comunitario ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
+       }
+
+       $stmt = $conexion->prepare("SELECT * FROM trabajos_investigacion WHERE cota = ?");
+       $stmt->bind_param("s", $cota);
+
+       // Ejecutar la consulta
+       $stmt->execute();
+
+       // Obtener el resultado
+       $result = $stmt->get_result();
+
+       // Verificar si se encontró algún registro
+       if ($result->num_rows > 0) {
+           $error = true;
+           $cota = '';
+           $mensaje = "Un Trabajo de investigacion ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
+       }
     }
 
 
@@ -87,6 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sc->tutor = $tutor;
         $sc->tutor_comunitario =$tutor_comunitario;
         $sc->lugar = $lugar;
+        $sc->mensaje = $mensaje;
 
         // Almacenar el objeto en la sesión
         $_SESSION['registroServicioComunitario'] = $sc;
@@ -94,8 +131,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die();
     }
 
-    // modificamos la fecha para que no de error 
-    $fecha = $_POST['fecha'] . '-01-01';
+    // // modificamos la fecha para que no de error 
+    // $fecha = $_POST['fecha'] . '-01-01';
 
     // Transacción para asegurar la integridad de los datos
     $conexion->begin_transaction();

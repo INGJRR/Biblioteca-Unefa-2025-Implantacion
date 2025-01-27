@@ -13,9 +13,9 @@ if ($result->num_rows > 0) {
         $prestamos[] = $row;
     }
 } else {
-    echo "Error al obtener informacion de los prestamos.";
+    // echo "Error al obtener informacion de los prestamos.";
 }
-
+ 
 
 $conexion->close();
 

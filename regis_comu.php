@@ -150,6 +150,37 @@
 
 	</main>
 
+	<style>
+		.infoinput{
+			margin: 30px auto;
+			width: 60vw;
+			text-align: center;
+			font-size: 20px;
+			display: flex;
+			flex-direction: column;
+			line-height: 2;
+		}
+	</style>
+	
+	<?php if(isset($mensaje) && $mensaje != ""):?>
+	<div class="infoinput form">
+		<h4>Mensaje de alerta</h4>
+		<div>
+			<p><?= $mensaje ?></p>			
+		</div>
+	</div>
+	<?php endif?>
+	   
+	<div class="infoinput form">
+		<h4>Informacion acerca de los Campos</h4>
+		<div>
+			<p>Titulo: Solo admiten numeros y letras, numero de letras: minimo: 2, Maximo: 100</p>
+			<p>Autor, Tutor, Tutor comunitario: Solo letras, numeros de letras: minimo: 3 , Max: 100</p>
+			<p>Año: Formato valido 2000-10-01 Año, mes, dia</p>
+			<P>Cota: Letra y numeros, ejemplo: O987P789 o K987P890</P>
+			<p>Lugar: Solo admiten numeros y letras, numero de letras: minimo: 2, Maximo: 100</p>
+		</div>
+	</div>
 
 
 

@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
         $tis[] = $row;
     }
 } else {
-    echo "Error al obtener el número de registros.";
+    // echo "Error al obtener informacion de trabajos de investigacion.";
 }
 
 

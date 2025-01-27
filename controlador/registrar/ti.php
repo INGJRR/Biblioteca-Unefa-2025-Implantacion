@@ -23,6 +23,7 @@ $metodologia = '';
 $tipo = '';
 $palabras_claves = '';
 $estilosError = '';
+$mensaje = '';
 
 if ($existe) {
     $estilosError = "style=\"border: 2px solid red;\"";
@@ -39,6 +40,7 @@ if ($existe) {
     $mencion = $_SESSION['registroti']->mencion;
     $metodologia = $_SESSION['registroti']->metodologia;
     $palabras_claves = $_SESSION['registroti']->palabras_claves;
+    $mensaje = $_SESSION['registroti']->mensaje;
 }
 
 // Si el formulario ha sido enviado
@@ -52,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = validarSoloLetrasNumeros($_POST['titulo'], $error);
     $autor = validar_nombre($_POST['autor'], $error);
     $tutor = validar_nombre($_POST['tutor'], $error);
-    $fecha = esNumeroValido($_POST['fecha'], 2050, $error);
+    $fecha = validarFecha2($_POST['fecha'], $error);
     $carrera = validar_nombre($_POST['carrera'], $error);
     $tipo = $_POST['tipo'];
 
@@ -77,21 +79,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validamos que el campo cota este en el formato adecuado para buscar si se envuentra registrado  
     if($cota != ''){
-        // Preparar la consulta (protege contra inyecciones SQL)
-        $stmt = $conexion->prepare("SELECT * FROM trabajos_investigacion WHERE cota = ?");
-        $stmt->bind_param("s", $cota);
+       // Preparar la consulta (protege contra inyecciones SQL)
+       $stmt = $conexion->prepare("SELECT * FROM libros WHERE cota = ?");
+       $stmt->bind_param("s", $cota);
 
-        // Ejecutar la consulta
-        $stmt->execute();
+       // Ejecutar la consulta
+       $stmt->execute();
 
-        // Obtener el resultado
-        $result = $stmt->get_result();
+       // Obtener el resultado
+       $result = $stmt->get_result();
 
-        // Verificar si se encontró algún registro
-        if ($result->num_rows > 0) {
-            $error = true;
-            $cota = '';
-        }
+       // Verificar si se encontró algún registro
+       if ($result->num_rows > 0) {
+           $error = true;
+           $cota = '';
+           $datos = 
+           $mensaje = "Un libro ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
+       }
+
+       $stmt = $conexion->prepare("SELECT * FROM servicio_comunitario WHERE cota = ?");
+       $stmt->bind_param("s", $cota);
+
+       // Ejecutar la consulta
+       $stmt->execute();
+
+       // Obtener el resultado
+       $result = $stmt->get_result();
+
+       // Verificar si se encontró algún registro
+       if ($result->num_rows > 0) {
+           $error = true;
+           $cota = '';
+           $mensaje = "Un Trabajo de servicio comunitario ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
+       }
+
+       $stmt = $conexion->prepare("SELECT * FROM trabajos_investigacion WHERE cota = ?");
+       $stmt->bind_param("s", $cota);
+
+       // Ejecutar la consulta
+       $stmt->execute();
+
+       // Obtener el resultado
+       $result = $stmt->get_result();
+
+       // Verificar si se encontró algún registro
+       if ($result->num_rows > 0) {
+           $error = true;
+           $cota = '';
+           $mensaje = "Un Trabajo de investigacion ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
+       }
     }
 
     if($error){
@@ -110,6 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $objeto->metodologia = $metodologia;
         $objeto->tipo = $tipo;
         $objeto->palabras_claves = $palabras_claves;
+        $objeto->mensaje = $mensaje;
 
         // Almacenar el objeto en la sesión
         $_SESSION['registroti'] = $objeto;
@@ -117,8 +154,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die();
     }
 
-    // modificamos la fecha para que no de error 
-    $fecha = $_POST['fecha'] . '-01-01';
+    // // modificamos la fecha para que no de error 
+    // $fecha = $_POST['fecha'] . '-01-01';
 
     // Transacción para asegurar la integridad de los datos
     $conexion->begin_transaction();

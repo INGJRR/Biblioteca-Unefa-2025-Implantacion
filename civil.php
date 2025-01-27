@@ -10,6 +10,9 @@
 	require ROOT_DIR . '/modelo/conexion.php';
 	$carrera = 'Ingeniería Civil';
 	require ROOT_DIR . '/controlador/getInfo/estudiante.php';
+	
+	require ROOT_DIR . '/modelo/conexion.php';
+	require_once ROOT_DIR . '/funciones/cantidad_registros_tabla.php';
 ?>
 
 <!DOCTYPE html>
@@ -105,25 +108,29 @@
 		<nav>
 			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu ' ></i>
 			
-			<a class="retorn" href="estudiantes.php">Regresar</a>
-			<?php require './componentes/buscador.php'?>
+			<a class="retorn" href="admin-inicio.php">Regresar</a>
+			<?php if(isset($estudiantes)){
+				$url_buscar = './civil.php';
+				require './componentes/buscador.php';
+				} 
+			?>
 			
 		</nav>
 		<br><br>
 		<main>
 			<?php if(empty($estudiantes)): ?>
-				<div>No hay datos para mostrar</div>
+				<div>No hay información para mostrar</div>
 			<?php else: ?>
             <div id="main-container">
 			<table class="busquedatabla">
+					<h4>Lista de estudiante, Carrera Ing Civil</h4>
                     <thead>
                         <tr>
                             <th>Cedula</th>
 							<th>Nombre</th>
-							<th>Apellido</th>
-							<th>Telefono</th>
 							<th>Estado</th>
 							<th>Moroso</th>
+							<th>Prestamos Activo</th>
 							<th>Acciones</th>
                         </tr>
                     </thead>
@@ -132,18 +139,28 @@
                     <tr>
                         <td><?= $estudiante["cedula"] ?></td>
                         <td><?= $estudiante["nombre"] ?></td>
-                        <td><?= $estudiante["apellido"] ?></td>
-                        <td><?= $estudiante["telefono"] ?></td>
                         <td><?php echo ($estudiante["estado"] == 0) ? 'Inactivo' : 'Activo' ?></td>
                         <td><?php echo ($estudiante["moroso"] == 0) ? 'No' : 'Si' ?></td>
+						<td>
+							<?php 
+								$cedula_actual = $estudiante['cedula'];
+								$sql = "SELECT COUNT(*) AS cantidad
+								FROM prestamos
+								WHERE cedula_persona = '$cedula_actual' AND estado = 'Prestado'";
+								echo obtener_cantidad_base_dato($sql, $conexion);
+							?>
+						</td>
 						<td>
 							<a href="./modificar/estudiante.php?cedula=<?= $estudiante["cedula"] ?>" >Modificar</a>
 						</td>
                     </tr>
 					<?php endforeach?>
+					<?php $conexion->close()?>
 					</tbody>
                 </table>
-				<div id="noResults" style="display: none;">No se encontraron resultados.</div>
+				<div id="noResults" style="display: none; margin: 40px 0; font-size: 30px;">
+					No se encontraron resultados, Busqueda: <span id="noResultsSpan"></span>
+				</div>
             </div>
 			<?php endif?>
 		</main>
@@ -153,4 +170,4 @@
 	<script src="./script.js"></script>
 	<script src="./script/busqueda.js" ></script>
 </body>
-</html>
+</html> 

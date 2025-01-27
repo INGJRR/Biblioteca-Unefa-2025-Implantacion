@@ -22,6 +22,7 @@ $telefono = '';
 $email = '';
 $categoria = '';
 $estilosError = '';
+$mensaje = '';
 
 if ($existe) {
     $estilosError = "style=\"border: 2px solid red;\"";
@@ -33,6 +34,7 @@ if ($existe) {
     $telefono = $_SESSION['registroPersonalUnefa']->telefono ?? '';
     $email = $_SESSION['registroPersonalUnefa']->email ?? '';
     $categoria = $_SESSION['registroPersonalUnefa']->categoria ?? '';
+    $mensaje = $_SESSION['registroPersonalUnefa']->mensaje;
 }
 
 // Si el formulario ha sido enviado
@@ -41,13 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //para controlar en caso que ocurra un error
     $error = false;
     // Obtener los datos del formulario para validarlo y ver si los formatos estan correctos
-    $cedula = validar_y_convertir_numero($_POST["cedula"], $error);
+    $cedula = validar_y_convertir_numero_cedula($_POST["cedula"], $error);
     $nombre = validar_nombre($_POST['nombre'], $error);
     $apellido = validar_nombre($_POST['apellido'], $error);
     $fecha_nacimiento = $_POST['fecha_nacimiento'];
     $direccion = validarSoloLetrasNumeros($_POST['direccion'], $error);
-    $telefono = esNumeroValido($_POST['telefono'], 0 ,$error);
-    $email = validarEmail($_POST['email'], $error);
+    $telefono = validarNumeroTelefono($_POST['telefono'],$error);
+    $email = validarEmail($_POST['email'], $error, $mensaje);
     $categoria = esNumeroValido($_POST['categoria'], 2 ,$error);
 
     //verificamos si tenemos creado el objeto con datos del registro para evitar cargarlo luego
@@ -70,11 +72,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar si se encontró algún registro
         if ($result->num_rows > 0) {
             $error = true;
+            $mensaje = "Ya una persona tiene cedula [" . $cedula ."] en Personal Administativo";
+            $cedula = '';
+            
+        }
+        // Preparar la consulta (protege contra inyecciones SQL)
+        $stmt = $conexion->prepare("SELECT * FROM profesores WHERE cedula = ?");
+        $stmt->bind_param("i", $cedula);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener el resultado
+        $result = $stmt->get_result();
+
+        // Verificar si se encontró algún registro
+        if ($result->num_rows > 0) {
+            $error = true;
+            $mensaje = "Ya una persona tiene la cedula [" . $cedula. "] en Personal Docente";
             $cedula = '';
         }
     }
-
-
 
     if($error){
         $usuario = new stdClass();
@@ -88,6 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario->telefono = $telefono;
         $usuario->email = $email;
         $usuario->categoria = $categoria;
+        $usuario->mensaje = $mensaje;
 
         // Almacenar el objeto en la sesión
         $_SESSION['registroPersonalUnefa'] = $usuario;

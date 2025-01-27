@@ -172,10 +172,38 @@
 		</form>
 
 	</main>
-
-
-
-
+	
+	<style>
+		.infoinput{
+			margin: 30px auto;
+			width: 60vw;
+			text-align: center;
+			font-size: 20px;
+			display: flex;
+			flex-direction: column;
+			line-height: 2;
+		}
+	</style>
+	<?php if(isset($mensaje) && $mensaje != ""):?>
+	<div class="infoinput form">
+		<h4>Mensaje de alerta</h4>
+		<div>
+			<p><?= $mensaje ?></p>			
+		</div>
+	</div>
+	<?php endif?>
+	<div class="infoinput form">
+		<h4>Informacion acerca de los campos</h4>
+		<div>
+			<p>cedula: Solo numeros desde el 100 Mil al 99 Millones</p>
+			<p>Nombre y Apellido: Solo letras, numeros de letras: minimo: 3 , Max: 100</p>
+			<p>Fecha Nacimiento: Formato valido 2000-10-01 Año, mes, dia</p>
+			<P>Direccion: Solo admiten numeros y letras, numero de letras: minimo: 2, Maximo: 100</P>
+			<p>Telefono: Solo numeros Empieza por 04 y debe de tener 11 caracteres</p>
+			<p>Email: Debe tener la forma "usuario@dominio.extensión". El usuario puede contener: letras, números, guiones bajos (_) y puntos (.)</p>
+		</div>
+	</div>
+ 
 	<script src="script.js"></script>
 </body>
 

@@ -22,6 +22,7 @@ $email = '';
 $id_carrera = '';
 $semestre_actual = '';
 $estilosError = '';
+$mensaje = '';
 
 if ($existe) {
     $estilosError = "style=\"border: 2px solid red;\"";
@@ -34,6 +35,7 @@ if ($existe) {
     $email = $_SESSION['registroEstudiante']->email ?? '';
     $id_carrera = $_SESSION['registroEstudiante']->id_carrera ?? '';
     $semestre_actual = $_SESSION['registroEstudiante']->semestre_actual ?? '';
+    $mensaje = $_SESSION['registroEstudiante']->mensaje;
 }
 
    
@@ -44,10 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // variable para controlar si surge un error
     $error = false;
     // Recoger los datos del formulario
-    $cedula = validar_y_convertir_numero($_POST['cedula'], $error);
+    $cedula = validar_y_convertir_numero_cedula($_POST['cedula'], $error);
     $nombre = validar_nombre($_POST['nombre'], $error);
     $apellido = validar_nombre($_POST['apellido'], $error);
-    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $fecha_nacimiento = validarFecha2($_POST['fecha_nacimiento'], $error);
     $direccion = validarSoloLetrasNumeros($_POST['direccion'], $error);
     $telefono = esNumeroValido($_POST['telefono'], 0,$error); 
     $email = validarEmail($_POST['email'], $error);
@@ -69,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      if($cedula != ''){
         // Preparar la consulta (protege contra inyecciones SQL)
         $stmt = $conexion->prepare("SELECT * FROM estudiantes WHERE cedula = ?");
-        $stmt->bind_param("s", $cedula);
+        $stmt->bind_param("i", $cedula);
 
         // Ejecutar la consulta
         $stmt->execute();
@@ -80,7 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar si se encontró algún registro
         if ($result->num_rows > 0) {
             $error = true;
+            $mensaje = "Ya hay un estudiante registrado con la cedula [" . $cedula . "]. ";
             $cedula = '';
+            
         }
     }
 
@@ -98,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $objeto->email = $email;
         $objeto->id_carrera = $id_carrera;
         $objeto->semestre_actual = $semestre_actual;
+        $objeto->mensaje = $mensaje;
 
         // Almacenar el objeto en la sesión
         $_SESSION['registroEstudiante'] = $objeto;
@@ -118,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ./regis_estu.php");
     } else {
         $conexion->commit(); // Confirmar los cambios
-        header("Location: ./estudiantes.php"); // Reemplaza con el nombre de tu página
+        header("Location: ./admin-inicio.php"); // Reemplaza con el nombre de tu página
         exit;
     }
 

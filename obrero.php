@@ -9,6 +9,9 @@
 	require_once './ruta.php';
 	require  ROOT_DIR . '/modelo/conexion.php';
 	require ROOT_DIR . '/controlador/getInfo/obreros.php';
+
+	require ROOT_DIR . '/modelo/conexion.php';
+	require_once ROOT_DIR . '/funciones/cantidad_registros_tabla.php';
 ?>
 
 
@@ -109,13 +112,17 @@
 		<nav>
 			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu '></i>
 
-			<a class="retorn" href="unefaper.php">Regresar</a>
-			<?php require './componentes/buscador.php'?>
+			<a class="retorn" href="admin-inicio.php">Regresar</a>
+			<?php if(isset($obreros)){
+				$url_buscar = './obrero.php';
+				require './componentes/buscador.php';
+				} 
+			?>
 		</nav>
 		<br><br>
 		<main>
 			<?php if (empty($obreros)): ?>
-				<div>No hay datos para mostrar</div>
+				<div>No hay información para mostrar</div>
 			<?php else: ?>
 				<div id="main-container">
 					<table class="busquedatabla">
@@ -123,10 +130,9 @@
 							<tr>
 								<th>Cedula</th>
 								<th>Nombre</th>
-								<th>Apellido</th>
-								<th>Telefono</th>
 								<th>Estado</th>
 								<th>Moroso</th>
+								<th>Prestamos activos</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -135,19 +141,29 @@
 							<tr>
 								<td><?= $obrero["cedula"] ?></td>
 								<td><?= $obrero["nombre"] ?></td>
-								<td><?= $obrero["apellido"] ?></td>
-								<td><?= $obrero["telefono"] ?></td>
 								<td><?php echo ($obrero["estado"] == 0) ? 'Inactivo' : 'Activo' ?></td>
 								<td><?php echo ($obrero["moroso"] == 0) ? 'No' : 'Si' ?></td>
+								<td>
+								<?php 
+									$cedula_actual = $obrero['cedula'];
+									$sql = "SELECT COUNT(*) AS cantidad
+									FROM prestamos
+									WHERE cedula_persona = '$cedula_actual' AND estado = 'Prestado'";
+									echo obtener_cantidad_base_dato($sql, $conexion);
+								?>
+								</td>
+								
 								<td>
 									<a href="./modificar/personalUnefa.php?cedula=<?= $obrero["cedula"] ?>&tipo=2" >Modificar</a>
 								</td>
 							</tr>
 						<?php endforeach ?>
+						<?php $conexion->close()?>
 						</tbody>
 					</table>
-					<div id="noResults" style="display: none;">No se encontraron resultados.</div>
-
+					<div id="noResults" style="display: none; margin: 40px 0; font-size: 30px;">
+						No se encontraron resultados, Busqueda: <span id="noResultsSpan"></span>
+					</div>
 				</div>
 			<?php endif ?>
 		</main>

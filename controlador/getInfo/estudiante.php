@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
         $estudiantes[] = $row;
     }
 } else {
-    echo "Error al obtener a los estudiantes";
+    // echo "Error al obtener a los estudiantes";
 }
 
 $conexion->close();

@@ -129,6 +129,35 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 
 	</main>
 
+	<style>
+		.infoinput{
+			margin: 30px auto;
+			width: 60vw;
+			text-align: center;
+			font-size: 20px;
+			display: flex;
+			flex-direction: column;
+			line-height: 2;
+		}
+	</style>
+	 
+	<?php if($mensajeDoc != '' || $mensajePer != ''):?>
+	<div class="infoinput form">
+		<h4>Mensaje de alerta</h4>
+		<div>
+			<p><?php echo ($mensajeDoc != '') ? $mensajeDoc : '' ?></p>	
+			<p><?php echo ($mensajePer != '') ? $mensajePer : '' ?></p>	
+		</div>
+	</div>
+	<?php endif?>
+	 
+	<div class="infoinput form">
+		<h4>Informacion acerca de los Campos</h4>
+		<div>
+			<p>Cedula: Estudiante o personal administrativo, debe de estar previamente registrado</p>
+			<p>Cota: Documentos, debe de estar previamente registrado</p>
+		</div>
+	</div>
 
 
 

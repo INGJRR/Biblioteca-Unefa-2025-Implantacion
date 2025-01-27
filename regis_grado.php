@@ -114,40 +114,40 @@
 
 
 			<label>
-				<input value="<?= $cota ?>" <?= ($cota == '') ? $estilosError : '' ?> name="cota" required="" placeholder="" type="text" class="input">
+				<input title="Letra y numeros, ejemplo: O987P789 o K987P890" value="<?= $cota ?>" <?= ($cota == '') ? $estilosError : '' ?> name="cota" required="" placeholder="" type="text" class="input">
 				<span>Cota</span>
 			</label>
 
 			<label>
-				<input value="<?= $titulo?>" <?= ($titulo == '') ? $estilosError : '' ?> name="titulo" required="" placeholder="" type="text" class="input">
+				<input title="Solo admiten numeros y letras, numero de letras: minimo: 2, Maximo: 100" value="<?= $titulo?>" <?= ($titulo == '') ? $estilosError : '' ?> name="titulo" required="" placeholder="" type="text" class="input">
 				<span>Titulo</span>
 			</label>
 			<label>
-				<input value="<?= $autor ?>" <?= ($autor == '') ? $estilosError : '' ?> name="autor" required="" placeholder="" type="text" class="input">
+				<input title="Solo letras, numeros de letras: minimo: 3 , Max: 100" value="<?= $autor ?>" <?= ($autor == '') ? $estilosError : '' ?> name="autor" required="" placeholder="" type="text" class="input">
 				<span>Autor</span>
 			</label>
 			<label>
-				<input value="<?= $tutor ?>" <?= ($tutor == '') ? $estilosError : '' ?> name="tutor" required="" placeholder="" type="text" class="input">
+				<input title="Solo letras, numeros de letras: minimo: 3 , Max: 100" value="<?= $tutor ?>" <?= ($tutor == '') ? $estilosError : '' ?> name="tutor" required="" placeholder="" type="text" class="input">
 				<span>Tutor</span>
 			</label>
 			<label>
-				<input value="<?= $fecha ?>" <?= ($fecha == '') ? $estilosError : '' ?> name="fecha" required="" placeholder="" type="number" class="input">
+				<input title="Formato valido 2000-10-01 Año, mes, dia" value="<?= $fecha ?>" <?= ($fecha == '') ? $estilosError : '' ?> name="fecha" required="" placeholder="" type="text" class="input">
 				<span>Año</span>
 			</label>
 			<label>
-				<input value="<?= $carrera ?>" <?= ($carrera == '') ? $estilosError : '' ?> name="carrera" required="" placeholder="" type="text" class="input">
+				<input title="Solo admiten numeros y letras, numero de letras: minimo: 2, Maximo: 100" value="<?= $carrera ?>" <?= ($carrera == '') ? $estilosError : '' ?> name="carrera" required="" placeholder="" type="text" class="input">
 				<span>Carrera</span>
 			</label>
 			<label>
-				<input value="<?= ($linea_investigacion) ?? '' ?>" <?= ($linea_investigacion == '') ? $estilosError : '' ?> name="linea_investigacion" placeholder="" type="text" class="input">
+				<input title="Son campos opcionales y deben cumplir con: solo letras, numeros de letras: minimo: 3 , Max: 100" value="<?= ($linea_investigacion) ?? '' ?>" <?= ($linea_investigacion == '') ? $estilosError : '' ?> name="linea_investigacion" placeholder="" type="text" class="input">
 				<span>Linea de investigacion</span>
 			</label>
 			<label>
-				<input value="<?= ($mencion) ?? '' ?>" <?= ($mencion == '') ? $estilosError : '' ?> name="mencion" placeholder="" type="text" class="input">
+				<input title="Son campos opcionales y deben cumplir con: solo letras, numeros de letras: minimo: 3 , Max: 100" value="<?= ($mencion) ?? '' ?>" <?= ($mencion == '') ? $estilosError : '' ?> name="mencion" placeholder="" type="text" class="input">
 				<span>Mencion</span>
 			</label>
 			<label>
-				<input value="<?= ($metodologia) ?? '' ?>" <?= ($metodologia == '') ? $estilosError : '' ?> name="metodologia" placeholder="" type="text" class="input">
+				<input title="Son campos opcionales y deben cumplir con: solo letras, numeros de letras: minimo: 3 , Max: 100" value="<?= ($metodologia) ?? '' ?>" <?= ($metodologia == '') ? $estilosError : '' ?> name="metodologia" placeholder="" type="text" class="input">
 				<span>Metodologia</span>
 			</label>
 			<label>
@@ -167,9 +167,29 @@
 		</form>
 
 	</main>
-
-
-
+	
+	<style>
+		.infoinput{
+			margin: 30px auto;
+			width: 60vw;
+			text-align: center;
+			font-size: 20px;
+			display: flex;
+			flex-direction: column;
+			line-height: 2;
+		}
+	</style>
+	 
+	<?php if(isset($mensaje) && $mensaje != ""):?>
+	<div class="infoinput form">
+		<h4>Mensaje de alerta</h4>
+		<div>
+			<p><?= $mensaje ?></p>			
+		</div>
+	</div>
+	<?php endif?>
+	  
+	<div class="infoinput form">
 
 	<script src="script.js"></script>
 </body>

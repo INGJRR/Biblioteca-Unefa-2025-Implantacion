@@ -4,8 +4,8 @@ require './controlador/cantidad.php';
 
 ?>
 <?php
-	require_once './ruta.php';
-	require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
+require_once './ruta.php';
+require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 ?>
 
 
@@ -23,7 +23,6 @@ require './controlador/cantidad.php';
 
 <body>
 	<section id="sidebar">
-<
 		<div class="l">
 			<span>
 				<div style="background-image: url(imagenes/unefa-logo-3FC9336783-seeklogo.com.png);" class="logo"></div>
@@ -60,7 +59,7 @@ require './controlador/cantidad.php';
 			<li>
 				<a href="regis_grado.php">
 					<i style="background-image: url(imagenes/graduado.png);" class='bx bxs-message-dots icon'></i>
-					<span class="text">Registrar Trabajo de <br> investigacion  </span>
+					<span class="text">Registrar Trabajo de <br> investigacion </span>
 				</a>
 			</li><br>
 			<li>
@@ -84,7 +83,7 @@ require './controlador/cantidad.php';
 		</ul>
 
 		<ul class="side-menu">
-<br>
+			<br>
 			<li>
 				<a href="./controlador/cerrar_sesion.php" class="logout">
 					<i style="background-image: url(imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon'></i>
@@ -108,16 +107,16 @@ require './controlador/cantidad.php';
 				<div class="item uS">
 					<div style="background-image: url(imagenes/graduado.png);" class="image u"></div>
 					<div class="info"><br>
-						<p class="portada">Cantidad de Libros</p>
-						<h3 class="sub_portada"><?= $total_libro ?></h3>
+						<p class="portada">Documentos</p>
+						<h3 class="sub_portada"><?= $total_general_registro_doc ?></h3>
 					</div>
 				</div>
 
 				<div class="item dS">
 					<div style="background-image: url(imagenes/leer.png);" class="image d"></div>
 					<div class="info"><br>
-						<p class="portada">Cantidad de ejemplares</p>
-						<h3 class="sub_portada"><?= $total_ti ?></h3>
+						<p class="portada">Ejemplares</p>
+						<h3 class="sub_portada"><?= $total_general ?></h3>
 
 					</div>
 				</div>
@@ -125,7 +124,7 @@ require './controlador/cantidad.php';
 				<div class="item tS">
 					<div style="background-image: url(imagenes/libro-magico.png);" class="image t"></div>
 					<div class="info"><br>
-						<p class="portada">Documentos prestados</p>
+						<p class="portada">Prestamos</p>
 						<h3 class="sub_portada"> <?= $total_prestados ?></h3>
 					</div>
 				</div>
@@ -133,7 +132,7 @@ require './controlador/cantidad.php';
 
 
 
-				
+
 			</div>
 
 
@@ -203,130 +202,148 @@ require './controlador/cantidad.php';
 					</a>
 				</div>
 
-               <div class="elementosdedereca">
+				<div class="elementosdedereca">
 
-				<div class=" tabla">
+					<div class=" tabla">
 
-					<div class="menurapido">
-						<h3>Descargar reporte</h3>
+						<div class="menurapido">
+							<h3>Descargar reporte</h3>
 
-						<div class="elementosflex">
+							<div class="elementosflex">
 
-						<div  class="descargar">
-							<a href="./reportes/reporte_doc.php">
-							<div class="gla"> Documento
-								<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton"></div>
-							</div>
-							</a>
-						</div>
+								<!-- muestra todos los documentos por tipo cuantos hay en total -->
+								<div class="descargar">
+									<a href="./reportes/reporte_doc.php" target="_blank">
+										<div class="gla"> Documentos
+											<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton"></div>
+										</div>
+									</a>
+								</div>
+
+								<!-- muestra todos los documentos prestados que estan pendientes por entregar -->
+								<div class="descargar">
+									<a href="./reportes/reporte_doc_prestados.php" target="_blank">
+										<div class="gla"> Documentos prestados
+											<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton"></div>
+										</div>
+									</a>
+								</div>
 
 
 
-						<div  class="descargar">
-							<a href="./reportes/reporte_estudiantes.php">
-							<div class="gla">Estudiantes <div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+								<div class="descargar">
+									<a href="./reportes/reporte_estudiantes.php">
+										<div class="gla">Estudiantes <div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="descargar">
+									<a href="./reportes/reporte_prestamos.php">
+										<div class="gla">Prestamos<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="descargar">
+									<a href="./reportes/reporte_personal_unefa.php">
+										<div class="gla">Personal administrativo<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+											</div>
+										</div>
+									</a>
 								</div>
 							</div>
-							</a>
-						</div>
-						<div  class="descargar">
-							<a href="./reportes/reporte_prestamos.php">
-							<div class="gla">Prestamos<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
-								</div>
-							</div>
-							</a>
-						</div>
-						<div class="descargar">
-							<a href="./reportes/reporte_personal_unefa.php">
-							<div class="gla">Personal administrativo<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
-								</div>
-							</div>
-							</a>
 						</div>
 					</div>
+
+					<div class="personalUNEFA">
+						<div class="cajapadre">
+							<H3>Personal UNEFA registrado</H3><br><br>
+							<a href="docente.php">
+								<div style="background-image: url(imagenes/informatica.png);" class="box">
+									<div class="ima">
+										<p>Personal docente</p><br>
+
+									</div>
+									<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
+								</div>
+							</a><br>
+
+							<a href="obrero.php">
+								<div style="background-image: url(imagenes/excavador.png);" class="box ci">
+									<div class="ima vil">
+										<p style="color: white;">Personal administrativo</p><br>
+
+									</div>
+									<div style="background-image: url(imagenes/libro\ \(2\).png);" class="boci"></div>
+								</div>
+							</a>
+
+
+
+
+
+						</div>
 					</div>
+
+					<div class="reistrodeprestamo">
+						<h3>Registrar un prestamo</h3>
+						<form class="form" method="POST">
+
+							<label>
+								<input value="<?= $cedula ?>" <?= ($cedula == '') ? $estilosError : '' ?> name="cedula" required="" placeholder="" type="number" class="input">
+								<span>Cedula</span>
+							</label>
+
+							<label>
+								<input value="<?= $cota ?>" <?= ($cota == '') ? $estilosError : '' ?> name="cota" required="" placeholder="" type="text" class="input">
+								<span>Cota</span>
+							</label>
+							<br>
+							<button class="submit">Realizar prestamo</button>
+
+						</form>
+					</div>
+
+
+
 				</div>
 
-				<div class="personalUNEFA">
-				<div class="cajapadre">
-					<H3>Personal UNEFA registrado</H3><br><br>
-					<a href="docente.php"><div style="background-image: url(imagenes/informatica.png);" class="box">
+
+
+				<div class="docc">
+					<h3>Documentos registrados</h3>
+					<div style="background-image: url(imagenes/informatica.png);" class="box">
+						<a href="ver_libro.php">
 						<div class="ima">
-							<p>Personal docente</p><br>
-						
+							<p>Libros </p>
 						</div>
 						<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
-					</div></a><br>
-
-						<a href="obrero.php"><div style="background-image: url(imagenes/excavador.png);" class="box ci">
-						<div class="ima vil">
-							<p style="color: white;">Personal administrativo</p><br>
-							
+						</a>
+					</div>
+					<div style="background-image: url(imagenes/informatica.png);" class="box">
+						<a href="comunitario.php">
+						<div class="ima">
+							<p>Servicio comunitario </p>
 						</div>
-						<div style="background-image: url(imagenes/libro\ \(2\).png);" class="boci"></div>
-					</div></a>
-					
-					
-
-
-
+						<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
+						</a>
+					</div>
+					<div style="background-image: url(imagenes/informatica.png);" class="box">
+						<a href="grado.php">
+						<div class="ima">
+							<p>Trabajos de investigacion Post Grado/ Pre Grado</p>
+						</div>
+						<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
+						</a>
+					</div>
 				</div>
-			</div>
-			
-			<div class="reistrodeprestamo">
-				<h3>Registrar un prestamo</h3>
-				<form class="form" method="POST">
-			
-			<label>
-				<input value="<?= $cedula?>" <?= ($cedula == '') ? $estilosError : '' ?> name="cedula" required="" placeholder="" type="number" class="input">
-				<span>Cedula</span>
-			</label>
-
-			<label>
-				<input value="<?= $cota?>" <?= ($cota == '') ? $estilosError : '' ?>  name="cota" required="" placeholder="" type="text" class="input">
-				<span>Cota</span>
-			</label>
-			<br>
-			<button class="submit">Realizar prestamo</button>
-
-		</form>
+ 
 			</div>
 
 
 
-			</div>
 
-
-
-			<div class="docc">
-				<h3>Documentos registrados</h3>
-
-				<div style="background-image: url(imagenes/informatica.png);" class="box">
-							<div class="ima">
-								<p>Libros </p>
-							</div>
-							<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
-						</div>
-
-						<div style="background-image: url(imagenes/informatica.png);" class="box">
-							<div class="ima">
-								<p>Servicio comunitario </p>
-							</div>
-							<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
-						</div>	
-						<div style="background-image: url(imagenes/informatica.png);" class="box">
-							<div class="ima">
-								<p>Trabajos de investigacion Post Grado/ Pre Grado</p>
-							</div>
-							<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
-						</div>	
-			</div>
-
-			</div>
-
-
-
-			
 
 		</main>
 	</section>

@@ -19,6 +19,7 @@ $carrera = '';
 $cantidad = '';
 $editorial = '';
 $estilosError = '';
+$mensaje = "";
 
 if ($existe) {
     $estilosError = "style=\"border: 2px solid red;\"";
@@ -29,6 +30,7 @@ if ($existe) {
     $carrera = $_SESSION['registroLibro']->carrera ?? '';
     $cantidad = $_SESSION['registroLibro']->cantidad ?? '';
     $editorial = $_SESSION['registroLibro']->editorial ?? '';
+    $mensaje = $_SESSION['registroLibro']->mensaje ?? '';
 }
 
 // Si el formulario ha sido enviado
@@ -41,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cota = validar_cota($_POST['cota'], $error);
     $titulo = validarSoloLetrasNumeros($_POST['titulo'], $error);
     $autor = validar_nombre($_POST['autor'], $error);
-    $fecha = $_POST['fecha'];
+    $fecha = validarFecha2($_POST['fecha'], $error);
     $carrera = validar_nombre($_POST['carrera'], $error); 
     $cantidad = esNumeroValido($_POST['cantidad'], 100, $error);
     $editorial = validarSoloLetrasNumeros($_POST['editorial'],$error);
@@ -70,7 +72,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             $error = true;
             $cota = '';
+            $mensaje = "Un libro ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
         }
+
+        $stmt = $conexion->prepare("SELECT * FROM servicio_comunitario WHERE cota = ?");
+        $stmt->bind_param("s", $cota);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener el resultado
+        $result = $stmt->get_result();
+
+        // Verificar si se encontró algún registro
+        if ($result->num_rows > 0) {
+            $error = true;
+            $cota = '';
+            $mensaje = "Un Trabajo de servicio comunitario ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
+        }
+
+        $stmt = $conexion->prepare("SELECT * FROM trabajos_investigacion WHERE cota = ?");
+        $stmt->bind_param("s", $cota);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener el resultado
+        $result = $stmt->get_result();
+
+        // Verificar si se encontró algún registro
+        if ($result->num_rows > 0) {
+            $error = true;
+            $cota = '';
+            $mensaje = "Un Trabajo de investigacion ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
+        }
+
     }
 
 
@@ -86,6 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $libro->carrera = $carrera;
         $libro->cantidad = $cantidad;
         $libro->editorial = $editorial;
+        $libro->mensaje = $mensaje;
 
         // Almacenar el objeto en la sesión
         $_SESSION['registroLibro'] = $libro;
@@ -94,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // modificamos la fecha para que no de error 
-    $fecha = $_POST['fecha'] . '-01-01';
+    // $fecha = $_POST['fecha'] . '-01-01';
 
     // Transacción para asegurar la integridad de los datos
     $conexion->begin_transaction();

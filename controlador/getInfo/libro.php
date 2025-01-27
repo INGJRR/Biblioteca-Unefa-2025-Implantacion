@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
         $libros[] = $row;
     }
 } else {
-    echo "Error al obtener el número de registros.";
+    // echo "Error al obtener el número de registros.";
 }
 
 

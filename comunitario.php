@@ -104,14 +104,17 @@
 		<nav>
 			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu ' ></i>
 			
-			<a class="retorn" href="Documento.php">Regresar</a>
-			<?php require './componentes/buscador.php'?>
+			<a class="retorn" href="admin-inicio.php">Regresar</a>
+			<?php if(isset($servicios_comunitarios)){
+				$url_buscar = './comunitario.php';
+				require './componentes/buscador.php';
+			}?>
 		</nav>
 		<br><br>
 		<main>
 			
             <div id="main-container">
-
+				<?php if(isset($servicios_comunitarios)): ?>
                 <table class="busquedatabla">
                     <thead>
                         <tr>
@@ -144,7 +147,13 @@
                     <?php endforeach?>
 					</tbody>
                 </table>
-				<div id="noResults" style="display: none;">No se encontraron resultados.</div>
+				<?php else: ?>
+				<div>No hay informacion para mostrar</div>
+				<?php endif?>
+				<div id="noResults" style="display: none; margin: 40px 0; font-size: 30px;">
+					No se encontraron resultados, Busqueda: <span id="noResultsSpan"></span>
+				</div>
+
             </div>
         
 		</main>

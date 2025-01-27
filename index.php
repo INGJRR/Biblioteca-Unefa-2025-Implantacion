@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link type="text/css" rel="stylesheet" href="estilo/home.css"/>
+    <link type="text/css" rel="stylesheet" href="estilo/inicio.css"/>
   </head>
   <body>
     <!DOCTYPE html>
@@ -13,7 +13,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
       rel="stylesheet"/>
    
-    <title>Biblioteca 1</title>
+    <title>Biblioteca</title>
   </head>
   <body>
    
@@ -32,11 +32,10 @@
 
 
       <ul class="nav__links" id="nav-links">
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#">Areas de estudio</a></li>
-        <li><a href="#">Categorias</a></li>
-        <li><a href="#">Galeria</a></li>
+        <li><a class="efect-a" href="#seccion1">Servicios</a></li>
+        <li><a class="efect-a" href="#seccion2">Categorias</a></li>
+        <li><a class="efect-a" href="#seccion3">Areas del conocimiento</a></li>
+        <li><a class="efect-a" href="#seccion4">Galeria</a></li>
       </ul>
 
       <div class="nav__btns">
@@ -60,204 +59,242 @@
           to match your mood.
         </p>
        
+         
       </div>
     </header>
 
   </div> 
     </section>
 
-<section style="background-image: url(imagenes/wave.png);" class="informacion_se1">
+  <section id="seccion1" class="s1">
 
-<div class="cont">
-  <div class="is in ">
-    <div class="conte_informacion">
+    <div class="content"><br><br><br><br><br><br>
+      <center><h1 class="titulo"> Servicios </h1> </center> 
+      <br><br><br>
 
-      <br><br>
-      <center><h1>Historia</h1></center><br><br>
-      <p> Discover the perfect soundtrack for every moment with our 'Music for
-        Your Current Mood' section. Whether you're feeling upbeat, reflective,
-        or somewhere in between, explore curated playlists and tunes tailored
-        to match your mood or somewhere in between, explore curated playlists and tunes tailored
-        to match your mood.</p>
+      <div class="caja">
+      
+       <div class="bo"> 
+        <br>
+        <h3>Inventario</h3><br><br>
+       <p> Discover the perfect soundtrack for every moment with our 'Music for Your Current</p>
+       </div>
 
+       <div class="bo "> 
+        <br>
+        <h3>Resguardo</h3><br><br>
+       <p> Discover the perfect soundtrack for every moment with our 'Music for Your Current</p>
+       </div>
 
-    </div>
-    
-  </div>
+       <div class="bo "> 
+        <br>
+        <h3>Organizacion</h3><br><br>
+       <p> Discover the perfect soundtrack for every moment with our 'Music for Your Current</p>
+       </div>
 
-  <div class="ise in ">
-    <div class="cont_de_circulos">
-    <div class="circulo ab">
-      <div style="background-image: url(imagenes/libro\ \(1\).png);" class="foto"></div>
-    </div>
+       <div class="bo"> 
+        <br>
+        <h3>Proteccion </h3><br><br>
+       <p> Discover the perfect soundtrack for every moment with our 'Music for Your Current</p>
+       </div>
+       </div>
 
-    <div class="cir">
-      <div class="circulo bc">
-        <div style="background-image: url(imagenes/libro\ \(2\).png);" class="foto"></div>
+       
+
+      
+       
       </div>
-    <div class="circulo c">
-      <div style="background-image: url(imagenes/libro\ \(4\).png);" class="foto"></div>
-    </div>
+
     </div>
 
-  </div>
 
-  </div>
+    <div class="fondo">
+    
+  <div class="circulo"> <br>
 </div>
+<div class="circulo a">
+</div>
+<div class="circulo">
+</div>
+<div class="circulo n">
+</div>
+<div class="circulo s">
+</div>
+           </div>
+
 
 </section>
 
 
-    <section  class="se2">
-<div class="vidrio"><br><br>
-<center><h1 style="font-size: 30px;">Servicios</h1></center>
-<div class="sec">
-  <div class="servi">
-    <div style="background-image: url(imagenes/lista-de-verificacion.png);" class="im"></div>
-    <div class="text"><br>
-      <h4>Inventario</h4><br>
-      <p>Discover the perfect soundtrack for every moment with our 'Music for
-        Your Current </p>
-    </div>
 
-  </div>
-  <div class="servi">
-    <div style="background-image: url(imagenes/listas-de-control.png);" class="im"></div>
-    <div class="text"><br>
-      <h4>Organizacion</h4><br>
-      <p>Discover the perfect soundtrack for every moment with our 'Music for
-        Your Current </p>
-    </div>
-  </div>
-  <div class="servi">
-    <div style="background-image: url(imagenes/organizacion-de-archivos.png);" class="im"></div>
-    <div class="text"><br>
-      <h4>Resguardo</h4><br>
-      <p>Discover the perfect soundtrack for every moment with our 'Music for
-        Your Current </p>
-    </div>
-  </div>
-</div>
+<section id="seccion2" class="s2">
 
-    </section>
-    
-
-    <section class="se3"><br><br>
-      <center><h1 style="font-size: 20px;">Area de estudio</h1></center><br><br>
-<div class="ca">
-     
-  <a > <div style="background-image: url(imagenes/informatica.png);" class="box">
-				
-
-    <div class="ima">
-      <h5>Ing</h5><br><h2>Ing Sistemas</h2>
-    </div>
-    <div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
-    </div></a> 
-
-
-    <a ><div style="background-image: url(imagenes/excavador.png);" class="box ci">
-      <div class="ima vil">
-      <h5>Ing</h5><br><h2>civil</h2>
-    </div>
-    <div style="background-image: url(imagenes/civil.png);" class="boci"></div>
-    </div></a>
-
-
-
-<a ><div style="background-image: url(imagenes/caduceo.png);" class="box en">
-
-    <div class="ima fer">
-      <h5>TSU</h5><br><h2>Enfermeria</h2>
-    </div>
-    <div style="background-image: url(imagenes/enfermeria.png);" class="boci"></div>
-    </div></a>	  
-
-  <a ><div style="background-image: url(imagenes/turismo\ \(1\).png);" class="box tu">
-    <div class="ima ris">
-      <h5>Lic</h5><br><h2>Turismo</h2>
-    </div>
-    <div style="background-image: url(imagenes/turismo\ \(2\).png);" class="boci b"></div>
-    </div></a>  
-
-
-   <a ><div style="background-image: url(imagenes/admin\ \(2\).png);" class="box ad">
-    <div class="ima mon">
-      <h5>Lic</h5><br><h2>Admon</h2>
-    </div>
-    <div style="background-image: url(imagenes/admin.png);" class="boci b"></div>
-    </div></a> 
-
-   <a ><div style="background-image: url(imagenes/ads\ \(2\).png);" class="box ads">
-    <div class="ima asd">
-      <h5>TSU</h5><br><h2>ADS</h2>
-    </div>
-    <div style="background-image: url(imagenes/ads.png);" class="boci b"></div>
-    </div></a> 
-      </div>
-    </section>
-
-
-    <section style="background-image: url(imagenes/rb_2148453347.png);" class="s3 ">
-      <div class="vid">
-<br><br><br><br>
-<center><h1 style="font-size: 20px;">Categorias</h1></center><br><br>
+  <br>
+<br>
 <br>
 
-<div class="ele">
+ <center> <h1 class="titulo"> Categorias </h1>  <center>
+<br>
+<br>
+<br>
+<br>
 
-  <a class="carl education" href="#">
-    <div class="overlay"></div>
-    <div class="circle">
-      <svg style="background-image: url(imagenes/admin.png);" class="ft">
-
-      </svg>
-
-    </div>
-    <p>Estadisticas</p>
-  </a>
-  <a class="carl education" href="#">
-    <div class="overlay"></div>
-    <div class="circle">
-      <svg  style="background-image: url(imagenes/profesor.png);" class="ft">
+  <div class="conte">
+ 
       
-      </svg>
-    </div>
-    <p>Matematicas</p>
-  </a>
-  <a class="carl education" href="#">
-    <div class="overlay"></div>
-    <div class="circle">
-      <svg style="background-image: url(imagenes/supervision.png);" class="ft" >
-        
-      </svg>
-    </div>
-    <p>Historia</p>
-  </a>
-  <a class="carl education" href="#">
-    <div class="overlay"></div>
-    <div class="circle">
-      <svg  style="background-image: url(imagenes/matematica.png);" class="ft">
-        
-      </svg>
-    </div>
-    <p>Programacion</p>
-  </a>
+      <div class="ele">
+      
+        <a class="carl education" href="#">
+          <div class="overlay"></div>
+          <div class="circle">
+            <svg style="background-image: url(imagenes/admin.png);" class="ft">
+      
+            </svg>
+      
+          </div>
+          <p>Estadisticas</p>
+        </a>
 
-</div>
-
+        
+        <a class="carl education" href="#">
+          <div class="overlay"></div>
+          <div class="circle">
+            <svg  style="background-image: url(imagenes/profesor.png);" class="ft">
+            
+            </svg>
+          </div>
+          <p>Matematicas</p>
+        </a>
+        <a class="carl education" href="#">
+          <div class="overlay"></div>
+          <div class="circle">
+            <svg style="background-image: url(imagenes/supervision.png);" class="ft" >
+              
+            </svg>
+          </div>
+          <p>Historia</p>
+        </a>
+        <a class="carl education" href="#">
+          <div class="overlay"></div>
+          <div class="circle">
+            <svg  style="background-image: url(imagenes/matematica.png);" class="ft">
+              
+            </svg>
+          </div>
+          <p>Programacion</p>
+        </a>
+      
       </div>
-    
-    </section>
-
-
-<section class="s4">
-  <br><br><br><br>
-  <center><h1 style="font-size: 20px;">Galeria</h1></center><br><br>
-  <br><br>
+      
+          
+          </section>
+            
+  </div>
 
 </section>
 
+<section id="seccion3" class="s5">
+  
+      
+
+      <div style="background-image: url(imagenes/Libros.jpg);"  class="imagengrande">
+      </div>
+
+      <div class="tacks">
+        <center><h1 class="titulo"> Areas del conocimiento</h1> </center> 
+        <br><br><br>
+
+        <!--  --> 
+<div class="notification">
+  <div class="notiglow"></div>
+  <div class="notiborderglow"></div>
+  <div class="notititle">Matematicas</div>
+  <div class="notibody">Materia fundamental en todas las carreas </div>
+</div>
+<br>
+<div class="notification  ">
+  <div class="notiglow"></div>
+  <div class="notiborderglow"></div>
+  <div class="notititle">Anatomia Humana</div>
+  <div class="notibody">Información descriptiva y explicita para su alto conocimiento</div>
+</div>
+<br>
+<div class="notification ">
+  <div class="notiglow"></div>
+  <div class="notiborderglow"></div>
+  <div class="notititle">Contaduría</div>
+  <div class="notibody">Tecnicas e instrumentos fundamental</div>
+</div>
+      </div>
+ 
+
+   </div>
+      
+
+
+</section>
+<section id="seccion4" class="s3">
+  <br><br>
+  <center><h1 class="titulo"> Galeria</h1> </center> 
+      <br><br><br>
+
+ <!-- fotos --> 
+<div class="container">
+  <div   class="card">1</div>
+  <div class="card">2</div>
+  <div class="card">3</div>
+  <div class="card">4</div>
+  <div class="card">4</div>
+</div>
+
+
+</section>
+  
+<footer> 
+  <div class="footer">
+    <div>
+    <h3 class="h3">Servicios</h3><br>
+    <p class="p">Servicio de investario</p>
+    <p class="p">Resguardo de informacion</p>
+  </div>
+  <div>
+    <h3 class="h3">Contenido</h3><br>
+    <p class="p">Libros fisicos de la Biblioteca</p>
+    
+  </div>
+  <div>
+    <h3 class="h3">Credencial</h3><br>
+    <p class="p">Gefe de Biblioteca</p>
+    <p class="p">Ayudante de Biblioteca</p>
+  </div>
+  <div >
+    <h3 class="h3">Desarrolladores</h3><br>
+    <p class="p">Sabrina Rojas</p>
+    <p class="p">Jesus Rios</p>
+  </div>
+ 
+</div>
+<hr> <br>
+<h6>2024  2025</h6>
+</footer>
+
+<script>
+ 
+function scrollToElement(element) {
+  element.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Agregar un event listener a cada enlace
+const links = document.querySelectorAll('nav .efect-a');
+links.forEach(link => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault(); // Evitar el comportamiento por defecto del enlace
+    const targetId = link.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetId);
+    scrollToElement(targetElement);
+  });
+});
+  </script>
 
   </body>
 </html>

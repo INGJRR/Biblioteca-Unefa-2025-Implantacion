@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
         $obreros[] = $row;
     }
 } else {
-    echo "Error al obtener la informacion de los estudiantes";
+    // echo "Error al obtener la informacion de los estudiantes";
 }
 
 $conexion->close();
