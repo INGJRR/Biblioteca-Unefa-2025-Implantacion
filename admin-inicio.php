@@ -141,6 +141,14 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 
 				<div class=" porcentaje">
 					<h3>Estudiantes registrados</h3><br>
+
+					<div>
+						<?php
+							$url = './todos_estudiantes_ver.php'; 
+							require ROOT_DIR . '/componentes/buscadorGlobal.php'
+						?>
+					</div>
+
 					<a href="Sistemas.php">
 						<div style="background-image: url(imagenes/informatica.png);" class="box">
 
@@ -259,6 +267,12 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 					<div class="personalUNEFA">
 						<div class="cajapadre">
 							<H3>Personal UNEFA registrado</H3><br><br>
+							<div>
+								<?php
+									$url = './todos_personal_une.php'; 
+									require ROOT_DIR . '/componentes/buscadorGlobal.php'
+								?>
+							</div>
 							<a href="docente.php">
 								<div style="background-image: url(imagenes/informatica.png);" class="box">
 									<div class="ima">
@@ -278,11 +292,6 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 									<div style="background-image: url(imagenes/libro\ \(2\).png);" class="boci"></div>
 								</div>
 							</a>
-
-
-
-
-
 						</div>
 					</div>
 
@@ -301,18 +310,20 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 							</label>
 							<br>
 							<button class="submit">Realizar prestamo</button>
-
 						</form>
 					</div>
-
-
-
 				</div>
 
 
 
 				<div class="docc">
 					<h3>Documentos registrados</h3>
+					<div>
+						<?php
+							$url = './todos_doc.php'; 
+							require ROOT_DIR . '/componentes/buscadorGlobal.php'
+						?>
+					</div>
 					<div style="background-image: url(imagenes/informatica.png);" class="box">
 						<a href="ver_libro.php">
 						<div class="ima">
@@ -338,11 +349,21 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 						</a>
 					</div>
 				</div>
- 
+
+				
+				<div class="docc">
+					<h3>Visualizar prestamos realizados</h3>
+					<div style="background-image: url(imagenes/informatica.png);" class="box">
+						<a href="./prestamo.php">
+						<div class="ima">
+							<p>Prestamos </p>
+						</div>
+						<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
+						</a>
+					</div>
+				</div>
+
 			</div>
-
-
-
 
 
 		</main>

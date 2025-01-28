@@ -23,7 +23,7 @@ $mensaje = "";
 
 if ($existe) {
     $estilosError = "style=\"border: 2px solid red;\"";
-    $cota = $_SESSION["registroLibro"]->cota ?? '';
+    $cota = $_SESSION['registroLibro']->cota ?? '';
     $titulo = $_SESSION['registroLibro']->titulo ?? '';
     $autor = $_SESSION['registroLibro']->autor ?? '';
     $fecha = $_SESSION['registroLibro']->fecha ?? '';
@@ -107,6 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mensaje = "Un Trabajo de investigacion ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
         }
 
+    }else{
+        $mensaje = '';
     }
 
 

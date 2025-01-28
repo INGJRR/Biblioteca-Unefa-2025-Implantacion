@@ -1,27 +1,28 @@
-<?php
-require_once './ruta.php';
-require ROOT_DIR . '/modelo/conexion.php';
-require ROOT_DIR . '/controlador/getInfo/prestamo.php';
+<?php 
+	//proteccion de rutas
+	session_start();
 
+	if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
+		header('location: ./index.php');
+	};
 
-
-
-$md_confi_mensaje = '';
+	require_once './ruta.php';
+	require ROOT_DIR . '/modelo/conexion.php';
+	require ROOT_DIR . '/controlador/getInfo/todos_estudiantes.php';
+	require ROOT_DIR . '/modelo/conexion.php';
+	require_once ROOT_DIR . '/funciones/cantidad_registros_tabla.php';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 	<!--  CSS -->
-	<link rel="stylesheet" href="estilo/grado.css">
-	<title>Biblioteca</title>
+	<link rel="stylesheet" href="./estilo/sistemas.css">
+    <title>Biblioteca</title>
 </head>
 <!--  body -->
-
 <body>
 
 	<!-- MENU -->
@@ -103,76 +104,66 @@ $md_confi_mensaje = '';
 	<!-- BARRA SUPERIOR -->
 	<section id="content">
 		<nav>
-			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu '></i>
-
+			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu ' ></i>
 			<a class="retorn" href="admin-inicio.php">Regresar</a>
-			<?php if(isset($prestamos)){require './componentes/buscador.php';}?>
+			<?php if(isset($estudiantes)){
+				$url_buscar = './todos_estudiantes_ver.php';
+				require './componentes/buscador.php';
+			} ?>
 		</nav>
 		<br><br>
 		<main>
-
-			<div id="main-container">
-				<?php if(isset($prestamos)): ?>
+			<?php if(empty($estudiantes)): ?>
+				<div>No hay información para mostrar</div>
+			<?php else: ?>
+            <div id="main-container">
 				<table class="busquedatabla">
-					<thead>
-						<tr>
-							<th>ID Prestamo</th>
-							<th>Cedula</th>
-							<th>Cota</th>
+                    <thead>
+                        <tr>
+                            <th>Cedula</th>
+							<th>Nombre</th>
 							<th>Estado</th>
-							<th>Fecha</th>
-							<th>Fecha de devolucion</th>
+							<th>Moroso</th>
+							<th>Prestamos activos</th>
+							<th>Carrera</th>
 							<th>Acciones</th>
-						</tr>
-					</thead>
+                        </tr>
+                    </thead>
 					<tbody>
-					<?php foreach ($prestamos as $prestamo): ?>
+						<?php foreach($estudiantes as $estudiante): ?>
 						<tr>
-							<td><?= $prestamo["id"] ?></td>
+							<td><?= $estudiante["cedula"] ?></td>
+							<td><?= $estudiante["nombre"] ?></td>
+							<td><?php echo ($estudiante["estado"] == 0) ? 'Inactivo' : 'Activo' ?></td>
+							<td><?php echo ($estudiante["moroso"] == 0) ? 'No' : 'Si' ?></td>
 							<td>
-								<?= $prestamo["cedula_persona"] ?>
+							<?php 
+								$cedula_actual = $estudiante['cedula'];
+								$sql = "SELECT COUNT(*) AS cantidad
+								FROM prestamos
+								WHERE cedula_persona = '$cedula_actual' AND estado = 'Prestado'";
+								echo obtener_cantidad_base_dato($sql, $conexion);
+							?>
 							</td>
-							<td><?= $prestamo["cota_documento"] ?></td>
-							<td><?= $prestamo["estado"] ?></td>
-							<td><?= $prestamo["fecha_prestamo"] ?></td>
-							<td><?= $prestamo["fecha_devolucion"] ?></td>
+							<td><?php echo $estudiante["carrera"] ?></td>
 							<td>
-								<?php if($prestamo["estado"] == "Prestado"):?>
-									 <a href="./controlador/modificar/actualizar.php?tipo=1&id=<?= $prestamo["id"]?>" onclick="<?php $md_confi_mensaje = $prestamo ?>" class="boton open-button" style="cursor: pointer;" >Devolver</a>
-								<?php elseif($prestamo["estado"] == "Devuelto"):?>
-								<?php else: ?>
-									<p>Error</p>
-								<?php endif?>
+								<a href="./modificar/estudiante.php?cedula=<?= $estudiante["cedula"] ?>" >Modificar</a>
 							</td>
 						</tr>
-					<?php endforeach ?>
+						<?php endforeach?>
+						<?php $conexion->close()?>
 					</tbody>
 				</table>
-				<?php else: ?>
-					<div>No hay información para mostrar</div>
-				<?php endif?>
 				<div id="noResults" style="display: none; margin: 40px 0; font-size: 30px;">
 					No se encontraron resultados, Busqueda: <span id="noResultsSpan"></span>
 				</div>
- 
-			</div>
-
+            </div>
+			<?php endif?>
 		</main>
 	</section>
 	<!-- BARRA SUPERIOR -->
-
-	<?php 
-		$md_confi_titulo = 'Devolver documento';
-		if($md_confi_mensaje != ''){
-			$md_confi_mensaje = 'Cota: '. $md_confi_mensaje["cota_documento"] .' Cedula: ' . $md_confi_mensaje["cedula_persona"] . ' ID Prestamo: '. $md_confi_mensaje["id"];
-		}
-		$md_confi_accion = '/controlador/modificar/actualizar.php';
-		require ROOT_DIR . '/componentes/modal-confi.php';
-	?>
-
+	
 	<script src="script.js"></script>
 	<script src="./script/busqueda.js" ></script>
-
 </body>
-
 </html>

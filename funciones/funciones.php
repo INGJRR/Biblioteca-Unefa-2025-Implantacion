@@ -24,7 +24,7 @@ function validar_y_convertir_numero($numero,&$error) {
         return '';
     }
 }
-
+ 
 function validar_y_convertir_numero_cedula($numero,&$error) {
     //Condiciones
     // Solo numeros desde el 100 Mil al 99 Millones

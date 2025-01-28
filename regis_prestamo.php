@@ -100,7 +100,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 		<nav>
 			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu '></i>
 
-			<a class="retorn" href="Registrar.php">Regresar</a>
+			<a class="retorn" href="admin-inicio.php">Regresar</a>
 
 		</nav>
 

@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // variable para controlar si surge un error
     $error = false;
     // Recoger los datos del formulario
-    $cedula = validar_y_convertir_numero($_POST['cedula'], $error);
+    $cedula = validar_y_convertir_numero_cedula($_POST['cedula'], $error);
     $nombre = validar_nombre($_POST['nombre'], $error);
     $apellido = validar_nombre($_POST['apellido'], $error);
     $fecha_nacimiento = $_POST['fecha_nacimiento'];
@@ -89,10 +89,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $semestre_actual = esNumeroValido($_POST['semestre'], 9, $error);
     // Transacción para asegurar la integridad de los datos
     $conexion->begin_transaction();
-
-    //datos por defecto 
-    $estado = 1;
-    $moroso = 0;
 
     //verificamos si tenemos creado el objeto ti para evitar cargarlo luego
     if(isset($_SESSION['modificarEs'])){
@@ -149,9 +145,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //modificando al estudiante
-    $sql_update_persona = "UPDATE estudiantes SET nombre = ?, apellido = ?, fecha_nacimiento = ?, direccion = ?, telefono = ?, gmail = ?, estado = ?, moroso = ?, semestre_actual = ?, id_carrera = ? WHERE cedula = ?";
+    $sql_update_persona = "UPDATE estudiantes SET nombre = ?, apellido = ?, fecha_nacimiento = ?, direccion = ?, telefono = ?, gmail = ?, semestre_actual = ?, id_carrera = ? WHERE cedula = ?";
     $stmt_update_persona = $conexion->prepare($sql_update_persona);
-    $stmt_update_persona->bind_param("sssssiiiiis", $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $email, $estado, $moroso, $semestre_actual, $id_carrera, $cedula);
+    $stmt_update_persona->bind_param("ssssssiii", $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $email, $semestre_actual, $id_carrera, $cedula);
     
     $stmt_update_persona->execute();
 
@@ -159,10 +155,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt_update_persona->error) {
         $conexion->rollback(); // Deshacer los cambios en caso de error
         // echo "Error al actualizar los datos: " . $stmt_persona->error;
-        header("Location: ./estudiante.php");
+        header("Location: ./admin-inicio.php");
     } else {
         $conexion->commit(); // Confirmar los cambios
-        header("Location: ../estudiantes.php"); // Reemplaza con el nombre de tu página
+        header("Location: ../admin-inicio.php"); // Reemplaza con el nombre de tu página
         exit;
     }
 

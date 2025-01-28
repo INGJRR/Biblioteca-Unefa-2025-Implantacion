@@ -11,7 +11,9 @@ require_once ROOT_DIR . '/controlador/registrar/libro.php';
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--  CSS -->
-	<link rel="stylesheet" href="estilo/Regi_libro.css">
+	<!-- <link rel="stylesheet" href="estilo/Regi_libro.css"> -->
+	<link rel="stylesheet" href="estilo/Formulario.css">
+	
 	<title>Biblioteca</title>
 </head>
 <!--  body -->
@@ -108,59 +110,113 @@ require_once ROOT_DIR . '/controlador/registrar/libro.php';
 	</section>
 	<!-- BARRA SUPERIOR -->
 	<br><br>
+
+
 	<main>
+     <!-- FORMULARIO -->
+		<form class="formulario" id="formulario" method="POST">
+			
+			
+			<div class="formulario_grupo">
 
-		<br>
-		<form class="form" method="POST">
-			<p class="title">Libro</p><br>
-			<label>
-				<input value="<?= $titulo?>" <?= ($titulo == '') ? $estilosError : '' ?> name="titulo" title="Solo admiten numeros y letras, numero de letras: minimo: 2, Maximo: 100" required="" placeholder="" type="text" class="input">
-				<span>Titulo</span>
-			</label>
- 
-			<label>
-				<input value="<?= $autor?>" <?= ($autor == '') ? $estilosError : '' ?>  name="autor" title="Solo letras, numeros de letras: minimo: 3 , Max: 100"  required="" placeholder="" type="text" class="input">
-				<span>Autor</span>
-			</label>
-			<label>
-				<input value="<?= $carrera?>" <?= ($carrera == '') ? $estilosError : '' ?> name="carrera" title=" Solo letras, numeros de letras: minimo: 2 , Max: 100"  placeholder="" type="text" class="input">
-				<span>Area de estudio</span>
-			</label>
-			<label>
-				<input value="<?= $fecha?>" <?= ($fecha == '') ? $estilosError : '' ?> name="fecha" title="Formato valido 2000-10-01 Año, mes, dia"  required="" placeholder="" type="text" class="input">
-				<span>Año</span>
-			</label>
-			<label>
-				<input value="<?= $cota?>" <?= ($cota == '') ? $estilosError : '' ?>  name="cota" title="Letra y numeros, ejemplo: O987P789 o K987P890"  required="" placeholder="" type="text" class="input">
-				<span>Cota</span>
-			</label>
-			<label>
-				<input value="<?= $editorial?>" <?= ($editorial == '') ? $estilosError : '' ?> name="editorial" required="" title=" Solo admiten numeros y letras numero de letras: minimo: 4, Maximo: 100"  placeholder="" type="text" class="input">
-				<span>Editorial</span>
-			</label>
-			<label>
-				<input value="<?= $cantidad?>" <?= ($cantidad == '') ? $estilosError : '' ?>  name="cantidad" required="" title=" solo admiten numeros, cantidad minima: 1 Maxima: 100"  placeholder="" type="number" class="input">
-				<span>Ejemplar</span>
-			</label>
+				<label for="usuario" class="formulario__label">Titulo</label>
+				<div class="formulario__grupo-input">
+					<input class="formulario__input" id="usuario" required value="<?= $titulo?>" <?= ($titulo == '') ? $estilosError : '' ?> type="text" name="titulo" >
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error" <?php echo ($estilosError != '' && $titulo == '') ? "style='display: block'" : '' ?> >Solo admiten numeros y letras.</p>
+			</div>
+
+			<div class="formulario_grupo">
+
+				<label for="usuario" class="formulario__label">Autor</label>
+				<div class="formulario__grupo-input">
+					<input class="formulario__input" id="usuario" value="<?= $autor?>" <?= ($autor == '') ? $estilosError : '' ?>  name="autor" required="" placeholder="" type="text">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error" <?php echo ($estilosError != '' && $autor == '') ? "style='display: block'" : '' ?> >Solo letras, numeros de letras: minimo: 3 , Max: 100</p>
+
+			</div>
+
+			<div class="formulario_grupo">
+
+				<label for="usuario" class="formulario__label">Area de estudio</label>
+				<div class="formulario__grupo-input">
+					<input class="formulario__input" id="usuario" value="<?= $carrera?>" <?= ($carrera == '') ? $estilosError : '' ?> name="carrera" placeholder="" type="text">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+
+				<p class="formulario__input-error" <?php echo ($estilosError != '' && $carrera == '') ? "style='display: block'" : '' ?> >Solo letras.</p>
+
+			</div>
+
+			<div class="formulario_grupo">
+
+				<label for="usuario" class="formulario__label">Año</label>
+				<div class="formulario__grupo-input">
+					<input class="formulario__input" id="usuario" value="<?= $fecha?>" <?= ($fecha == '') ? $estilosError : '' ?> name="fecha"  required="" placeholder="2000-10-01" type="text">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				
+				<p class="formulario__input-error" <?php echo ($estilosError != '' && $fecha == '') ? "style='display: block'" : '' ?> >Formato valido 2000-10-01 Año, mes, dia</p>
+
+			</div>
+
+			<div class="formulario_grupo">
+
+				<label for="usuario" class="formulario__label">Cota</label>
+				<div class="formulario__grupo-input">
+					<input class="formulario__input" id="usuario" value="<?= $cota?>" <?= ($cota == '') ? $estilosError : '' ?>  name="cota" title=""  required="" placeholder="O987P789" type="text">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				
+				<p class="formulario__input-error" <?php echo ($estilosError != '' && $cota == '') ? "style='display: block'" : '' ?> >Letra y numeros, ejemplo: O987P789 o K987P890</p>
+
+			</div>
+
+			<div class="formulario_grupo">
+
+				<label for="usuario" class="formulario__label">Editorial</label>
+				<div class="formulario__grupo-input">
+					<input class="formulario__input" id="usuario" value="<?= $editorial?>" <?= ($editorial == '') ? $estilosError : '' ?> name="editorial" required=""  placeholder="" type="text">
+					<i class="formulario__validacion-estado fas fa-times-circle" ></i>
+				</div>
+				
+				<p class="formulario__input-error" <?php echo ($estilosError != '' && $editorial == '') ? "style='display: block'" : '' ?> >Solo admiten numeros y letras numero de letras: minimo: 4, Maximo: 100</p>
+
+			</div>
+
+			<div class="formulario_grupo">
+
+				<label for="usuario" class="formulario__label">Ejemplar</label>
+				<div class="formulario__grupo-input">
+					<input class="formulario__input" id="usuario" value="<?= $cantidad?>" <?= ($cantidad == '') ? $estilosError : '' ?>  name="cantidad" required="" title=" solo admiten numeros, cantidad minima: 1 Maxima: 100"  placeholder="50" type="number">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				
+				<p class="formulario__input-error" <?php echo ($estilosError != '' && $cantidad == '') ? "style='display: block'" : '' ?> >Solo numeros</p>
+
+			</div>
+
 			<br>
-			<button class="submit">Registrar</button>
 
+			<div class="formulario_grupo formulario_grupo-btn-enviar">
+				<button class="boton submit" type="button" id="open">enviar</button>
+				<button id="enviar" hidden ></button>
+				
+				<!-- <p class="formulario_mensaje-exito" id="formulario_mensaje-exito">Formulario enviado exitosamente!</p> -->
+			</div>
 		</form>
-		<br>
 	</main>
 
-	<style>
-		.infoinput{
-			margin: 30px auto;
-			width: 60vw;
-			text-align: center;
-			font-size: 20px;
-			display: flex;
-			flex-direction: column;
-			line-height: 2;
-		}
-	</style>
-	 
+	<?php 
+		require './componentes/modal-registro.php'
+
+	
+	
+	
+	?>
+
 	<?php if(isset($mensaje) && $mensaje != ""):?>
 	<div class="infoinput form">
 		<h4>Mensaje de alerta</h4>
@@ -170,9 +226,6 @@ require_once ROOT_DIR . '/controlador/registrar/libro.php';
 	</div>
 	<?php endif?>
 	
-
-
-
 
 	<script src="script.js"></script>
 </body>

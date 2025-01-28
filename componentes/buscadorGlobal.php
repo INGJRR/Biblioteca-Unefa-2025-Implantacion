@@ -9,7 +9,7 @@
     .form-input{
         display: flex;
         align-items: center;
-        height: 36px;
+        height: 45px;
     }
     .form-input input{
         flex-grow: 1;
@@ -21,6 +21,7 @@
         outline: none;
         width: 100%;
         color: var(--dark);
+        font-size: 22px;
     }
     .form-input button{
         background-image: url('../imagenes/buscar.png');
@@ -46,9 +47,9 @@
 </style>
 
 <!-- Estructura del html -->
-<form action="<?php echo (isset($url_buscar)) ? $url_buscar : '' ?>" style="margin: 0 auto;" method="get">
-    <div class="form-input">
-        <input id="busqueda" type="search" placeholder="Buscar" name="<?php echo (isset($url_name)) ? $url_name : 'PorDefecto' ?>">
+<form action="<?= $url ?>" style="margin: 0 auto;" method="get">
+    <div class="form-input" style="margin: 20px 0;">
+        <input id="busqueda" type="search" placeholder="Buscar" name="buscar">
         <button type="submit" style="background-image: url(imagenes/buscar\ \(1\).png);" class="search-btn"><i class='bx bx-search'></i></button>
     </div>
 </form>
