@@ -12,7 +12,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--  CSS -->
-	<link rel="stylesheet" href="../estilo/Regi_estu.css">
+	<!-- <link rel="stylesheet" href="../estilo/Regi_estu.css"> -->
+	<link rel="stylesheet" href="../estilo/Formulario.css">
 	<title>Biblioteca</title>
 </head>
 <!--  body -->
@@ -21,66 +22,11 @@
 
 
 	<!-- MENU -->
-	<section id="sidebar">
-
-		<div class="l">
-			<span>
-				<div style="background-image: url(../imagenes/unefa-logo-3FC9336783-seeklogo.com.png);" class="logo"></div>
-			</span>
-			<div>
-				<p class="pe">Biblioteca </p>
-				<p class="p">Luis Beltran Prieto Figueroa</p><br>
-			</div>
-
-		</div>
-
-
-		<ul class="side-menu top">
-
-
-			<li>
-				<a href="../admin-inicio.php">
-					<i style="background-image: url(../imagenes/hogar.png);" class='bx bxs-shopping-bag-alt icon'></i>
-					<span class="text">Inicio</span>
-				</a>
-			</li>
-
-			<li>
-				<a href="../Registrar.php">
-					<i style="background-image: url(../imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon'></i>
-					<span class="text">Registrar</span>
-				</a>
-			</li>
-			<li>
-				<a href="../Documento.php">
-					<i style="background-image: url(../imagenes/libro.png);" class='bx bxs-doughnut-chart icon'></i>
-					<span class="text">Documentos</span>
-				</a>
-			</li>
-			<li class="active">
-				<a href="../estudiantes.php">
-					<i style="background-image: url(../imagenes/graduado.png);" class='bx bxs-message-dots icon'></i>
-					<span class="text">Estudiantes</span>
-				</a>
-			</li>
-			<li>
-				<a href="../unefaper.php">
-					<i style="background-image: url(../imagenes/social.png);" class='bx bxs-group icon'></i>
-					<span class="text">Personal UNEFA</span>
-				</a>
-			</li>
-		</ul>
-
-		<ul class="side-menu">
-
-			<li>
-				<a href="../controlador/cerrar_sesion.php" class="logout">
-					<i style="background-image: url(../imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon'></i>
-					<span class="text">Salir</span>
-				</a>
-			</li>
-		</ul>
-	</section>
+	<?php
+		$menuActive = 1;
+		$rutaImgMenu = '../';
+		require ROOT_DIR . '/componentes/menuLateral2.php';
+	?>
 	<!-- MENU -->
 
 
@@ -90,74 +36,140 @@
 		<nav>
 			<i style="background-image: url(../imagenes/flecha-curva.png);" class='bx bx-menu '></i>
 
-
+ 
 			<a class="retorn" href="../funciones/eliminar_sesion_regresar.php?nombre=<?=$nombreSesion?>&ruta=<?= $ruta?>">Regresar</a>
 		</nav>
+		<br><br>
+		<h4 style="font-size: 25PX; text-align: center; margin: 20px; font-weight: bolder; letter-spacing: 3px;" >MODIFICAR ESTUDIANTE</h4>
+		<main>
+			<!-- FORMULARIO -->
+			<form class="formulario" id="formulario" method="POST">
 
+
+				<div class="formulario_grupo">
+
+					<label for="usuario" class="formulario__label">Cédula *</label>
+					<div class="formulario__grupo-input">
+						<input disabled class="formulario__input" value="<?= $cedula ?>" <?= ($cedula == '') ? $estilosError : '' ?> required placeholder="" name="cedula" type="text">
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $cedula == '') ? "style='display: block'" : '' ?>>Solo se aceptan números enteros en el rango de 100,000 a 99,999,999.</p>
+				</div>
+
+				<div class="formulario_grupo">
+
+					<label class="formulario__label">Nombre *</label>
+					<div class="formulario__grupo-input">
+						<input class="formulario__input" value="<?= $nombre ?>" <?= ($nombre == '') ? $estilosError : '' ?> required placeholder="" name="nombre" type="text">
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $nombre == '') ? "style='display: block'" : '' ?>>Este campo admite exclusivamente caracteres alfabéticos, con una longitud mínima de 3 y una longitud máxima de 100.</p>
+
+				</div>
+
+				<div class="formulario_grupo">
+
+					<label for="usuario" class="formulario__label">Apellido *</label>
+					<div class="formulario__grupo-input">
+						<input class="formulario__input" value="<?= $apellido ?>" <?= ($apellido == '') ? $estilosError : '' ?> required placeholder="" name="apellido" type="text">
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $apellido == '') ? "style='display: block'" : '' ?>>Este campo admite exclusivamente caracteres alfabéticos, con una longitud mínima de 3 y una longitud máxima de 100.</p>
+
+				</div>
+
+				<div class="formulario_grupo">
+
+					<label for="usuario" class="formulario__label">Fecha de nacimiento *</label>
+					<div class="formulario__grupo-input">
+						<input class="formulario__input" value="<?= $fecha_nacimiento ?>" <?= ($fecha_nacimiento == '2045-01-01') ? $estilosError : '' ?> required placeholder="" type="date" name="fecha_nacimiento">
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $fecha_nacimiento == '') ? "style='display: block'" : '' ?>>Se aceptan fechas en formato DD-MM-AAAA (Día,Mes,Año).</p>
+
+				</div>
+
+				<div class="formulario_grupo">
+
+					<label for="usuario" class="formulario__label">Dirección *</label>
+					<div class="formulario__grupo-input">
+						<input class="formulario__input" value="<?= $direccion ?>" <?= ($direccion == '') ? $estilosError : '' ?> required placeholder="" name="direccion" type="text" class="input">
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $direccion == '') ? "style='display: block'" : '' ?>>Este campo acepta exclusivamente caracteres alfanuméricos, con una longitud mínima de 4 y una longitud máxima de 100</p>
+
+				</div>
+
+				<div class="formulario_grupo">
+
+					<label for="usuario" class="formulario__label">Teléfono *</label>
+					<div class="formulario__grupo-input">
+						<input class="formulario__input" value="<?= $telefono ?>" <?= ($telefono == '') ? $estilosError : '' ?> required placeholder="" name="telefono" type="text">
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $telefono == '') ? "style='display: block'" : '' ?>>Solo numeros Empieza por 04 y debe de tener 11 caracteres</p>
+
+				</div>
+
+				<div class="formulario_grupo">
+
+					<label for="usuario" class="formulario__label">Email *</label>
+					<div class="formulario__grupo-input">
+						<input class="formulario__input" value="<?= $email ?>" <?= ($email == '') ? $estilosError : '' ?> required placeholder="" name="email" type="email">
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $email == '') ? "style='display: block'" : '' ?>>Debe tener la forma "usuario@dominio.extensión". El usuario puede contener: letras, números, guiones bajos (_) y puntos (.)</p>
+
+				</div>
+				<div class="formulario_grupo">
+
+					<label for="usuario" class="formulario__label">Carrera *</label>
+					<div class="formulario__grupo-input">
+						<select <?= ($id_carrera == '') ? $estilosError : '' ?> name="carrera" class="formulario__input" id="">
+							<?php if (empty($carrera)): ?>
+								<?php foreach ($carreras as $carrera): ?>
+									<option value="<?= $carrera["id"] ?>" <?php echo ($carrera["id"] == $id_carrera) ? "selected" : '' ?>>
+										<?= $carrera["nombre"] ?>
+									</option>
+								<?php endforeach ?>
+							<?php endif ?>
+						</select>
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $carrera == '') ? "style='display: block'" : '' ?>></p>
+
+				</div>
+
+				<div class="formulario_grupo">
+					<label for="usuario" class="formulario__label">Semestre *</label>
+					<div class="formulario__grupo-input">
+						<input value="<?= $semestre_actual ?>" <?= ($semestre_actual == '') ? $estilosError : '' ?> name="semestre" required="" placeholder="" type="number" min="1" class="formulario__input">
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $semestre_actual == '') ? "style='display: block'" : '' ?>></p>
+				</div>
+
+				<br>
+
+
+				<div class="formulario_grupo formulario_grupo-btn-enviar">
+					<button class="boton submit" type="submit" >Modificar</button>
+					<!-- <p class="formulario_mensaje-exito" id="formulario_mensaje-exito">Formulario enviado exitosamente!</p> -->
+				</div>
+			</form>
+		</main>
 
 	</section>
 	<!-- BARRA SUPERIOR -->
-	<br><br>
-	<main>
 
-		<br>
-		<form class="form" method="POST">
-			<p class="title">Modificar Estudiante</p><br><br><br>
-			
-			<label>
-				<input value="<?= $cedula ?>" <?= ($cedula == '') ? $estilosError : '' ?> name="cedula" required="" placeholder="" type="text" class="input">
-				<span>Cedula</span>
-			</label>
-
-			<label>
-				<input value="<?= $nombre ?>" <?= ($nombre == '') ? $estilosError : '' ?> name="nombre" required="" placeholder="" type="text" class="input">
-				<span>Nombre</span>
-			</label>
-			<label>
-				<input value="<?= $apellido ?>" <?= ($apellido == '') ? $estilosError : '' ?> name="apellido" required="" placeholder="" type="text" class="input">
-				<span>Apellido</span>
-			</label>
-			<label>
-				<input value="<?= $fecha_nacimiento ?>" <?= ($fecha_nacimiento == '2045-01-01') ? $estilosError : '' ?> name="fecha_nacimiento" required="" placeholder="" type="date" class="input">
-				<span>Fecha de nacimiento</span>
-			</label>
-			<label>
-				<input value="<?= $direccion ?>" <?= ($direccion == '') ? $estilosError : '' ?> name="direccion" required="" placeholder="" type="text" class="input">
-				<span>Direccion</span>
-			</label>
-			<label>
-				<input value="<?= $telefono ?>" <?= ($telefono == '') ? $estilosError : '' ?> name="telefono" required="" placeholder="" type="tel" class="input">
-				<span>Telefono</span>
-			</label>
-			<label>
-				<input value="<?= $email ?>" <?= ($email == '') ? $estilosError : '' ?> name="email" required="" placeholder="" type="email" class="input">
-				<span>Email</span>
-			</label>
-			<label>
-				<select <?= ($id_carrera == '') ? $estilosError : '' ?> name="carrera" class="input" id="">
-					<?php if (empty($carrera)): ?>
-						<?php foreach ($carreras as $carrera): ?>
-							<option value="<?= $carrera["id"]?>" <?php echo ($carrera["id"] == $id_carrera) ? "selected" : '' ?> >
-								<?= $carrera["nombre"] ?>
-							</option>
-						<?php endforeach ?>
-					<?php endif ?>
-				</select>
-				<span>Carrera</span>
-			</label>
-			<label>
-				<input value="<?= $semestre_actual ?>" <?= ($semestre_actual == '') ? $estilosError : '' ?> name="semestre" required="" placeholder="" type="number" class="input">
-				<span>Semestre</span>
-			</label>
-			<br>
-			<button class="submit">Modificar</button>
-
-		</form>
-
-	</main>
-
-
-
+ 
 
 	<script src="../script.js"></script>
 </body>

@@ -15,6 +15,7 @@ $fecha = '';
 $tutor = '';
 $tutor_comunitario = '';
 $lugar = '';
+$cantidad = '';
 $estilosError = '';
 
 if(isset($_SESSION["modificarSc"])){
@@ -27,6 +28,7 @@ if(isset($_SESSION["modificarSc"])){
     $tutor = $_SESSION['modificarSc']->tutor ?? '';
     $tutor_comunitario = $_SESSION['modificarSc']->tutor_comunitario ?? '';
     $lugar = $_SESSION['modificarSc']->lugar ?? '';
+    $cantidad = $_SESSION['modificarSc']->cantidad ?? '';
 }else{
     // no hemos cargado los datos de la cota, entonces lo cargaremos
     if (isset($_GET['cota'])) {
@@ -48,6 +50,7 @@ if(isset($_SESSION["modificarSc"])){
             $tutor = $sv["tutor"];
             $tutor_comunitario = $sv["tutor_comunitario"];
             $lugar = $sv["lugar"];
+            $cantidad = $sv["cantidad"];
         }else{
             //la consulta fallo
         }
@@ -63,16 +66,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //en caso de que ocurra un error 
     $error = false;
     // Recoger los datos del formulario
-    $cota = validar_cota($_POST['cota'], $error);
+    $cota = validar_cota($cota, $error);
     $titulo = validarSoloLetrasNumeros($_POST['titulo'], $error);
     $autor = validar_nombre($_POST['autor'], $error);
     $fecha = esNumeroValido($_POST['fecha'], 2050, $error);
     $tutor = validar_nombre($_POST['tutor'], $error); 
     $tutor_comunitario = validar_nombre($_POST['tutor_comunitario'], $error); 
     $lugar = validarSoloLetrasNumeros($_POST['lugar'],$error);
-
+    $cantidad = esNumeroValido($_POST['cantidad'], 100, $error);
     $fecha_registro = date("Y-m-d ");
-    $cantidad = 1;
+
     //verificamos si tenemos creado el objeto usuario para evitar cargarlo luego
     if(isset($_SESSION['modicarSc'])){
         unset($_SESSION['modificarSc']);
@@ -119,6 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sc->tutor = $tutor;
         $sc->tutor_comunitario =$tutor_comunitario;
         $sc->lugar = $lugar;
+        $sc->cantidad = $cantidad;
 
         // Almacenar el objeto en la sesión
         $_SESSION['modificarSc'] = $sc;
@@ -145,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ./regis_comu.php");
     } else {
         $conexion->commit(); // Confirmar los cambios
-        header("Location: ../comunitario.php"); // Reemplaza con el nombre de tu página
+        header("Location: ../comunitario.php?buscar=$cota"); // Reemplaza con el nombre de tu página
     }
 
     $stmt_sc->close();

@@ -141,9 +141,9 @@
         </div>
         <!--  MODAL -->
         <div class="content"><br>
-           <center><span class="title">    Registrar</span></center> <br>
+           <center><span class="title">Registrar</span></center> <br>
             <p class="message">
-                ¿Seuro que desea arear este reistro?              
+            ¿Está seguro de querer generar este registro?            
             </p>
         </div>
         <div class="actions">

@@ -8,7 +8,7 @@ require_once ROOT_DIR . '/funciones/info_idv_db.php';
 	
 //sirve para cuando regresemos
 $nombreSesion = "modificarUnefa";
-$ruta = '../unefaper.php';
+$ruta = '../admin-inicio.php';
 
 $cedula = '';
 $nombre = '';
@@ -83,14 +83,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //para controlar en caso que ocurra un error
     $error = false;
     // Obtener los datos del formulario para validarlo y ver si los formatos estan correctos
-    $cedula = validar_y_convertir_numero($_POST["cedula"], $error);
+    $cedula = validar_y_convertir_numero_cedula($cedula, $error);
     $nombre = validar_nombre($_POST['nombre'], $error);
     $apellido = validar_nombre($_POST['apellido'], $error);
-    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $fecha_nacimiento = validarFecha2($_POST['fecha_nacimiento'], $error);
     $direccion = validarSoloLetrasNumeros($_POST['direccion'], $error);
     $telefono = esNumeroValido($_POST['telefono'], 0 ,$error);
     $email = validarEmail($_POST['email'], $error);
-    $categoria = esNumeroValido($_POST['categoria'], 2 ,$error);
+    $categoria = esNumeroValido($categoria, 2 ,$error);
 
     //verificamos si tenemos creado el objeto con datos del registro para evitar cargarlo luego
     if(isset($_SESSION['modificarUnefa'])){
@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ./personalUnefa");
         } else {
             $conexion->commit(); // Confirmar los cambios
-            header("Location: ../docente.php"); // Reemplaza para redirigir a la otra pagina
+            header("Location: ../docente.php?buscar=$cedula"); // Reemplaza para redirigir a la otra pagina
         }
     
         $stmt_update_persona->close();

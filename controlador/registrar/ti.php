@@ -23,6 +23,7 @@ $metodologia = '';
 $tipo = '';
 $palabras_claves = '';
 $estilosError = '';
+$cantidad = '';
 $mensaje = '';
 
 if ($existe) {
@@ -34,6 +35,7 @@ if ($existe) {
     $fecha = $_SESSION['registroti']->fecha ?? '';
     $carrera = $_SESSION['registroti']->carrera ?? '';
     $tipo = $_SESSION['registroti']->tipo ?? '';
+    $cantidad = $_SESSION['registroti']->cantidad ?? '';
 
     //datos opcionales 
     $linea_investigacion = $_SESSION['registroti']->linea_investigacion;
@@ -48,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require ROOT_DIR . '/modelo/conexion.php';
     //variable que gestiona si encuentra un error en la validacion
     $error = false;
-    
+     
     // Recoger los datos del formulario
     $cota = validar_cota($_POST['cota'], $error);
     $titulo = validarSoloLetrasNumeros($_POST['titulo'], $error);
@@ -57,78 +59,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fecha = validarFecha2($_POST['fecha'], $error);
     $carrera = validar_nombre($_POST['carrera'], $error);
     $tipo = $_POST['tipo'];
-
+    $cantidad = esNumeroValido($_POST['cantidad'], 1000, $error);
     //datos opcionales 
-    $linea_investigacion = ($_POST['linea_investigacion'] == '') ? false : validar_nombre($_POST['linea_investigacion'], $error);
-    $mencion = ($_POST['mencion'] == '') ? false : validar_nombre($_POST['mencion'], $error);
-    $metodologia = ($_POST['metodologia'] == '') ? false : validar_nombre($_POST['metodologia'], $error);
-    $palabras_claves = ($_POST['palabras_claves'] == '') ? false : validar_nombre($_POST['palabras_claves'], $error);
+    $linea_investigacion = ($_POST['linea_investigacion'] == '') ? "false" : validar_nombre($_POST['linea_investigacion'], $error);
+    $mencion = ($_POST['mencion'] == '') ? "false" : validar_nombre($_POST['mencion'], $error);
+    $metodologia = ($_POST['metodologia'] == '') ? "false" : validar_nombre($_POST['metodologia'], $error);
+    $palabras_claves = ($_POST['palabras_claves'] == '') ? "false" : validar_nombre($_POST['palabras_claves'], $error);
 
     //opcionales
     $nivel_academico = 'Tesis';
     $fecha_registro = date("Y-m-d ");
     $metodo = "";
-    $cantidad = 1;
+ 
 
-
-
+ 
     //verificamos si tenemos creado el objeto ti para evitar cargarlo luego
     if(isset($_SESSION['registroti'])){
         unset($_SESSION['registroti']);
     }
-
+ 
     //validamos que el campo cota este en el formato adecuado para buscar si se envuentra registrado  
-    if($cota != ''){
-       // Preparar la consulta (protege contra inyecciones SQL)
-       $stmt = $conexion->prepare("SELECT * FROM libros WHERE cota = ?");
-       $stmt->bind_param("s", $cota);
-
-       // Ejecutar la consulta
-       $stmt->execute();
-
-       // Obtener el resultado
-       $result = $stmt->get_result();
-
-       // Verificar si se encontró algún registro
-       if ($result->num_rows > 0) {
-           $error = true;
-           $cota = '';
-           $datos = 
-           $mensaje = "Un libro ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
-       }
-
-       $stmt = $conexion->prepare("SELECT * FROM servicio_comunitario WHERE cota = ?");
-       $stmt->bind_param("s", $cota);
-
-       // Ejecutar la consulta
-       $stmt->execute();
-
-       // Obtener el resultado
-       $result = $stmt->get_result();
-
-       // Verificar si se encontró algún registro
-       if ($result->num_rows > 0) {
-           $error = true;
-           $cota = '';
-           $mensaje = "Un Trabajo de servicio comunitario ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
-       }
-
-       $stmt = $conexion->prepare("SELECT * FROM trabajos_investigacion WHERE cota = ?");
-       $stmt->bind_param("s", $cota);
-
-       // Ejecutar la consulta
-       $stmt->execute();
-
-       // Obtener el resultado
-       $result = $stmt->get_result();
-
-       // Verificar si se encontró algún registro
-       if ($result->num_rows > 0) {
-           $error = true;
-           $cota = '';
-           $mensaje = "Un Trabajo de investigacion ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
-       }
-    }
+    require './Codigo/VerificarLibro.php';
 
     if($error){
         // Crear un nuevo objeto de tipo stdClass
@@ -146,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $objeto->metodologia = $metodologia;
         $objeto->tipo = $tipo;
         $objeto->palabras_claves = $palabras_claves;
+        $objeto->cantidad = $cantidad;
         $objeto->mensaje = $mensaje;
 
         // Almacenar el objeto en la sesión
@@ -156,6 +108,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // // modificamos la fecha para que no de error 
     // $fecha = $_POST['fecha'] . '-01-01';
+ 
+    //modificamos el formato
+
+    $linea_investigacion = ($linea_investigacion == 'false') ? '' : $linea_investigacion;  
+    $mencion = ($mencion == 'false') ? '' : $mencion;
+    $metodologia = ($metodologia == 'false') ? '' : $metodologia;
+    $palabras_claves = ($palabras_claves == 'false') ? '' : $palabras_claves;
+
+
 
     // Transacción para asegurar la integridad de los datos
     $conexion->begin_transaction();

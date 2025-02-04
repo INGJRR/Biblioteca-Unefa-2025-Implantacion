@@ -73,42 +73,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         unset($_SESSION['registroPrestamo']);
     }
 
+    //verificamos que la cota exista 
     if($cota != ''){
         $tipo_libro = "Libro";
-        BuscarDocumento($cota, 'libros', $conexion, $error, $mensajeDoc, $tipo_libro);
-        if(!$mensajeDoc){
+        $encontrado = false;
+        BuscarDocumento($cota, 'libros', $conexion, $encontrado, $mensajeDoc, $tipo_libro);
+        if(!$encontrado){
+            $mensajeDoc = "100";
             $tipo_libro = "Servicio comunitario";
-            BuscarDocumento($cota, 'servicio_comunitario', $conexion, $error, $mensajeDoc, $tipo_libro);
-            if(!$mensajeDoc){
+            BuscarDocumento($cota, 'servicio_comunitario', $conexion, $encontrado, $mensajeDoc, $tipo_libro);
+            if(!$encontrado){
                 $tipo_libro = "Trabajo de investigacion";
-                BuscarDocumento($cota, 'trabajos_investigacion', $conexion, $error, $mensajeDoc, $tipo_libro);
+                BuscarDocumento($cota, 'trabajos_investigacion', $conexion, $encontrado, $mensajeDoc, $tipo_libro);
+                if(!$encontrado){
+                    $tipo_libro = "Pasantia";
+                    BuscarDocumento($cota, 'pasantias', $conexion, $encontrado, $mensajeDoc, $tipo_libro);
+                }
             }
         }
-        if(!$mensajeDoc){
-            $mensajeDoc = "Documento con cota [".$cota."] no fue encontrado";
+        if(!$encontrado){
+            // $mensajeDoc = "El documento con cota [" . $cota . "] no se encuentra registrado en el sistema.";
             $cota = '';
+            $error = true;
+        }else if($encontrado && $mensajeDoc != ''){
+            $cota = '';
+            $error = true;
         }else{
             $mensajeDoc = '';
         }
+    }else{
+        $mensajeDoc = "";
     }
 
+    //verificamos que la cedula exista y no tenga ningun problema
     if($cedula != ''){
         $tipo_persona = "Estudiante";
-        BuscarPersona($cedula, 'estudiantes', $conexion, $error, $mensajePer, $tipo_persona);
-        if(!$mensajePer){
+        $encontrado = false;
+        BuscarPersona($cedula, 'estudiantes', $conexion, $encontrado, $mensajePer, $tipo_persona);
+        if(!$encontrado){
             $tipo_persona = "Profesor";
-            BuscarPersona($cedula, 'profesores', $conexion, $error, $mensajePer, $tipo_persona);
-            if(!$mensajePer){
+            BuscarPersona($cedula, 'profesores', $conexion, $encontrado, $mensajePer, $tipo_persona);
+            if(!$encontrado){
                 $tipo_persona = "Obrero";
-                BuscarPersona($cedula, 'obreros', $conexion, $error, $mensajePer, $tipo_persona);
+                BuscarPersona($cedula, 'obreros', $conexion, $encontrado, $mensajePer, $tipo_persona);
             }
         }
-        if(!$mensajePer){
-            $mensajePer = "La persona con cedula [".$cedula."] no fue encontrada";
+        if(!$encontrado){
+            $mensajePer = "La persona con cédula [" . $cedula . "] no se encuentra registrada en el sistema.";
             $cedula = '';
+            $error = true;
+        }else if($encontrado && $mensajePer != ''){
+            $cedula = '';
+            $error = true;
         }else{
+            //no hay error y esta todo bien
             $mensajePer = "";
         }
+    }else{
+        $mensajePer = '';
     }
 
     if($error){

@@ -32,77 +32,10 @@
 <body>
 
 	<!-- MENU -->
-	<section id="sidebar">
-
-		<div class="l">
-			<span>
-				<div style="background-image: url(imagenes/unefa-logo-3FC9336783-seeklogo.com.png);" class="logo"></div>
-			</span>
-			<div>
-				<p class="pe">Biblioteca </p>
-				<p class="p">Luis Beltran Prieto Figueroa</p><br>
-			</div>
-
-		</div>
-
-		<ul class="side-menu top">
-			<br><br>
-
-			<li class="active">
-				<a href="admin-inicio.php">
-					<i style="background-image: url(imagenes/hogar.png);" class='bx bxs-shopping-bag-alt icon'></i>
-					<span class="text">Inicio</span>
-				</a>
-			</li><br>
-
-			<li>
-				<a href="regis_libro.php">
-					<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon'></i>
-					<span class="text">Registrar libro</span>
-				</a>
-			</li><br>
-			<li>
-				<a href="regis_pero.php">
-					<i style="background-image: url(imagenes/libro.png);" class='bx bxs-doughnut-chart icon'></i>
-					<span class="text">Registrar personal <br> unefa </span>
-				</a>
-			</li><br>
-			<li>
-				<a href="regis_grado.php">
-					<i style="background-image: url(imagenes/graduado.png);" class='bx bxs-message-dots icon'></i>
-					<span class="text">Registrar Trabajo de <br> investigacion  </span>
-				</a>
-			</li><br>
-			<li>
-				<a href="regis_estu.php">
-					<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon'></i>
-					<span class="text">Registrar estudiante</span>
-				</a>
-			</li><br>
-			<li>
-				<a href="regis_comu.php">
-					<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon'></i>
-					<span class="text">Registrar trabajo de <br> comunitario</span>
-				</a>
-			</li><br>
-			<li>
-				<a href="regis_prestamo.php">
-					<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon'></i>
-					<span class="text">Registrar prestamo</span>
-				</a>
-			</li><br>
-		</ul>
-
-		<ul class="side-menu">
-
-			<li>
-				<a href="./controlador/cerrar_sesion.php" class="logout">
-					<i style="background-image: url(imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon'></i>
-					<span class="text">Cerrar sesion</span>
-				</a>
-			</li>
-		</ul>
-	</section>
+	<?php
+		$menuActive = 1;
+		require ROOT_DIR . '/componentes/menuLateral.php';
+	?>
 	<!-- MENU -->
 
 
@@ -120,6 +53,7 @@
 			?>
 		</nav>
 		<br><br>
+		<h4 style="font-size: 25PX; text-align: center; margin: 20px; font-weight: bolder; letter-spacing: 3px;">LISTADO DEL PERSONAL UNEFA</h4>
 		<main>
 			<?php if (empty($personal_une)): ?>
 				<div>No hay información para mostrar</div>
@@ -128,7 +62,7 @@
 					<table class="busquedatabla">
 						<thead>
 							<tr>
-								<th>Cedula</th>
+								<th>Cédula</th>
 								<th>Nombre</th>
 								<th>Estado</th>
 								<th>Moroso</th>
@@ -149,7 +83,17 @@
 									$sql = "SELECT COUNT(*) AS cantidad
 									FROM prestamos
 									WHERE cedula_persona = '$cedula_actual' AND estado = 'Prestado'";
-									echo obtener_cantidad_base_dato($sql, $conexion);
+									$ActivoNum = obtener_cantidad_base_dato($sql, $conexion);
+									if($ActivoNum > 0){
+										require_once ROOT_DIR . '/funciones/convertirMoroso.php';
+										require_once ROOT_DIR . '/funciones/verificarFecha.php';
+										require ROOT_DIR . '/modelo/conexion.php';
+										Moroso($cedula_actual, ($persona['tipo'] == 'Profesor') ? 2 : 3, $conexion);
+									}else{
+										require_once ROOT_DIR . '/funciones/convertirMoroso.php';
+										quitarMoroso($cedula_actual, ($persona['tipo'] == 'Profesor') ? 2 : 3, $conexion);
+									}
+									echo $ActivoNum;
 								?>
 								</td>
 								<td><?= $persona["tipo"] ?></td>

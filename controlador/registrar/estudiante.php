@@ -61,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //datos por defecto 
     $estado = 1;
     $moroso = 0;
+    $credito = 3;
 
     //verificamos si tenemos creado el objeto ti para evitar cargarlo luego
     if(isset($_SESSION['registroEstudiante'])){
@@ -82,10 +83,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar si se encontró algún registro
         if ($result->num_rows > 0) {
             $error = true;
-            $mensaje = "Ya hay un estudiante registrado con la cedula [" . $cedula . "]. ";
+            $mensaje = "No se ha podido completar el registro. Ya existe un estudiante registrado con la cédula [" . $cedula . "] en el sistema.";
             $cedula = '';
             
         }
+    }else{
+        $mensaje = "";
+    }
+
+    if($cedula != ''){
+        $mensaje = '';
     }
 
     if($error){
@@ -111,16 +118,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //registrando un nuevo estudiante
-    $sql_persona_insert = "INSERT INTO estudiantes (cedula, nombre, apellido, fecha_nacimiento, direccion, telefono, gmail, estado, moroso, semestre_actual, id_carrera) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql_persona_insert = "INSERT INTO estudiantes (cedula, nombre, apellido, fecha_nacimiento, direccion, telefono, gmail, estado, moroso, semestre_actual, id_carrera, credito) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt_persona_insert = $conexion->prepare($sql_persona_insert);
-    $stmt_persona_insert->bind_param("issssssiiii", $cedula, $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $email, $estado, $moroso, $semestre_actual, $id_carrera);
+    $stmt_persona_insert->bind_param("issssssiiiii", $cedula, $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $email, $estado, $moroso, $semestre_actual, $id_carrera, $credito);
     $stmt_persona_insert->execute();
 
 
     if ($stmt_persona->error) {
         $conexion->rollback(); // Deshacer los cambios en caso de error
         // echo "Error al actualizar los datos: " . $stmt_persona->error;
-        header("Location: ./regis_estu.php");
+        header("Location: ./admin-inicio.php");
     } else {
         $conexion->commit(); // Confirmar los cambios
         header("Location: ./admin-inicio.php"); // Reemplaza con el nombre de tu página

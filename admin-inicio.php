@@ -22,83 +22,18 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 <!--  body -->
 
 <body>
-	<section id="sidebar">
-		<div class="l">
-			<span>
-				<div style="background-image: url(imagenes/unefa-logo-3FC9336783-seeklogo.com.png);" class="logo"></div>
-			</span>
-			<div>
-				<p class="pe">Biblioteca </p>
-				<p class="p">Luis Beltran Prieto Figueroa</p><br>
-			</div>
 
-		</div>
+	<?php
+		$menuActive = 1;
+		require ROOT_DIR . '/componentes/menuLateral.php';
 
-		<ul class="side-menu top">
-			<br><br><br>
+	?>
 
-			<li class="active">
-				<a href="admin-inicio.php">
-					<i style="background-image: url(imagenes/hogar.png);" class='bx bxs-shopping-bag-alt icon'></i>
-					<span class="text">Inicio</span>
-				</a>
-			</li><br>
-
-			<li>
-				<a href="regis_libro.php">
-					<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon'></i>
-					<span class="text">Registrar libro</span>
-				</a>
-			</li><br>
-			<li>
-				<a href="regis_pero.php">
-					<i style="background-image: url(imagenes/libro.png);" class='bx bxs-doughnut-chart icon'></i>
-					<span class="text">Registrar personal <br> unefa </span>
-				</a>
-			</li><br>
-			<li>
-				<a href="regis_grado.php">
-					<i style="background-image: url(imagenes/graduado.png);" class='bx bxs-message-dots icon'></i>
-					<span class="text">Registrar Trabajo de <br> investigacion </span>
-				</a>
-			</li><br>
-			<li>
-				<a href="regis_estu.php">
-					<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon'></i>
-					<span class="text">Registrar estudiante</span>
-				</a>
-			</li><br>
-			<li>
-				<a href="regis_comu.php">
-					<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon'></i>
-					<span class="text">Registrar trabajo de <br> comunitario</span>
-				</a>
-			</li><br>
-			<li>
-				<a href="regis_prestamo.php">
-					<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon'></i>
-					<span class="text">Registrar prestamo</span>
-				</a>
-			</li><br>
-		</ul>
-
-		<ul class="side-menu">
-			<br>
-			<li>
-				<a href="./controlador/cerrar_sesion.php" class="logout">
-					<i style="background-image: url(imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon'></i>
-					<span style="color: red;" class="text">Cerrar sesion</span>
-				</a>
-			</li>
-		</ul>
-	</section>
-	<!-- MENU -->
 
 	<!-- BARRA SUPERIOR -->
 	<section id="content">
 		<nav>
 			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu '></i>
-
 		</nav>
 
 		<main>
@@ -154,7 +89,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 
 
 							<div class="ima">
-								<p>Ingenieria en Sistemas</p>
+								<p>Ingeniería en Sistemas</p>
 							</div>
 
 							<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
@@ -165,7 +100,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 					<a href="civil.php">
 						<div style="background-image: url(imagenes/excavador.png);" class="box ci">
 							<div class="ima vil">
-								<p>Ingenieria civil</p>
+								<p>Ingeniería Civil</p>
 							</div>
 							<div style="background-image: url(imagenes/civil.png);" class="boci"></div>
 						</div>
@@ -175,7 +110,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 						<div style="background-image: url(imagenes/caduceo.png);" class="box en">
 
 							<div class="ima fer">
-								<p>TSU Enfermeria</p>
+								<p>TSU Enfermería</p>
 							</div>
 							<div style="background-image: url(imagenes/enfermeria.png);" class="boci"></div>
 						</div>
@@ -184,7 +119,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 					<a href="turismo.php">
 						<div style="background-image: url(imagenes/turismo\ \(1\).png);" class="box tu">
 							<div class="ima ris">
-								<p>Licurismo</p>
+								<p>Lic en Turismo</p>
 							</div>
 							<div style="background-image: url(imagenes/turismo\ \(2\).png);" class="boci b"></div>
 						</div>
@@ -194,7 +129,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 					<a href="adminis.php">
 						<div style="background-image: url(imagenes/admin\ \(2\).png);" class="box ad">
 							<div class="ima mon">
-								<p>Lic Administracion</p>
+								<p>Lic en Administración</p>
 							</div>
 							<div style="background-image: url(imagenes/admin.png);" class="boci b"></div>
 						</div>
@@ -240,21 +175,21 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 
 
 								<div class="descargar">
-									<a href="./reportes/reporte_estudiantes.php">
+									<a href="./reportes/reporte_estudiantes.php" target="_blank">
 										<div class="gla">Estudiantes <div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
 											</div>
 										</div>
 									</a>
 								</div>
 								<div class="descargar">
-									<a href="./reportes/reporte_prestamos.php">
-										<div class="gla">Prestamos<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+									<a href="./reportes/reporte_prestamos.php" target="_blank">
+										<div class="gla">Morosos<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
 											</div>
 										</div>
 									</a>
 								</div>
 								<div class="descargar">
-									<a href="./reportes/reporte_personal_unefa.php">
+									<a href="./reportes/reporte_personal_unefa.php" target="_blank">
 										<div class="gla">Personal administrativo<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
 											</div>
 										</div>
@@ -316,7 +251,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 
 
 
-				<div class="docc">
+				<div class="docc" style="width: 100%;" >
 					<h3>Documentos registrados</h3>
 					<div>
 						<?php
@@ -327,7 +262,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 					<div style="background-image: url(imagenes/informatica.png);" class="box">
 						<a href="ver_libro.php">
 						<div class="ima">
-							<p>Libros </p>
+							<p>Libros</p>
 						</div>
 						<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
 						</a>
@@ -335,7 +270,15 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 					<div style="background-image: url(imagenes/informatica.png);" class="box">
 						<a href="comunitario.php">
 						<div class="ima">
-							<p>Servicio comunitario </p>
+							<p>Trabajos de servicio comunitario</p>
+						</div>
+						<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
+						</a>
+					</div>
+					<div style="background-image: url(imagenes/informatica.png);" class="box">
+						<a href="pasantia.php">
+						<div class="ima">
+							<p>Prácticas profesionales (pasantía)</p>
 						</div>
 						<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
 						</a>
@@ -343,7 +286,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 					<div style="background-image: url(imagenes/informatica.png);" class="box">
 						<a href="grado.php">
 						<div class="ima">
-							<p>Trabajos de investigacion Post Grado/ Pre Grado</p>
+							<p>Trabajos de investigación de posgrado y pregrado</p>
 						</div>
 						<div style="background-image: url(imagenes/sistemas.png);" class="boci"></div>
 						</a>

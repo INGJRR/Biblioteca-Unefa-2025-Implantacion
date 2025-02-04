@@ -19,6 +19,7 @@ $mencion = '';
 $metodologia = '';
 $tipo = '';
 $palabras_claves = '';
+$cantidad = '';
 $estilosError = '';
 
 if(isset($_SESSION["modificarTi"])){
@@ -31,6 +32,7 @@ if(isset($_SESSION["modificarTi"])){
     $fecha = $_SESSION['modificarTi']->fecha ?? '';
     $carrera = $_SESSION['modificarTi']->carrera ?? '';
     $tipo = $_SESSION['modificarTi']->tipo ?? '';
+    $cantidad = $_SESSION['modificarTi']->cantidad ?? '';
 
     //datos opcionales 
     $linea_investigacion = $_SESSION['modificarTi']->linea_investigacion;
@@ -62,6 +64,7 @@ if(isset($_SESSION["modificarTi"])){
             $metodologia = $info["metodologia"];
             $tipo = $info["tipo"];
             $palabras_claves = $info["palabras_claves"];
+            $cantidad = $info["cantidad"];
         }else{
             //la consulta fallo
         }
@@ -78,13 +81,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = false;
     
     // Recoger los datos del formulario
-    $cota = validar_cota($_POST['cota'], $error);
+    $cota = validar_cota($cota, $error);
     $titulo = validarSoloLetrasNumeros($_POST['titulo'], $error);
     $autor = validar_nombre($_POST['autor'], $error);
     $tutor = validar_nombre($_POST['tutor'], $error);
-    $fecha = esNumeroValido($_POST['fecha'], 2050, $error);
+    $fecha = validarFecha2($_POST['fecha'], $error);
     $carrera = validar_nombre($_POST['carrera'], $error);
     $tipo = $_POST['tipo'];
+    $cantidad = esNumeroValido($_POST['cantidad'], 100, $error);
 
     //datos opcionales 
     $linea_investigacion = ($_POST['linea_investigacion'] == '') ? false : validar_nombre($_POST['linea_investigacion'], $error);
@@ -96,7 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nivel_academico = 'Tesis';
     $fecha_registro = date("Y-m-d ");
     $metodo = "";
-    $cantidad = 1;
 
 
 
@@ -149,15 +152,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $objeto->metodologia = $metodologia;
         $objeto->tipo = $tipo;
         $objeto->palabras_claves = $palabras_claves;
+        $objeto->cantidad = $cantidad;
 
         // Almacenar el objeto en la sesión
         $_SESSION['modificarTi'] = $objeto;
         header("Location: ./ti.php");
         die();
     }
-
-    // modificamos la fecha para que no de error 
-    $fecha = $_POST['fecha'] . '-01-01';
 
     // Transacción para asegurar la integridad de los datos
     $conexion->begin_transaction();
@@ -175,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ./regis_grado.php");
     } else {
         $conexion->commit(); // Confirmar los cambios
-        header("Location: ../grado.php"); // Reemplaza con el nombre de tu página
+        header("Location: ../grado.php?buscar=$cota"); // Reemplaza con el nombre de tu página
         exit;
     }
 

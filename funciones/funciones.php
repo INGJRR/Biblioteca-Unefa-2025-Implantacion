@@ -27,7 +27,7 @@ function validar_y_convertir_numero($numero,&$error) {
  
 function validar_y_convertir_numero_cedula($numero,&$error) {
     //Condiciones
-    // Solo numeros desde el 100 Mil al 99 Millones
+    // Solo se aceptan números enteros en el rango de 100,000 a 99,999,999.
 
     // Verificamos si el número está vacío
     if (empty($numero)) {
@@ -57,7 +57,7 @@ function validar_y_convertir_numero_cedula($numero,&$error) {
 function validar_nombre($nombre, &$error) {
 
     //condiciones
-    // Solo letras, numeros de letras: minimo: 3 , Max: 100
+    // Este campo admite exclusivamente caracteres alfabéticos, con una longitud mínima de 3 y una longitud máxima de 100.
 
 
     // Expresión regular para validar solo letras y espacios
@@ -88,7 +88,7 @@ function validar_nombre($nombre, &$error) {
 
 function esNumeroValido($numero, $limite ,&$error) {
     //condiciones
-    // solo admiten numeros, cantidad minima: 1 Maxima: 100
+    // Este campo acepta exclusivamente caracteres numéricos, con una cantidad mínima de 1 y una cantidad máxima de 1000.
 
 
 
@@ -128,7 +128,7 @@ function validarEmail($email, &$error) {
 function validarSoloLetrasNumeros($cadena, &$error ,$longitudMaxima = 100) {
 
     //condiciones
-    // Solo admiten numeros y letras, numero de letras: minimo: 2, Maximo: 100
+    // Este campo acepta exclusivamente caracteres alfanuméricos, con una longitud mínima de 4 y una longitud máxima de 100
 
 
 
@@ -154,6 +154,7 @@ function validar_cota($cota, &$error) {
     //condiciones
     // Letra y numeros, ejemplo: O987P789 o K987P890 o LIK321P865
 
+    $cota = convertirAMayusculasSinMbstring($cota);
 
 
     // Expresión regular para validar el formato de la cota
@@ -164,7 +165,7 @@ function validar_cota($cota, &$error) {
     }
 
     // Verificar si la cota cumple con el patrón
-    if (preg_match('/^[A-Z.]*?[A-Z]?\d{3}[A-Z]\d{3}$/', $cota)) {
+    if (preg_match('/^[A-ZÁÉÍÓÚÑ.]*?[A-ZÁÉÍÓÚÑ]?\d{3}[A-ZÁÉÍÓÚÑ]\d{3}$/u', $cota)) {
         return $cota; // Si pasa todas las validaciones, retorna true
     }else{
         // la cadena no cumple con el patro
@@ -185,8 +186,8 @@ function esIdValidoCarrera($id, $arrayCarreras, &$error) {
 
 function validarFecha2($fecha, &$error) {
 
-    //condiciones
-    // Formato valido 2000-10-01 Año, mes, dia
+    // Condiciones
+    // Se aceptan fechas en formato AAAA-MM-DD (Año, Mes, Día).
 
     // Patrón de expresión regular para validar la fecha
     $patron = "/^\d{4}-\d{2}-\d{2}$/";
@@ -198,7 +199,10 @@ function validarFecha2($fecha, &$error) {
 
         // Validar si es una fecha válida
         if (checkdate($mes, $dia, $año)) {
-            return $fecha;
+            // Validar que el año esté entre 1900 y 2040
+            if ($año >= 1900 && $año <= 2040) {
+                return $fecha;
+            }
         }
     }
     $error = true;
@@ -238,24 +242,22 @@ function BuscarDocumento($cota, $tabla, $conexion, &$error, &$mensaje, &$tipo_li
         $row = $result->fetch_assoc();
         if(intval($row["cantidad"]) > 1){
             // hay ejemplares para prestar
-            $mensaje = true;
+            $mensaje = '';
+            $error = true;
         }else{
             // solo queda un libro
             $error = true;
-            $mensaje = false;
-            $tipo_libro = '';
+            $mensaje = "El sistema registra que solo queda un documento disponible. Sin embargo, este documento no puede ser prestado ya que se trata del original.";
         }
     }else{
-        $error = true;
-        $mensaje = false;
-        $tipo_libro = '';
+        $error = false;
     }
 }
 
 function BuscarPersona($cedula, $tabla, $conexion, &$error, &$mensaje){
     // Preparar la consulta (protege contra inyecciones SQL)
     $stmt = $conexion->prepare("SELECT * FROM $tabla WHERE cedula = ?");
-    $stmt->bind_param("s", $cedula);
+    $stmt->bind_param("i", $cedula);
 
     // Ejecutar la consulta
     $stmt->execute();
@@ -270,14 +272,18 @@ function BuscarPersona($cedula, $tabla, $conexion, &$error, &$mensaje){
         $row = $result->fetch_assoc();
         if((!$row["moroso"]) && $row["credito"] != 0){
             //todo esta bien significa que no esta moroso y tiene credito
-            $mensaje = true;
-        }else{
+            $mensaje = '';
             $error = true;
-            $mensaje = false;
+        }else{
+            if($row['moroso']){
+                $mensaje = "Se informa al estudiante con cédula [". $cedula ."] que para solicitar otro libro, debe realizar la devolución del material prestado pendiente.";
+            }else if($row["credito"] < 1){
+                $mensaje = "El estudiante con cédula [".$cedula."] ha alcanzado el límite de documentos prestados permitido.";
+            }
+            $error = true;
         }
     }else{
-        $error = true;
-        $mensaje = false;
+        $error = false;
     }
 }
 
@@ -318,4 +324,7 @@ function DeterminarDocumento($dato){
     return $doc_sql;
 }
 
+function convertirAMayusculasSinMbstring($cadena) {
+        return mb_strtoupper($cadena, 'UTF-8');
+    }
 ?>

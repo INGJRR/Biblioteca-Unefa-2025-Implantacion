@@ -10,7 +10,7 @@ require_once ROOT_DIR . '/funciones/info_idv_db.php';
 
 //sirve para cuando regresemos
 $nombreSesion = "modificarEs";
-$ruta = '../estudiantes.php';	
+$ruta = '../admin-inicio.php';
 
 
 $cedula = '';
@@ -74,14 +74,14 @@ if(isset($_SESSION["modificarEs"])){
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //abrimos una conexion para manejar la base de dato
     require ROOT_DIR . '/modelo/conexion.php';
-
+ 
     // variable para controlar si surge un error
     $error = false;
     // Recoger los datos del formulario
-    $cedula = validar_y_convertir_numero_cedula($_POST['cedula'], $error);
+    $cedula = validar_y_convertir_numero_cedula($cedula, $error);
     $nombre = validar_nombre($_POST['nombre'], $error);
     $apellido = validar_nombre($_POST['apellido'], $error);
-    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $fecha_nacimiento = validarFecha2($_POST['fecha_nacimiento'], $error);
     $direccion = validarSoloLetrasNumeros($_POST['direccion'], $error);
     $telefono = esNumeroValido($_POST['telefono'], 0,$error); 
     $email = validarEmail($_POST['email'], $error);
@@ -113,12 +113,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $comprobacion = $result->fetch_assoc();
         
             if($comprobacion["cedula"] == $cedula){
-                //quiere decir que la unica coincidencia la tenemos con la cota del libro
+                //quiere decir que la unica coincidencia la tenemos con la CEDULA A ACTUALIZAR
 
             }else{
                 // esa cota se encuentra ocupada, no podemos actualizar
                 $error = true;
-                $cedula = '';
+                $cedula = 'NO HAY COINCIDENCIA';
             }
         }
     }
@@ -158,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ./admin-inicio.php");
     } else {
         $conexion->commit(); // Confirmar los cambios
-        header("Location: ../admin-inicio.php"); // Reemplaza con el nombre de tu página
+        header("Location: ../todos_estudiantes_ver.php?buscar=$cedula"); // Reemplaza con el nombre de tu página
         exit;
     }
 

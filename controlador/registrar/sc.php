@@ -20,9 +20,10 @@ $fecha = '';
 $tutor = '';
 $tutor_comunitario = '';
 $lugar = '';
+$cantidad = '';
 $estilosError = '';
 $mensaje = "";
-
+ 
 if ($existe) {
     $estilosError = "style=\"border: 2px solid red;\"";
     $cota = $_SESSION["registroServicioComunitario"]->cota ?? '';
@@ -32,6 +33,7 @@ if ($existe) {
     $tutor = $_SESSION['registroServicioComunitario']->tutor ?? '';
     $tutor_comunitario = $_SESSION['registroServicioComunitario']->tutor_comunitario ?? '';
     $lugar = $_SESSION['registroServicioComunitario']->lugar ?? '';
+    $cantidad = $_SESSION['registroServicioComunitario']->cantidad ?? '';
     $mensaje = $_SESSION['registroServicioComunitario']->mensaje;
 }
 
@@ -49,67 +51,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tutor = validar_nombre($_POST['tutor'], $error); 
     $tutor_comunitario = validar_nombre($_POST['tutor_comunitario'], $error); 
     $lugar = validarSoloLetrasNumeros($_POST['lugar'],$error);
-
+    $cantidad = esNumeroValido($_POST['cantidad'], 1000, $error);
     $fecha_registro = date("Y-m-d ");
-    $cantidad = 1;
+
     //verificamos si tenemos creado el objeto usuario para evitar cargarlo luego
     if(isset($_SESSION['registroServicioComunitario'])){
         unset($_SESSION['registroServicioComunitario']);
     }
 
     //validamos que el campo cota este en el formato adecuado para buscar si se envuentra registrado  
-    if($cota != ''){
-       // Preparar la consulta (protege contra inyecciones SQL)
-       $stmt = $conexion->prepare("SELECT * FROM libros WHERE cota = ?");
-       $stmt->bind_param("s", $cota);
-
-       // Ejecutar la consulta
-       $stmt->execute();
-
-       // Obtener el resultado
-       $result = $stmt->get_result();
-
-       // Verificar si se encontró algún registro
-       if ($result->num_rows > 0) {
-           $error = true;
-           $cota = '';
-           $datos = 
-           $mensaje = "Un libro ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
-       }
-
-       $stmt = $conexion->prepare("SELECT * FROM servicio_comunitario WHERE cota = ?");
-       $stmt->bind_param("s", $cota);
-
-       // Ejecutar la consulta
-       $stmt->execute();
-
-       // Obtener el resultado
-       $result = $stmt->get_result();
-
-       // Verificar si se encontró algún registro
-       if ($result->num_rows > 0) {
-           $error = true;
-           $cota = '';
-           $mensaje = "Un Trabajo de servicio comunitario ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
-       }
-
-       $stmt = $conexion->prepare("SELECT * FROM trabajos_investigacion WHERE cota = ?");
-       $stmt->bind_param("s", $cota);
-
-       // Ejecutar la consulta
-       $stmt->execute();
-
-       // Obtener el resultado
-       $result = $stmt->get_result();
-
-       // Verificar si se encontró algún registro
-       if ($result->num_rows > 0) {
-           $error = true;
-           $cota = '';
-           $mensaje = "Un Trabajo de investigacion ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
-       }
-    }
-
+    require './Codigo/VerificarLibro.php';
 
     if($error){
         // Crear un nuevo objeto de tipo stdClass
@@ -123,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sc->tutor = $tutor;
         $sc->tutor_comunitario =$tutor_comunitario;
         $sc->lugar = $lugar;
+        $sc->cantidad = $cantidad;
         $sc->mensaje = $mensaje;
 
         // Almacenar el objeto en la sesión

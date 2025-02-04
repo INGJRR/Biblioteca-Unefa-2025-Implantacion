@@ -17,8 +17,25 @@ const sidebar = document.getElementById('sidebar');
 
 menuBar.addEventListener('click', function () {
 	sidebar.classList.toggle('hide');
-})
+	if (sidebar.classList.contains('hide')) {
+		localStorage.setItem('sidebarHidden', 'true');
+	  } else {
+		localStorage.setItem('sidebarHidden', 'false');
+	}
+});
 
+window.addEventListener('DOMContentLoaded', (event) => {
+	const sidebar = document.getElementById('sidebar');
+	const sidebarHidden = localStorage.getItem('sidebarHidden');
+  
+	if (sidebarHidden !== null) {
+	  if (sidebarHidden === 'true') {
+		sidebar.classList.add('hide');
+	  } else {
+		sidebar.classList.remove('hide');
+	  }
+	}
+  });
 
 const searchButton = document.querySelector('#content nav form .form-input button');
 const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');

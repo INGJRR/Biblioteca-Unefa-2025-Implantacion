@@ -15,7 +15,8 @@
         flex-grow: 1;
         padding: 0 16px;
         height: 100%;
-        border: 2px solid blue;
+       border: none;
+       filter: drop-shadow(4px 4px 4px  rgba(0, 0, 0, 0.187));
         background: var(--greyy);
         border-radius: 36px 0 0 36px;
         outline: none;
@@ -38,6 +39,7 @@
         border-radius: 0 36px 36px 0;
         cursor: pointer;
         background-repeat: no-repeat;
+        filter: drop-shadow(4px 4px 4px  rgba(0, 0, 0, 0.187));
         background-size: 20px;
         background-position: center;
     }

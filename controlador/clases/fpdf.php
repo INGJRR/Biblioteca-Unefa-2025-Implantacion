@@ -6,22 +6,25 @@ date_default_timezone_set('America/Caracas');
 
 class PDF extends FPDF
 {
+    var $mostrar_cabecera = true;
     // Cabecera de página
     function Header()
-    {
-        // Logo
-        $this->Image(ROOT_DIR . '/imagenes/unefa-logo-3FC9336783-seeklogo.com.png', 10, 8, 33); // Reemplaza 'logo_unefa.png' con la ruta a tu imagen
+    {   
+        if($this->mostrar_cabecera){
+            // Logo
+            $this->Image(ROOT_DIR . '/imagenes/unefa-logo-3FC9336783-seeklogo.com.png', 10, 8, 33); // Reemplaza 'logo_unefa.png' con la ruta a tu imagen
 
-        // tutulo
-        $this->SetFont('Arial', 'B', 15);
-        $this->Cell(0, 10, '', 0, 1, 'C');
-        $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', 'República Bolivariana de Venezuela'), 0, 1, 'C');
-        $this->Cell(0, 10, 'Ministerio del Poder Popular para la Defensa', 0, 1, 'C');
-        $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', 'Viceministerio de Educación para la Defensa'), 0, 1, 'C');
-        $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', 'Universidad Nacional Experimental Politécnica'), 0, 1, 'C');
-        $this->Cell(0, 10, 'de la Fuerza Armada Nacional Bolivariana', 0, 1, 'C');
+            // tutulo
+            $this->SetFont('Arial', 'B', 15);
+            $this->Cell(0, 10, '', 0, 1, 'C');
+            $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', 'República Bolivariana de Venezuela'), 0, 1, 'C');
+            $this->Cell(0, 10, 'Ministerio del Poder Popular para la Defensa', 0, 1, 'C');
+            $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', 'Viceministerio de Educación para la Defensa'), 0, 1, 'C');
+            $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', 'Universidad Nacional Experimental Politécnica'), 0, 1, 'C');
+            $this->Cell(0, 10, 'de la Fuerza Armada Nacional Bolivariana', 0, 1, 'C');
 
-        $this->Image(ROOT_DIR . '/imagenes/unefa-logo-3FC9336783-seeklogo.com.png', 170, 8, 33); // Reemplaza 'logo_unefa.png' con la ruta a tu imagen
+            $this->Image(ROOT_DIR . '/imagenes/unefa-logo-3FC9336783-seeklogo.com.png', 170, 8, 33); // Reemplaza 'logo_unefa.png' con la ruta a tu imagen
+        }
     }
 
     function Footer(){

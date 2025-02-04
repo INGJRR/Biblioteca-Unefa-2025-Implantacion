@@ -16,7 +16,7 @@ $existe = isset($_SESSION["registroPersonalUnefa"]);
 $cedula = '';
 $nombre = '';
 $apellido = '';
-$fecha_nacimiento = '2045-01-01';
+$fecha_nacimiento = '';
 $direccion = '';
 $telefono = '';
 $email = '';
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cedula = validar_y_convertir_numero_cedula($_POST["cedula"], $error);
     $nombre = validar_nombre($_POST['nombre'], $error);
     $apellido = validar_nombre($_POST['apellido'], $error);
-    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $fecha_nacimiento = validarFecha2($_POST['fecha_nacimiento'], $error);
     $direccion = validarSoloLetrasNumeros($_POST['direccion'], $error);
     $telefono = validarNumeroTelefono($_POST['telefono'],$error);
     $email = validarEmail($_POST['email'], $error, $mensaje);
@@ -72,9 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar si se encontró algún registro
         if ($result->num_rows > 0) {
             $error = true;
-            $mensaje = "Ya una persona tiene cedula [" . $cedula ."] en Personal Administativo";
+            $mensaje = "El sistema no permite el registro de cédulas duplicadas. La cédula [" . $cedula . "] ya ha sido utilizada para el registro de otra persona en personal administrativo.";
             $cedula = '';
-            
         }
         // Preparar la consulta (protege contra inyecciones SQL)
         $stmt = $conexion->prepare("SELECT * FROM profesores WHERE cedula = ?");
@@ -89,10 +88,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar si se encontró algún registro
         if ($result->num_rows > 0) {
             $error = true;
-            $mensaje = "Ya una persona tiene la cedula [" . $cedula. "] en Personal Docente";
+            $mensaje = "El sistema no permite el registro de cédulas duplicadas. La cédula [" . $cedula . "] ya ha sido utilizada para el registro de otra persona en profesores.";
             $cedula = '';
         }
+    }else{
+        $mensaje = '';
     }
+
+    if($cedula != ''){
+        $mensaje = '';
+    }
+
 
     if($error){
         $usuario = new stdClass();
@@ -116,6 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $estado = '1';
     $moroso = '0';
+    $credito = 3;
     
     // Transacción para asegurar la integridad de los datos
     $conexion->begin_transaction();
@@ -125,9 +132,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($categoria == '1'){
         // registramos al profesor
-        $sql_persona_insert = "INSERT INTO profesores (cedula, nombre, apellido, fecha_nacimiento, direccion, telefono, gmail, estado, moroso) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql_persona_insert = "INSERT INTO profesores (cedula, nombre, apellido, fecha_nacimiento, direccion, telefono, gmail, estado, moroso, credito) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt_persona_insert = $conexion->prepare($sql_persona_insert);
-        $stmt_persona_insert->bind_param("issssssii", $cedula, $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $email, $estado, $moroso);
+        $stmt_persona_insert->bind_param("issssssiii", $cedula, $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $email, $estado, $moroso, $credito);
         $stmt_persona_insert->execute();
         
         if ($stmt_persona_insert->error) {
@@ -143,9 +150,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
     }else if($categoria == '2'){
         //registramos al obrero
-        $sql_persona_insert = "INSERT INTO obreros (cedula, nombre, apellido, fecha_nacimiento, direccion, telefono, gmail, estado, moroso) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql_persona_insert = "INSERT INTO obreros (cedula, nombre, apellido, fecha_nacimiento, direccion, telefono, gmail, estado, moroso, credito) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt_persona_insert = $conexion->prepare($sql_persona_insert);
-        $stmt_persona_insert->bind_param("issssssii", $cedula, $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $email, $estado, $moroso);
+        $stmt_persona_insert->bind_param("issssssiii", $cedula, $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $email, $estado, $moroso, $credito);
         $stmt_persona_insert->execute();
     
         if ($stmt_persona_insert->error) {

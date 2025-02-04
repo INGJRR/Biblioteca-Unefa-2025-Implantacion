@@ -56,5 +56,144 @@
     //cerramos la conexion para liberar recursos 
     $conexion->close();
 
+
+    $pdf->mostrar_cabecera = false;
+    $pdf->AddPage();
+
+    $pdf->SetFont('Arial', 'B', 15);
+    $pdf->SetTextColor(0, 0, 255); // Color azul
+    $tituloCarrera = 'Ingeniería en Sistema';
+    $pdf->cell($w, 10,iconv('UTF-8', 'ISO-8859-1', $tituloCarrera), 0, 1, 'C');
+    
+    //obtenemos los datos de los libros 
+
+    require ROOT_DIR . '/modelo/conexion.php';
+    require ROOT_DIR . '/controlador/getInfo/todos_estudiantes.php';
+    require_once ROOT_DIR . '/funciones/buscarPorCarrera.php';
+     
+    $pdf->SetTextColor(0, 0, 0); // Color negro
+
+    $estudiantesR = buscarElementosPorCarrera($estudiantes, $tituloCarrera);
+    $contador = 1;
+    $totalElementos = count($estudiantesR);
+
+    foreach($estudiantesR as $estudiante){
+        require ROOT_DIR . '/componentes/estudiantePdf.php';
+        if ($contador != $totalElementos) {
+            $pdf->Cell(0, 10, '', 0, 1); // Agrega otra línea en blanco    
+        }
+        $contador++;
+    }
+
+    $pdf->AddPage();
+
+    $pdf->SetFont('Arial', 'B', 15);
+    $pdf->SetTextColor(0, 0, 255); // Color azul
+    $tituloCarrera = 'Administración y gestión municipal';
+    $pdf->cell($w, 10,iconv('UTF-8', 'ISO-8859-1', $tituloCarrera), 0, 1, 'C');
+     
+    $pdf->SetTextColor(0, 0, 0); // Color negro
+
+    $estudiantesR = buscarElementosPorCarrera($estudiantes, $tituloCarrera);
+    $contador = 1;
+    $totalElementos = count($estudiantesR);
+
+    foreach($estudiantesR as $estudiante){
+        require ROOT_DIR . '/componentes/estudiantePdf.php';
+        if ($contador != $totalElementos) {
+            $pdf->Cell(0, 10, '', 0, 1); // Agrega otra línea en blanco    
+        }
+        $contador++;
+    }
+
+    $pdf->AddPage();
+
+    $pdf->SetFont('Arial', 'B', 15);
+    $pdf->SetTextColor(0, 0, 255); // Color azul
+    $tituloCarrera = 'Licenciatura en Turismo';
+    $pdf->cell($w, 10,iconv('UTF-8', 'ISO-8859-1', $tituloCarrera), 0, 1, 'C');
+     
+    $pdf->SetTextColor(0, 0, 0); // Color negro
+
+    $estudiantesR = buscarElementosPorCarrera($estudiantes, $tituloCarrera);
+    $contador = 1;
+    $totalElementos = count($estudiantesR);
+
+    foreach($estudiantesR as $estudiante){
+        require ROOT_DIR . '/componentes/estudiantePdf.php';
+        if ($contador != $totalElementos) {
+            $pdf->Cell(0, 10, '', 0, 1); // Agrega otra línea en blanco    
+        }
+        $contador++;
+    }
+
+    $pdf->AddPage();
+
+    $pdf->SetFont('Arial', 'B', 15);
+    $pdf->SetTextColor(0, 0, 255); // Color azul
+    $tituloCarrera = 'Ingeniería Civil';
+    $pdf->cell($w, 10,iconv('UTF-8', 'ISO-8859-1', $tituloCarrera), 0, 1, 'C');
+     
+    $pdf->SetTextColor(0, 0, 0); // Color negro
+
+    $estudiantesR = buscarElementosPorCarrera($estudiantes, $tituloCarrera);
+    $contador = 1;
+    $totalElementos = count($estudiantesR);
+
+    foreach($estudiantesR as $estudiante){
+        require ROOT_DIR . '/componentes/estudiantePdf.php';
+        if ($contador != $totalElementos) {
+            $pdf->Cell(0, 10, '', 0, 1); // Agrega otra línea en blanco    
+        }
+        $contador++;
+    }
+
+    $pdf->AddPage();
+
+    $pdf->SetFont('Arial', 'B', 15);
+    $pdf->SetTextColor(0, 0, 255); // Color azul
+    $tituloCarrera = 'Ads';
+    $pdf->cell($w, 10,iconv('UTF-8', 'ISO-8859-1', $tituloCarrera), 0, 1, 'C');
+     
+    $pdf->SetTextColor(0, 0, 0); // Color negro
+
+    $estudiantesR = buscarElementosPorCarrera($estudiantes, $tituloCarrera);
+    $contador = 1;
+    $totalElementos = count($estudiantesR);
+
+    foreach($estudiantesR as $estudiante){
+        require ROOT_DIR . '/componentes/estudiantePdf.php';
+        if ($contador != $totalElementos) {
+            $pdf->Cell(0, 10, '', 0, 1); // Agrega otra línea en blanco    
+        }
+        $contador++;
+    }
+
+    
+    $pdf->AddPage();
+
+    $pdf->SetFont('Arial', 'B', 15);
+    $pdf->SetTextColor(0, 0, 255); // Color azul
+    $tituloCarrera = 'Tsu en Enfermeria';
+    $pdf->cell($w, 10,iconv('UTF-8', 'ISO-8859-1', $tituloCarrera), 0, 1, 'C');
+     
+    $pdf->SetTextColor(0, 0, 0); // Color negro
+
+    $estudiantesR = buscarElementosPorCarrera($estudiantes, $tituloCarrera);
+    $contador = 1;
+    $totalElementos = count($estudiantesR);
+
+    foreach($estudiantesR as $estudiante){
+        require ROOT_DIR . '/componentes/estudiantePdf.php';
+        if ($contador != $totalElementos) {
+            $pdf->Cell(0, 10, '', 0, 1); // Agrega otra línea en blanco    
+        }
+        $contador++;
+    }
+
+
+
+
+
     $pdf->Output();
 ?>

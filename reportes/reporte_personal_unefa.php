@@ -48,11 +48,61 @@
     $pdf->Cell($w*0.2, 10, $docente ,1,0,'C');
     $pdf->Cell($w*0.8, 10, iconv('UTF-8', 'ISO-8859-1','Docentes'),1,1,'C');
     $pdf->Cell($w*0.2, 10, $obreros ,1,0,'C');
-    $pdf->Cell($w*0.8, 10, iconv('UTF-8', 'ISO-8859-1','Trabajadores'),1,1,'C');
+    $pdf->Cell($w*0.8, 10, iconv('UTF-8', 'ISO-8859-1','Personal Administrativo'),1,1,'C');
     $pdf->SetFont('Arial','B',13);
     $pdf->Cell($w*0.2, 10, $docente + $obreros ,1,0,'C');
     $pdf->Cell($w*0.8, 10, iconv('UTF-8', 'ISO-8859-1','Total personal unefa'),1,1,'C');
 
+
+
+    $pdf->mostrar_cabecera = false;
+    $pdf->AddPage();
+
+    $pdf->SetFont('Arial', 'B', 15);
+    $pdf->SetTextColor(0, 0, 255); // Color azul
+    $pdf->cell($w, 10,iconv('UTF-8', 'ISO-8859-1','Docente'), 0, 1, 'C');
+    
+    //obtenemos los datos
+
+    require ROOT_DIR . '/modelo/conexion.php';
+    require ROOT_DIR . '/controlador/getInfo/profesor.php';
+     
+    $pdf->SetTextColor(0, 0, 0); // Color negro
+
+    $contador = 1;
+    $totalElementos = count($profesores);
+
+    foreach($profesores as $personal_unefa){
+        require ROOT_DIR . '/componentes/personal_unefaPdf.php';
+        if ($contador != $totalElementos) {
+            $pdf->Cell(0, 10, '', 0, 1); // Agrega otra línea en blanco    
+        }
+        $contador++;
+    }
+
+    $pdf->AddPage();
+
+    $pdf->SetFont('Arial', 'B', 15);
+    $pdf->SetTextColor(0, 0, 255); // Color azul
+    $pdf->cell($w, 10,iconv('UTF-8', 'ISO-8859-1','Personal Administrativo'), 0, 1, 'C');
+    
+    //obtenemos los datos
+
+    require ROOT_DIR . '/modelo/conexion.php';
+    require ROOT_DIR . '/controlador/getInfo/obreros.php';
+     
+    $pdf->SetTextColor(0, 0, 0); // Color negro
+
+    $contador = 1;
+    $totalElementos = count($obreros);
+
+    foreach($obreros as $personal_unefa){
+        require ROOT_DIR . '/componentes/personal_unefaPdf.php';
+        if ($contador != $totalElementos) {
+            $pdf->Cell(0, 10, '', 0, 1); // Agrega otra línea en blanco    
+        }
+        $contador++;
+    }
 
 
 

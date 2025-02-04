@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $autor = validar_nombre($_POST['autor'], $error);
     $fecha = validarFecha2($_POST['fecha'], $error);
     $carrera = validar_nombre($_POST['carrera'], $error); 
-    $cantidad = esNumeroValido($_POST['cantidad'], 100, $error);
+    $cantidad = esNumeroValido($_POST['cantidad'], 1000, $error);
     $editorial = validarSoloLetrasNumeros($_POST['editorial'],$error);
 
     $fecha_registro = date("Y-m-d ");;
@@ -56,61 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         unset($_SESSION['registroLibro']);
     }
 
-    //validamos que el campo cota este en el formato adecuado para buscar si se envuentra registrado  
-    if($cota != ''){
-        // Preparar la consulta (protege contra inyecciones SQL)
-        $stmt = $conexion->prepare("SELECT * FROM libros WHERE cota = ?");
-        $stmt->bind_param("s", $cota);
-
-        // Ejecutar la consulta
-        $stmt->execute();
-
-        // Obtener el resultado
-        $result = $stmt->get_result();
-
-        // Verificar si se encontró algún registro
-        if ($result->num_rows > 0) {
-            $error = true;
-            $cota = '';
-            $mensaje = "Un libro ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
-        }
-
-        $stmt = $conexion->prepare("SELECT * FROM servicio_comunitario WHERE cota = ?");
-        $stmt->bind_param("s", $cota);
-
-        // Ejecutar la consulta
-        $stmt->execute();
-
-        // Obtener el resultado
-        $result = $stmt->get_result();
-
-        // Verificar si se encontró algún registro
-        if ($result->num_rows > 0) {
-            $error = true;
-            $cota = '';
-            $mensaje = "Un Trabajo de servicio comunitario ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
-        }
-
-        $stmt = $conexion->prepare("SELECT * FROM trabajos_investigacion WHERE cota = ?");
-        $stmt->bind_param("s", $cota);
-
-        // Ejecutar la consulta
-        $stmt->execute();
-
-        // Obtener el resultado
-        $result = $stmt->get_result();
-
-        // Verificar si se encontró algún registro
-        if ($result->num_rows > 0) {
-            $error = true;
-            $cota = '';
-            $mensaje = "Un Trabajo de investigacion ya tiene la cota [" . $_POST["cota"] . "]. La cota no puede estar en 2 documento";
-        }
-
-    }else{
-        $mensaje = '';
-    }
-
+    require './Codigo/VerificarLibro.php';
 
     if($error){
         // Crear un nuevo objeto de tipo stdClass

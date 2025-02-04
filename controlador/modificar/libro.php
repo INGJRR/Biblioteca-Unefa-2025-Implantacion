@@ -18,7 +18,7 @@ $carrera = '';
 $cantidad = '';
 $editorial = '';
 $estilosError = '';
-
+ 
 if(isset($_SESSION["modificarLibro"])){
 	//si existe quiere decir que ya cargamos los datos de la cota
 	$estilosError = "style=\"border: 2px solid red;\"";
@@ -60,14 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //conexion con la base de datos
     require ROOT_DIR . '/modelo/conexion.php';
 
-
+   
     //en caso de que ocurra un error 
     $error = false;
     // Recoger los datos del formulario
-    $cota = validar_cota($_POST['cota'], $error);
+    $cota = validar_cota($cota, $error);
     $titulo = validarSoloLetrasNumeros($_POST['titulo'], $error);
     $autor = validar_nombre($_POST['autor'], $error);
-    $fecha = $_POST['fecha'];
+    $fecha = validarFecha2($_POST['fecha'], $error);
     $carrera = validar_nombre($_POST['carrera'], $error); 
     $cantidad = esNumeroValido($_POST['cantidad'], 100, $error);
     $editorial = validarSoloLetrasNumeros($_POST['editorial'],$error);
@@ -130,12 +130,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die();
     }
 
-    // modificamos la fecha para que no de error 
-    $fecha = $_POST['fecha'] . '-01-01';
-
     // Transacción para asegurar la integridad de los datos
     $conexion->begin_transaction();
-
+ 
     // Actualizamos el libro
     $sql_libro = "UPDATE libros SET titulo = ?, autor = ?, tipo_libro = ?, fecha = ?, carrera = ?, fecha_registro = ?, cantidad = ?, editorial = ? WHERE cota = ?";
     $stmt_libro = $conexion->prepare($sql_libro);
@@ -149,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ./libro.php");
     } else {
         $conexion->commit(); // Confirmar los cambios
-        header("Location: ../ver_libro.php"); // Reemplaza con el nombre de tu página
+        header("Location: ../ver_libro.php?buscar=$cota"); // Reemplaza con el nombre de tu página
     }
 
     $stmt_libro->close();

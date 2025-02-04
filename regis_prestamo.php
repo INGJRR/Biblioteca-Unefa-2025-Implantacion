@@ -11,7 +11,8 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--  CSS -->
-	<link rel="stylesheet" href="estilo/Regi_libro.css">
+	<!-- <link rel="stylesheet" href="estilo/Regi_libro.css"> -->
+	<link rel="stylesheet" href="estilo/Formulario.css">
 	<title>Biblioteca</title>
 </head>
 <!--  body -->
@@ -19,80 +20,10 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 <body>
 
 
-	<!-- MENU -->
-	<section id="sidebar">
-
-<div class="l">
-	<span>
-		<div style="background-image: url(imagenes/unefa-logo-3FC9336783-seeklogo.com.png);" class="logo"></div>
-	</span>
-	<div>
-		<p class="pe">Biblioteca </p>
-		<p class="p">Luis Beltran Prieto Figueroa</p><br>
-	</div>
-
-</div>
-
-<ul class="side-menu top">
-	<br><br>
-
-	<li >
-		<a href="admin-inicio.php">
-			<i style="background-image: url(imagenes/hogar.png);" class='bx bxs-shopping-bag-alt icon'></i>
-			<span class="text">Inicio</span>
-		</a>
-	</li><br>
-
-	<li>
-		<a href="regis_libro.php">
-			<i style="background-image: url(imagenes/anadir.png);" class='bx bxs-shopping-bag-alt icon'></i>
-			<span class="text">Registrar libro</span>
-		</a>
-	</li><br>
-	<li>
-		<a href="regis_pero.php">
-			<i style="background-image: url(imagenes/libro.png);" class='bx bxs-doughnut-chart icon'></i>
-			<span class="text">Registrar personal <br> unefa </span>
-		</a>
-	</li><br>
-	<li>
-		<a href="regis_grado.php">
-			<i style="background-image: url(imagenes/graduado.png);" class='bx bxs-message-dots icon'></i>
-			<span class="text">Registrar Trabajo de <br> investigacion  </span>
-		</a>
-	</li><br>
-	<li>
-		<a href="regis_estu.php">
-			<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon'></i>
-			<span class="text">Registrar estudiante</span>
-		</a>
-	</li><br>
-	<li>
-		<a href="regis_comu.php">
-			<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon'></i>
-			<span class="text">Registrar trabajo de <br> comunitario</span>
-		</a>
-	</li><br>
-	<li class="active">
-		<a href="regis_prestamo.php">
-			<i style="background-image: url(imagenes/social.png);" class='bx bxs-group icon'></i>
-			<span class="text">Registrar prestamo</span>
-		</a>
-	</li><br>
-</ul>
-
-<ul class="side-menu">
-
-	<li>
-		<a href="./controlador/cerrar_sesion.php" class="logout">
-			<i style="background-image: url(imagenes/cerrar-sesion.png);" class='bx bxs-log-out-circle icon'></i>
-			<span class="text">Cerrar sesion</span>
-		</a>
-	</li>
-</ul>
-</section>
-	<!-- MENU -->
-
+	<?php
+	$menuActive = 8;
+	require ROOT_DIR . '/componentes/menuLateral.php';
+	?>
 
 
 	<!-- BARRA SUPERIOR -->
@@ -103,61 +34,54 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 			<a class="retorn" href="admin-inicio.php">Regresar</a>
 
 		</nav>
+		<h4 style="font-size: 25PX; text-align: center; margin: 20px; font-weight: bolder; letter-spacing: 3px;">REALIZAR PRESTAMO</h4>
+		<main>
+			<!-- FORMULARIO -->
+			<form class="formulario" id="formulario" method="POST">
 
+				<div class="formulario_grupo">
 
+					<label for="usuario" class="formulario__label">Cédula *</label>
+					<div class="formulario__grupo-input">
+						<input class="formulario__input" value="<?= $cedula ?>" <?= ($cedula == '') ? $estilosError : '' ?> name="cedula" required="" placeholder="Ejm 30414587" type="number">
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $cedula == '') ? "style='display: block'" : '' ?>>Solo se aceptan números enteros en el rango de 100,000 a 99,999,999.</p>
+
+				</div>
+
+				<div class="formulario_grupo">
+					<label for="usuario" class="formulario__label">Cota *</label>
+					<div class="formulario__grupo-input">
+						<input class="formulario__input" value="<?= $cota ?>" <?= ($cota == '') ? $estilosError : '' ?> name="cota" required="" placeholder="Ejm P756K987" type="text">
+						<i class="formulario__validacion-estado fas fa-times-circle"></i>
+					</div>
+					<p class="formulario__input-error" <?php echo ($estilosError != '' && $cota == '') ? "style='display: block'" : '' ?>>Letra y numeros, ejemplo: O987P789 o K987P890</p>
+				</div>
+
+				<div class="formulario_grupo formulario_grupo-btn-enviar">
+					<button class="boton submit" type="button" id="open">enviar</button>
+					<button id="enviar" hidden></button>
+
+					<!-- <p class="formulario_mensaje-exito" id="formulario_mensaje-exito">Formulario enviado exitosamente!</p> -->
+				</div>
+			</form>
+		</main>
 	</section>
 	<!-- BARRA SUPERIOR -->
 	<br><br>
-	<main>
 
-		<br>
-		<form class="form" method="POST">
-			<p class="title">Prestamo</p><br>
-			<label>
-				<input value="<?= $cedula?>" <?= ($cedula == '') ? $estilosError : '' ?> name="cedula" required="" placeholder="" type="number" class="input">
-				<span>Cedula</span>
-			</label>
+	<?php
+	require './componentes/modal-registro.php';
+	?>
 
-			<label>
-				<input value="<?= $cota?>" <?= ($cota == '') ? $estilosError : '' ?>  name="cota" required="" placeholder="" type="text" class="input">
-				<span>Cota</span>
-			</label>
-			<br>
-			<button class="submit">Realizar prestamo</button>
-
-		</form>
-
-	</main>
-
-	<style>
-		.infoinput{
-			margin: 30px auto;
-			width: 60vw;
-			text-align: center;
-			font-size: 20px;
-			display: flex;
-			flex-direction: column;
-			line-height: 2;
-		}
-	</style>
-	 
-	<?php if($mensajeDoc != '' || $mensajePer != ''):?>
-	<div class="infoinput form">
-		<h4>Mensaje de alerta</h4>
-		<div>
-			<p><?php echo ($mensajeDoc != '') ? $mensajeDoc : '' ?></p>	
-			<p><?php echo ($mensajePer != '') ? $mensajePer : '' ?></p>	
-		</div>
-	</div>
-	<?php endif?>
-	 
-	<div class="infoinput form">
-		<h4>Informacion acerca de los Campos</h4>
-		<div>
-			<p>Cedula: Estudiante o personal administrativo, debe de estar previamente registrado</p>
-			<p>Cota: Documentos, debe de estar previamente registrado</p>
-		</div>
-	</div>
+	<?php if ($mensajePer != "" || $mensajeDoc != ''): ?>
+		<?php
+		$md_error_titulo = "Error";
+		$md_error_mensaje = $mensajePer . '<br/>' . $mensajeDoc;
+		require ROOT_DIR . '/componentes/modal-error.php';
+		?>
+	<?php endif ?>
 
 
 
