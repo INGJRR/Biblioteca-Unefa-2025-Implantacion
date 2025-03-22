@@ -123,3 +123,16 @@ CREATE TABLE obreros (
 	estado boolean,
     moroso BOOLEAN
 );
+
+CREATE TABLE prestamos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cedula_persona INT,
+    tipo_persona varchar(100),
+    cota_documento varchar(100),
+    tipo_documento varchar(100),
+    fecha_prestamo DATE NOT NULL,
+    fecha_devolucion DATE NOT NULL,
+    estado ENUM('Prestado', 'Devuelto') NOT NULL DEFAULT 'Prestado',
+    observaciones TEXT,
+    usuario_registro VARCHAR(50)
+);
