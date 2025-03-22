@@ -134,7 +134,7 @@ EDUCACIÓN, EL ESTADO Y LA EDUCACIÓN EN AMÉRICA LATINA, EL ESTADO DOCENTE,
   <div class="footer">
     <div>
     <h3 class="h3">Servicios</h3><br>
-    <p class="p">Servicio de investario</p>
+    <p class="p">Servicio de inventario</p>
     <p class="p">Resguardo de informacion</p>
   </div>
   <div>
