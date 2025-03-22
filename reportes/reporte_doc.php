@@ -167,6 +167,5 @@
         }
         $contador++;
     }
-
     $pdf->Output();
 ?>

@@ -8,7 +8,6 @@ require_once './ruta.php';
 require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,16 +19,13 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 	<title>Biblioteca</title>
 </head>
 <!--  body -->
-
+,
 <body>
-
 	<?php
 		$menuActive = 1;
 		require ROOT_DIR . '/componentes/menuLateral.php';
 
 	?>
-
-
 	<!-- BARRA SUPERIOR -->
 	<section id="content">
 		<nav>
@@ -315,5 +311,4 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 
 	<script src="script.js"></script>
 </body>
-
 </html>

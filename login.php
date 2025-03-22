@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,8 @@
     <link rel="stylesheet" href="estilo/login.css">
 </head>
 <body >
-    
+
+
     <main>
 
 <div class="box">
@@ -46,7 +48,7 @@
     <div class="ele">
         <form class="form" method="POST">
             <div class="for"><br><br><br>
-            <h2>Inicio De Sesion</h2><br> 
+            <h2>Inicio De Sesión</h2><br> 
               <input class="input" id="usuario" name="usuario" placeholder="Usuario" autocomplete="off">
               <br>
               <input class="input" id="clave" name="clave" type="password" placeholder="Contraseña" autocomplete="off">

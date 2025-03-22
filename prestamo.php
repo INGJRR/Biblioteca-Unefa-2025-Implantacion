@@ -8,8 +8,6 @@ require ROOT_DIR . '/controlador/getInfo/prestamo.php';
 
 $md_confi_mensaje = '';
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +21,6 @@ $md_confi_mensaje = '';
 <!--  body -->
 
 <body>
-
 	<!-- MENU -->
 	<?php
 		$menuActive = 1;

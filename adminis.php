@@ -16,7 +16,6 @@
 	require ROOT_DIR . '/modelo/conexion.php';
 	require_once ROOT_DIR . '/funciones/cantidad_registros_tabla.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

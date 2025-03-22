@@ -17,8 +17,11 @@ require_once ROOT_DIR . '/controlador/registrar/sc.php';
 <!--  body -->
 
 <body>
-
-
+	<style>
+		.tp-timer-conten{
+			top: 100%;
+		}
+	</style>
 	<!-- MENU -->
 	<?php
 	$menuActive = 6;
@@ -45,6 +48,7 @@ require_once ROOT_DIR . '/controlador/registrar/sc.php';
 					<label for="usuario" class="formulario__label">Cota *</label>
 					<div class="formulario__grupo-input">
 						<input class="formulario__input" value="<?= $cota ?>" <?= ($cota == '') ? $estilosError : '' ?> name="cota" required="" placeholder="" type="text">
+						<!-- controlar en tiempo -->
 						<i class="formulario__validacion-estado fas fa-times-circle"></i>
 					</div>
 					<p class="formulario__input-error" <?php echo ($estilosError != '' && $cota == '') ? "style='display: block'" : '' ?>>Letra y numeros, ejemplo: O987P789 o K987P890</p>
@@ -130,26 +134,26 @@ require_once ROOT_DIR . '/controlador/registrar/sc.php';
 					<p class="formulario__input-error" <?php echo ($estilosError != '' && $cantidad == '') ? "style='display: block'" : '' ?>>Este campo acepta exclusivamente caracteres numéricos, con una cantidad mínima de 1 y una cantidad máxima de 1000.</p>
 
 				</div>
+				
 
-
-
+ 
 				<div class="formulario_grupo formulario_grupo-btn-enviar">
 					<button class="boton submit" type="button" id="open">enviar</button>
 					<button id="enviar" hidden></button>
 
 					<!-- <p class="formulario_mensaje-exito" id="formulario_mensaje-exito">Formulario enviado exitosamente!</p> -->
-				</div>
-			</form>
+				</div>				 
+			</form> 
 		</main>
-
+ 
 	</section>
 	<!-- BARRA SUPERIOR -->
 	<br><br>
-
+ 
 	<?php
-	require './componentes/modal-registro.php';
-	?>
-
+		require './componentes/modal-registro.php';
+	?> 
+ 
 	<?php if (isset($mensaje) && $mensaje != ""): ?>
 		<?php
 		$md_error_titulo = "Error";
@@ -157,11 +161,6 @@ require_once ROOT_DIR . '/controlador/registrar/sc.php';
 		require ROOT_DIR . '/componentes/modal-error.php';
 		?>
 	<?php endif ?>
-
-
-
-
-
 
 	<script src="script.js"></script>
 </body>

@@ -16,7 +16,6 @@
     <title>Biblioteca</title>
   </head>
   <body>
-   
     <section style="background-image: url(imagenes/svg.png);" class="se1">
       <div class="glas">
    
@@ -27,13 +26,13 @@
 
       <div class="header__content">
         <h2>Biblioteca</h2>
-        <h1>lUIS BELTRAN PRIETO FIGUEROA</h1>
+        <h1>LUIS BELTRAN PRIETO FIGUEROA</h1>
         <p>
           Prieto Figueroa fue un apasionado defensor de la educación pública, gratuita y de calidad. Sus ideas y propuestas pedagógicas influyeron en la transformación del sistema educativo venezolano.
         </p>
        
         <div class="nav__btns">
-          <a href="login.php"><button class="btn">Iniciar Sesión</button></a>
+          <a href="login.php"><button id="start" class="btn">Iniciar Sesión</button></a>
         </div>
       </div>
     </header>
@@ -50,7 +49,7 @@
    
     </div>
     <div class="eleme f" ><br> <br>
-    <h1  class="titulo_de_quien">Quién es <p class="color"> Luis Beltran<p> Priento Figueroa</h1><br> <br>
+    <h1  class="titulo_de_quien">Quién es <p class="color"> Luis Beltran<p> Prieto Figueroa</h1><br> <br>
     <p>      Fue un educador, abogado, político, poeta y crítico literario venezolano. Es considerado uno de los más importantes pedagogos de América y un referente en la historia de la educación venezolana.</p>
    <br>
 
@@ -120,37 +119,6 @@ EDUCACIÓN, EL ESTADO Y LA EDUCACIÓN EN AMÉRICA LATINA, EL ESTADO DOCENTE,
 
 
 
-
-<!-- <section class="s2">
- 
-<div class="cardk">
-  <div class="profileImage">
- </div>
-  <div class="textContainer"><br>
-    <p class="name">Pepper Potts</p>
-    <p class="profile">Profile</p>
-  </div>
-</div>
-<div class="cardk">
-  <div class="profileImage">
- </div>
-  <div class="textContainer"><br>
-    <p class="name">Pepper Potts</p>
-    <p class="profile">Profile</p>
-  </div>
-</div>
-<div class="cardk">
-  <div class="profileImage">
- </div>
-  <div class="textContainer"><br>
-    <p class="name">Pepper Potts</p>
-    <p class="profile">Profile</p>
-  </div>
-</div>
-</section> -->
-
-
-
 <section class="s3">
 <!-- From Uiverse.io by G4b413l --> 
 <div class="conta">
@@ -196,23 +164,8 @@ EDUCACIÓN, EL ESTADO Y LA EDUCACIÓN EN AMÉRICA LATINA, EL ESTADO DOCENTE,
 <h6>versión 1.0</h6>
 </footer>
 
-<script>
- 
+    <!-- temporizador para las consultas en php -->
 
-// Agregar un event listener a cada enlace
-const links = document.querySelectorAll('nav a');
-links.forEach(link => {
-  link.addEventListener('click', (event) => {
-    event.preventDefault(); // Evitar el comportamiento por defecto del enlace
-    const targetId = link.getAttribute('href').substring(1);
-    const targetElement = document.getElementById(targetId);
-    scrollToElement(targetElement);
-  });
-});
-  </script>
-
-  </body>
-</html>
     <script type="module" src="script.js"></script>
   </body>
 </html>

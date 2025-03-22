@@ -1,5 +1,4 @@
 <?php
-
     require_once '../ruta.php';
     require_once ROOT_DIR . '/controlador/clases/fpdf.php';
     require ROOT_DIR . '/modelo/conexion.php';
@@ -175,7 +174,5 @@
       } else {
         // echo "No hay estudiantes morosos para mostrar.";
       }
-
-    $conexion->close();
     $pdf->Output();
 ?>

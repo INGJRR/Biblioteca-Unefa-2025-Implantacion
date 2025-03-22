@@ -14,9 +14,6 @@
 	require_once ROOT_DIR . '/funciones/cantidad_registros_tabla.php';
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +28,6 @@
 <!--  body -->
 
 <body>
-
 	<!-- MENU -->
 	<?php
 		$menuActive = 1;

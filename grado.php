@@ -11,7 +11,6 @@ require ROOT_DIR . '/modelo/conexion.php';
 require ROOT_DIR . '/controlador/getInfo/ti.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +25,6 @@ require ROOT_DIR . '/controlador/getInfo/ti.php';
 <!--  body -->
 
 <body>
-
 	<!-- MENU -->
 	<?php
 		$menuActive = 1;

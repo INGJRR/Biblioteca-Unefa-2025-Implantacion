@@ -8,8 +8,8 @@
 	require_once './ruta.php';
     require_once ROOT_DIR . '/modelo/conexion.php';
     include ROOT_DIR . '/controlador/getInfo/sc.php';
-?>
-
+	require_once ROOT_DIR . '/funciones/temporisador.php';
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +23,6 @@
 </head>
 <!--  body -->
 <body>
-
 	<!-- MENU -->
 	<?php
 		$menuActive = 1;
@@ -95,6 +94,7 @@
             </div>
         
 		</main>
+
 	</section>
 	<!-- BARRA SUPERIOR -->
 	

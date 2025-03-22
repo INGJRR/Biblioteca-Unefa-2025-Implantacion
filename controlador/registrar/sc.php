@@ -7,9 +7,7 @@ if (empty($_SESSION['cedula']) and empty($_SESSION['usuario'])) {
     header('location: ./index.php');
 };
 
-
 require_once ROOT_DIR . '/funciones/funciones.php';
-
 
 $existe = isset($_SESSION["registroServicioComunitario"]);
 
@@ -23,7 +21,6 @@ $lugar = '';
 $cantidad = '';
 $estilosError = '';
 $mensaje = "";
- 
 if ($existe) {
     $estilosError = "style=\"border: 2px solid red;\"";
     $cota = $_SESSION["registroServicioComunitario"]->cota ?? '';
@@ -48,21 +45,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = validarSoloLetrasNumeros($_POST['titulo'], $error);
     $autor = validar_nombre($_POST['autor'], $error);
     $fecha = validarFecha2($_POST['fecha'], $error);
-    $tutor = validar_nombre($_POST['tutor'], $error); 
-    $tutor_comunitario = validar_nombre($_POST['tutor_comunitario'], $error); 
-    $lugar = validarSoloLetrasNumeros($_POST['lugar'],$error);
+    $tutor = validar_nombre($_POST['tutor'], $error);
+    $tutor_comunitario = validar_nombre($_POST['tutor_comunitario'], $error);
+    $lugar = validarSoloLetrasNumeros($_POST['lugar'], $error);
     $cantidad = esNumeroValido($_POST['cantidad'], 1000, $error);
     $fecha_registro = date("Y-m-d ");
 
     //verificamos si tenemos creado el objeto usuario para evitar cargarlo luego
-    if(isset($_SESSION['registroServicioComunitario'])){
+    if (isset($_SESSION['registroServicioComunitario'])) {
         unset($_SESSION['registroServicioComunitario']);
     }
 
     //validamos que el campo cota este en el formato adecuado para buscar si se envuentra registrado  
     require './Codigo/VerificarLibro.php';
 
-    if($error){
+    if ($error) {
         // Crear un nuevo objeto de tipo stdClass
         $sc = new stdClass();
 
@@ -72,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sc->autor = $autor;
         $sc->fecha = $fecha;
         $sc->tutor = $tutor;
-        $sc->tutor_comunitario =$tutor_comunitario;
+        $sc->tutor_comunitario = $tutor_comunitario;
         $sc->lugar = $lugar;
         $sc->cantidad = $cantidad;
         $sc->mensaje = $mensaje;
@@ -92,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // registramos libros
     $sql_libro = "INSERT INTO servicio_comunitario (cota, titulo, autor, tutor, tutor_comunitario, fecha_registro, fecha_presentacion, cantidad, lugar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt_libro = $conexion->prepare($sql_libro);
-    $stmt_libro->bind_param("sssssssis",$cota, $titulo, $autor, $tutor, $tutor_comunitario, $fecha_registro, $fecha, $cantidad, $lugar);
+    $stmt_libro->bind_param("sssssssis", $cota, $titulo, $autor, $tutor, $tutor_comunitario, $fecha_registro, $fecha, $cantidad, $lugar);
     $stmt_libro->execute();
 
 
@@ -108,4 +105,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_libro->close();
     $conexion->close();
 }
-?>

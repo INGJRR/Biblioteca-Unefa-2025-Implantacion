@@ -1,5 +1,4 @@
 <?php
-
     require_once '../ruta.php';
     require_once ROOT_DIR . '/controlador/clases/fpdf.php';
     require ROOT_DIR . '/modelo/conexion.php';
@@ -103,9 +102,5 @@
         }
         $contador++;
     }
-
-
-
-
     $pdf->Output();
 ?>

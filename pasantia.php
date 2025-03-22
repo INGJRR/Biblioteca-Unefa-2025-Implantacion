@@ -9,8 +9,6 @@
     require_once ROOT_DIR . '/modelo/conexion.php';
     include ROOT_DIR . '/controlador/getInfo/pasantia.php';
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +21,6 @@
 </head>
 <!--  body -->
 <body>
-
 	<!-- MENU -->
 	<?php
 		$menuActive = 1;

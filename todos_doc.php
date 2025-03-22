@@ -10,8 +10,6 @@
     require_once ROOT_DIR . '/modelo/conexion.php';
     include_once ROOT_DIR . '/controlador/getInfo/docs.php';
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +21,6 @@
 </head>
 <!--  body -->
 <body>
-
 	<!-- MENU -->
 	<?php
 		$menuActive = 1;

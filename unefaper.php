@@ -20,8 +20,6 @@
 <!--  body -->
 
 <body>
-
- 
 	<!-- MENU -->
 	<?php
 		$menuActive = 1;
