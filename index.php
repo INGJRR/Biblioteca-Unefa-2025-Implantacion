@@ -151,6 +151,10 @@ EDUCACIÓN, EL ESTADO Y LA EDUCACIÓN EN AMÉRICA LATINA, EL ESTADO DOCENTE,
     <h3 class="h3">Desarrolladores</h3><br>
     <p class="p">Sabrina Rojas</p>
     <p class="p">Jesus Rios</p>
+    <p class="p">Jose Salazar</p>
+    <p class="p">Gabriel Albornoz</p>
+    <p class="p">Cristofer Benitez</p>
+    <p class="p">Esteban Salazar</p>
   </div>
   <div >
     <h3 class="h3">Tutores academicos</h3><br>
