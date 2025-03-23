@@ -39,7 +39,7 @@ CREATE TABLE `trabajos_investigacion` (
   `palabras_claves` text,
   `nivel_academico` enum('Trabajo de investigacion','Tesis') DEFAULT NULL,
   PRIMARY KEY (`cota`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

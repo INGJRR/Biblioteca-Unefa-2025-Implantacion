@@ -34,7 +34,7 @@ CREATE TABLE `profesores` (
   `moroso` tinyint(1) DEFAULT NULL,
   `credito` int DEFAULT '3',
   PRIMARY KEY (`cedula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
