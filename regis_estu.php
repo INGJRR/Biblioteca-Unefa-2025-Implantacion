@@ -47,7 +47,7 @@ require_once ROOT_DIR . '/controlador/registrar/estudiante.php';
 
 					<label for="usuario" class="formulario__label">Cédula *</label>
 					<div class="formulario__grupo-input">
-						<input class="formulario__input" value="<?= $cedula ?>" <?= ($cedula == '') ? $estilosError : '' ?> required placeholder="" name="cedula" type="text">
+						<input class="formulario__input" value="<?= $cedula ?>" <?= ($cedula == '') ? $estilosError : '' ?> required placeholder="" name="cedula" type="text" maxlength="8" onkeypress = "return ValidarNumeros(event)">
 						<i class="formulario__validacion-estado fas fa-times-circle"></i>
 					</div>
 					<p class="formulario__input-error" <?php echo ($estilosError != '' && $cedula == '') ? "style='display: block'" : '' ?>>Solo se aceptan números enteros en el rango de 100,000 a 99,999,999.</p>
@@ -92,7 +92,7 @@ require_once ROOT_DIR . '/controlador/registrar/estudiante.php';
 
 					<label for="usuario" class="formulario__label">Dirección *</label>
 					<div class="formulario__grupo-input">
-						<input class="formulario__input" value="<?= $direccion ?>" <?= ($direccion == '') ? $estilosError : '' ?> required placeholder="" name="direccion" type="text" class="input">
+						<input class="formulario__input" value="<?= $direccion ?>" <?= ($direccion == '') ? $estilosError : '' ?> required placeholder="" name="direccion" type="text" class="input" maxlength="30">
 						<i class="formulario__validacion-estado fas fa-times-circle"></i>
 					</div>
 
@@ -104,7 +104,7 @@ require_once ROOT_DIR . '/controlador/registrar/estudiante.php';
 
 					<label for="usuario" class="formulario__label">Teléfono *</label>
 					<div class="formulario__grupo-input">
-						<input class="formulario__input" value="<?= $telefono ?>" <?= ($telefono == '') ? $estilosError : '' ?> required placeholder="" name="telefono" type="text">
+						<input class="formulario__input" value="<?= $telefono ?>" <?= ($telefono == '') ? $estilosError : '' ?> required placeholder="" name="telefono" type="text" maxlength="11" onkeypress = "return ValidarNumeros(event)">
 						<i class="formulario__validacion-estado fas fa-times-circle"></i>
 					</div>
 
@@ -146,7 +146,7 @@ require_once ROOT_DIR . '/controlador/registrar/estudiante.php';
 				<div class="formulario_grupo">
 					<label for="usuario" class="formulario__label">Semestre *</label>
 					<div class="formulario__grupo-input">
-						<input value="<?= $semestre_actual ?>" <?= ($semestre_actual == '') ? $estilosError : '' ?> name="semestre" required="" placeholder="" type="number" min="1" class="formulario__input">
+						<input value="<?= $semestre_actual ?>" <?= ($semestre_actual == '') ? $estilosError : '' ?> name="semestre" required="" placeholder="" type="number" min="1" max="9"  class="formulario__input">
 						<i class="formulario__validacion-estado fas fa-times-circle"></i>
 					</div>
 
@@ -185,6 +185,7 @@ require_once ROOT_DIR . '/controlador/registrar/estudiante.php';
 
 
 	<script src="script.js"></script>
+	<script src="script/validarNumeros.js"></script>
 </body>
 
 </html>
