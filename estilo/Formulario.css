@@ -10,7 +10,7 @@
 	display:grid;
 	grid-template-columns:1fr 1fr;
 	gap: 30px;
-	background:rgb(238, 238, 238);
+	background:rgb(228, 228, 228);
 	height:80%;
 	width: 100%;
 	box-sizing:border-box;

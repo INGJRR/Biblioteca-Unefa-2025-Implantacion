@@ -511,6 +511,7 @@ main{
 	color: white;
 	filter: drop-shadow(4px 4px 4px  rgba(0, 0, 0, 0.233));
 	font-size: 20px;
+	font-weight: bold;
 }
 
 .boci{
@@ -606,6 +607,10 @@ gap: 10px;
 	background-color: #84b2ea;
 	align-items: center;
 	border-radius: 10px;
+	
+}
+.gla > p{
+	color: white;
 }
 .boton{
 	height:90%;
@@ -626,19 +631,19 @@ gap: 10px;
 }
 
 .vil{
-	background-color: #75ec75a5;
+	background-color: #63c96367;
 }
 .en{
 	background-color: var(--amarillo);
 }
 .fer{
-	background-color: #d4d458a6;
+	background-color: #d4d4583b;
 }
 .tu{
 	background-color: var(--ros);
 }
 .ris{
-	background-color: #ee55d487;
+	background-color: #ab409934;
 }
 .ad{
 	background-color: var(--rojo);

@@ -125,7 +125,7 @@ require_once ROOT_DIR . '/controlador/registrar/sc.php';
 				</div>
 				<div class="formulario_grupo">
 
-					<label for="usuario" class="formulario__label">Ejemplar *</label>
+					<label for="usuario" class="formulario__label">Nro de Ejemplares *</label>
 					<div class="formulario__grupo-input">
 						<input class="formulario__input" id="usuario" value="<?= $cantidad ?>" <?= ($cantidad == '') ? $estilosError : '' ?> name="cantidad" required="" title=" solo admiten numeros, cantidad minima: 1 Maxima: 100" placeholder="50" type="number">
 						<i class="formulario__validacion-estado fas fa-times-circle"></i>

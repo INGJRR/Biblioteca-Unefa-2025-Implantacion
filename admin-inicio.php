@@ -153,7 +153,8 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 								<!-- muestra todos los documentos por tipo cuantos hay en total -->
 								<div class="descargar">
 									<a href="./reportes/reporte_doc.php" target="_blank">
-										<div class="gla"> Documentos
+										<div class="gla"> 
+											<p>Documentos</p>
 											<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton"></div>
 										</div>
 									</a>
@@ -162,7 +163,8 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 								<!-- muestra todos los documentos prestados que estan pendientes por entregar -->
 								<div class="descargar">
 									<a href="./reportes/reporte_doc_prestados.php" target="_blank">
-										<div class="gla"> Documentos prestados
+										<div class="gla">
+											<p>Documentos prestados</p>
 											<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton"></div>
 										</div>
 									</a>
@@ -172,21 +174,27 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 
 								<div class="descargar">
 									<a href="./reportes/reporte_estudiantes.php" target="_blank">
-										<div class="gla">Estudiantes <div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+										<div class="gla"> 
+											<p>Estudiantes</p>
+											<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
 											</div>
 										</div>
 									</a>
 								</div>
 								<div class="descargar">
 									<a href="./reportes/reporte_prestamos.php" target="_blank">
-										<div class="gla">Morosos<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+										<div class="gla">
+											<p>Morosos</p>
+											<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
 											</div>
 										</div>
 									</a>
 								</div>
 								<div class="descargar">
 									<a href="./reportes/reporte_personal_unefa.php" target="_blank">
-										<div class="gla">Personal administrativo<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
+										<div class="gla">
+											<p>Personal administrativo</p>
+											<div style="background-image: url(imagenes/flecha-hacia-abajo-para-navegar.png);" class="boton">
 											</div>
 										</div>
 									</a>
