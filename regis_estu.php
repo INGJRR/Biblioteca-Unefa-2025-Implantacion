@@ -146,7 +146,7 @@ require_once ROOT_DIR . '/controlador/registrar/estudiante.php';
 				<div class="formulario_grupo">
 					<label for="usuario" class="formulario__label">Semestre *</label>
 					<div class="formulario__grupo-input">
-						<input value="<?= $semestre_actual ?>" <?= ($semestre_actual == '') ? $estilosError : '' ?> name="semestre" required="" placeholder="" type="number" min="1" max="9"  class="formulario__input">
+						<input value="<?= $semestre_actual ?>" <?= ($semestre_actual == '') ? $estilosError : '' ?> name="semestre" required="" placeholder="" type="number" min="1" max="9"  class="formulario__input" oninput="this.value = this.value.slice(0, 1);">
 						<i class="formulario__validacion-estado fas fa-times-circle"></i>
 					</div>
 

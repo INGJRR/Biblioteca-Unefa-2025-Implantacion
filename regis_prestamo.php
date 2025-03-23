@@ -43,7 +43,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 
 					<label for="usuario" class="formulario__label">Cédula *</label>
 					<div class="formulario__grupo-input">
-						<input class="formulario__input" value="<?= $cedula ?>" <?= ($cedula == '') ? $estilosError : '' ?> name="cedula" required="" placeholder="Ejm 30414587" type="number">
+						<input class="formulario__input" value="<?= $cedula ?>" <?= ($cedula == '') ? $estilosError : '' ?> name="cedula" required="" placeholder="Ejm 30414587" type="number" min="8" max="9" oninput="this.value = this.value.slice(0, 8);">
 						<i class="formulario__validacion-estado fas fa-times-circle"></i>
 					</div>
 					<p class="formulario__input-error" <?php echo ($estilosError != '' && $cedula == '') ? "style='display: block'" : '' ?>>Solo se aceptan números enteros en el rango de 100,000 a 99,999,999.</p>
@@ -86,6 +86,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 
 
 	<script src="script.js"></script>
+	<script src="script/validarNumeros.js"></script>
 </body>
 
 </html>
