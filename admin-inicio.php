@@ -59,7 +59,7 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 					</div>
 
 					<li class="notificaciones-footer">
-						<a href="#">Ir a Prestamos</a>
+						<a href="/prestamo.php">Ir a Prestamos</a>
 					</li>
 			</ul>
 		</nav>
