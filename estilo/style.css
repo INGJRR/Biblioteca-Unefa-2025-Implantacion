@@ -601,7 +601,7 @@ main{
 }
 .box:hover{
 	transition: all 500ms ease;
-	transform: translateY(-10%);
+	transform: translateX(+5%);
 	
 }
 .ima{
@@ -680,26 +680,24 @@ background-color: #738fda00;
 	
 
 }
-.elementosflex{
-height: 100%;
-width: 100%;
-display: flex;
-gap: 10px;
-
+.elementosflex {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	gap: 20px;
 }
 
 .descargar{
-	height:60px;
+	height: 8vh;
 	width: 90%;
-
 	background-color: #84b2ea;
 	box-sizing: border-box;
 	border-radius: 10px;
 	background-size: 30%;
-	
-	filter: drop-shadow(4px 4px 4px  rgba(0, 0, 0, 0.187));
+	filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.187));
 	text-align: center;
-	
 	font-size: 15px;
 	transition: all 500ms ease;
 }
