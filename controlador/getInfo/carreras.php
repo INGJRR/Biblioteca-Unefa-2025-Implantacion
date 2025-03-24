@@ -1,4 +1,5 @@
 <?php
+require './modelo/conexion.php';
     $carreras = array();
 // Vamos a obtener toda la informacion de las carreras 
 $sql = "SELECT 
