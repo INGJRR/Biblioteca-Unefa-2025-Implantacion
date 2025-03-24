@@ -46,7 +46,7 @@ require ROOT_DIR . '/modelo/conexion.php';
 
 					<div class="notificaciones-content">
 						<?php
-							$sql = "SELECT * FROM prestamos WHERE fecha_devolucion < CURDATE()";
+							$sql = "SELECT * FROM prestamos WHERE fecha_devolucion < CURDATE() AND estado = 'Prestado'";
 							$result = $conexion->query($sql);
 							if ($result->num_rows > 0) {
 								while ($row = $result->fetch_assoc()) {
