@@ -2,7 +2,7 @@
   // Datos de conexión 
   $servername = "localhost";
   $username = "root";
-  $password = "123321";
+  $password = "";
   $dbname = "biblioteca1_0";
 
   // Crear una csonexión

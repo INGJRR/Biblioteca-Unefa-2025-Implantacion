@@ -1,7 +1,7 @@
 <?php
 // abre y cierra la conexion solo 
 require './controlador/cantidad.php';
-
+require './modelo/conexion.php';
 ?>
 <?php
 require_once './ruta.php';
@@ -41,7 +41,21 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 					</div>
 
 					<div class="notificaciones-content">
-						
+						<?php
+							$sql = "SELECT * FROM prestamos WHERE fecha_devolucion < CURDATE()";
+							$result = $conexion->query($sql);
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									echo "<li class='notificacion'>
+											<p>El libro con cota <strong>{$row['cota_documento']}</strong> no ha sido entregado por el estudiante con cédula <strong>{$row['cedula_persona']}</strong></p>
+										</li>";
+								}
+							} else {
+								echo "<li class='notificacion'>
+										<p>No hay libros pendientes por entregar</p>
+									</li>";
+							}
+						?>
 					</div>
 
 					<li class="notificaciones-footer">
