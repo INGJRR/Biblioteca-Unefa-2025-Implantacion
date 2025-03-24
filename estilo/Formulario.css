@@ -31,20 +31,20 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
     list-style: none; 
     padding: 0; 
-    margin-top: 15px;
-    right: 347px;  
+	margin-top: 154px;
+	/* right: 347px;   */
     z-index: 100; 
     border-radius: 10px;
 }
 .notification-dot {
-    width: 10px; /* Ancho del punto */
-    height: 10px; /* Altura del punto */
-    background-color: red; /* Color del punto */
-    border-radius: 50%; /* Hacerlo redondo */
-    position: absolute; /* Posicionarlo */
-    top: 0; /* Ajustar la posición vertical */
-    right: 0; /* Ajustar la posición horizontal */
-    display: none; /* Ocultarlo por defecto */
+    width: 10px; 
+    height: 10px; 
+    background-color: red; 
+    border-radius: 50%; 
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    display: none;
 }
 .notificaciones-list::before {
     content: '';
@@ -52,16 +52,16 @@
     height: 0;
     border-left: 10px solid transparent; 
     border-right: 10px solid transparent; 
-    border-bottom: 10px solid #251b4b; 
+    border-bottom: 10px solid #bb92ec; 
     position: absolute;
     top: -9px; 
-    left: 220px;
-    list-style: none; 
+	left: 73px;
+	list-style: none; 
 }
 .notificaciones-header {
-    background-color: #251b4b; 
+    background-color: #bb92ec; 
     padding: 10px; 
-    border-radius: 10px 0px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
     /* border-bottom: 1px solid #ccc; */
 }
 .notificaciones-header h3 {
@@ -82,7 +82,7 @@
     background: #f1f1f1;
 }
 .notificaciones-content::-webkit-scrollbar-thumb {
-    background-color: #3d2e81;
+    background-color: #bb92ec;
     border-radius: 10px;
     border: 2px solid #f1f1f1;
 }

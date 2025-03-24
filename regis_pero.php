@@ -13,6 +13,7 @@ require_once ROOT_DIR . '/controlador/registrar/personal_unefa.php';
     <!--  CSS -->
     <!-- <link rel="stylesheet" href="estilo/Regi_pero.css"> -->
     <link rel="stylesheet" href="./estilo//Formulario.css">
+    <script src="https://kit.fontawesome.com/96ea2d2ec6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../fontawasome/fontawesome-free-6.7.2-web/css/all.css">
     <title>Biblioteca</title>
 </head>

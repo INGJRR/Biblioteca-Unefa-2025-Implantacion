@@ -13,6 +13,7 @@ require_once ROOT_DIR . '/controlador/registrar/pasantia.php';
 	<!-- <link rel="stylesheet" href="estilo/Regis_comu.css"> -->
 	<link rel="stylesheet" href="estilo/Formulario.css">
 	<link rel="stylesheet" href="../fontawasome/fontawesome-free-6.7.2-web/css/all.css">
+	<script src="https://kit.fontawesome.com/96ea2d2ec6.js" crossorigin="anonymous"></script>
 	<title>Biblioteca</title>
 </head>
 <!--  body -->
