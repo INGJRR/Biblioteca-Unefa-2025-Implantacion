@@ -13,6 +13,7 @@ require_once ROOT_DIR . '/controlador/registrar/personal_unefa.php';
     <!--  CSS -->
     <!-- <link rel="stylesheet" href="estilo/Regi_pero.css"> -->
     <link rel="stylesheet" href="./estilo//Formulario.css">
+    <link rel="stylesheet" href="../fontawasome/fontawesome-free-6.7.2-web/css/all.css">
     <title>Biblioteca</title>
 </head>
 <!--  body -->
@@ -34,7 +35,22 @@ require_once ROOT_DIR . '/controlador/registrar/personal_unefa.php';
     <section id="content">
         <nav>
             <i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu '></i>
+            <a href="#" id="notificaciones" >
+				<i class="fa-solid fa-bell Campana" title="Notificaciones"></i>    
+        	</a>
+				<ul class="notificaciones-list" id="notificaciones-list">
+					<div class="notificaciones-header">
+						<h3>Libros no entregados</h3>
+					</div>
 
+					<div class="notificaciones-content">
+						
+					</div>
+
+					<li class="notificaciones-footer">
+						<a href="#">Ir a Prestamos</a>
+					</li>
+			</ul>
             <a class="retorn" href="admin-inicio.php">Regresar</a>
         </nav> 
         <h4 style="font-size: 25PX; text-align: center; margin: 20px; font-weight: bolder; letter-spacing: 3px;" >REGISTRAR PERSONAL UNEFA</h4>
@@ -166,6 +182,8 @@ require_once ROOT_DIR . '/controlador/registrar/personal_unefa.php';
 
     <script src="script.js"></script>
     <script src="script/validarNumeros.js"></script>
+    <script src="script/notificaciones.js"></script>
+
 </body>
 
 </html>

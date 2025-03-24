@@ -16,6 +16,8 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--  CSS -->
 	<link rel="stylesheet" href="./estilo/style.css">
+	<link rel="stylesheet" href="../fontawasome/fontawesome-free-6.7.2-web/css/all.css">
+
 	<title>Biblioteca</title>
 </head>
 <!--  body -->
@@ -30,6 +32,22 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 	<section id="content">
 		<nav>
 			<i style="background-image: url(imagenes/flecha-curva.png);" class='bx bx-menu '></i>
+			<a href="#" id="notificaciones" >
+				<i class="fa-solid fa-bell Campana" title="Notificaciones"></i>    
+        	</a>
+				<ul class="notificaciones-list" id="notificaciones-list">
+					<div class="notificaciones-header">
+						<h3>Libros no entregados</h3>
+					</div>
+
+					<div class="notificaciones-content">
+						
+					</div>
+
+					<li class="notificaciones-footer">
+						<a href="#">Ir a Prestamos</a>
+					</li>
+			</ul>
 		</nav>
 
 		<main>
@@ -318,5 +336,6 @@ require_once ROOT_DIR . '/controlador/registrar/prestamo.php';
 	<!-- BARRA SUPERIOR -->
 
 	<script src="script.js"></script>
+	<script src="script/notificaciones.js"></script>
 </body>
 </html>
