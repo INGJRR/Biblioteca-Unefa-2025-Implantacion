@@ -118,7 +118,8 @@ if ($result->num_rows > 0) {
     }
 
 } else {
-    echo "Error al obtener la cantidad de ejemplares total.";
+    $total_general = 0;
+    //echo "Error al obtener la cantidad de ejemplares total.";
 }
 
 // para obtener el numero total de ejemplares
@@ -154,7 +155,8 @@ if ($result->num_rows > 0) {
     }
 
 } else {
-    echo "Error al obtener la cantidad de registro de doc.";
+    $total_general_registro_doc = 0;
+    //echo "Error al obtener la cantidad de registro de doc.";
 }
 
 

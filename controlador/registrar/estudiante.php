@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //registrando un nuevo estudiante
     $sql_persona_insert = "INSERT INTO estudiantes (cedula, nombre, apellido, fecha_nacimiento, direccion, telefono, gmail, estado, moroso, semestre_actual, id_carrera, credito) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt_persona_insert = $conexion->prepare($sql_persona_insert);
-    $stmt_persona_insert->bind_param("issssssiiiii", $cedula, $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $email, $estado, $moroso, $semestre_actual, $id_carrera, $credito);
+    $stmt_persona_insert->bind_param("isssssssiiii", $cedula, $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $email, $estado, $moroso, $semestre_actual, $id_carrera, $credito);
     $stmt_persona_insert->execute();
 
 

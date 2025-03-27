@@ -1,11 +1,11 @@
 <?php
-require './modelo/conexion.php';
+    require ROOT_DIR . '/modelo/conexion.php';
     $carreras = array();
 // Vamos a obtener toda la informacion de las carreras 
 $sql = "SELECT 
     *
 FROM carreras where activo = 1";
-
+ 
 $result = $conexion->query($sql);
 
 if ($result->num_rows > 0) {

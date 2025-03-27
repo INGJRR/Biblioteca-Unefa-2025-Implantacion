@@ -1,10 +1,9 @@
 <?php
 session_start();
 require_once ROOT_DIR . '/funciones/funciones.php';
-
-require ROOT_DIR . '/modelo/conexion.php';
 require_once ROOT_DIR . '/controlador/getInfo/carreras.php'; // se cierra sola la conexion
 
+require ROOT_DIR . '/modelo/conexion.php';
 require_once ROOT_DIR . '/funciones/info_idv_db.php';
 
 

@@ -4,7 +4,7 @@ require_once ROOT_DIR . '/controlador/getInfo/carreras.php';
 require_once ROOT_DIR . '/controlador/registrar/estudiante.php';
 require ROOT_DIR . '/modelo/conexion.php';
 ?>
-
+  
 <!DOCTYPE html>
 <html lang="en">
 

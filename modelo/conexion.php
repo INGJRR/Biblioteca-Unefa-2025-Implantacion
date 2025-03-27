@@ -1,8 +1,8 @@
-<?php
+﻿<?php
   // Datos de conexión 
   $servername = "localhost";
   $username = "root";
-  $password = "";
+  $password = "unefa2020";
   $dbname = "biblioteca1_0";
 
   // Crear una csonexión

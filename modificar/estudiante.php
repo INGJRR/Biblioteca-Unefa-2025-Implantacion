@@ -4,7 +4,7 @@
 	require_once ROOT_DIR . '/controlador/modificar/estudiante.php';
  
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 
